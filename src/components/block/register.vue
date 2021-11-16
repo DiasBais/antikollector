@@ -65,6 +65,7 @@ export default {
       formData.append('email', this.email);
       formData.append('iin', this.iin);
       formData.append('password', this.password);
+      console.log(formData);
       axios().post('firstStep',formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

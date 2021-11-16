@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="blockAlert-login__active">
-            <input type="" value="Войти" @click="submitRequestLogin">
+            <input type="button" value="Войти" @click="submitRequestLogin">
           </div>
         </form>
       </div>
@@ -33,7 +33,7 @@
 
 <script>
 import Register from './register';
-import axios from "../../core/axios";
+// import axios from "../../core/axios";
 
 export default {
   components: {
@@ -55,20 +55,26 @@ export default {
   },
   methods: {
     submitRequestLogin() {
+      /*
       let formData = new FormData();
       formData.append('iin', this.iin);
       formData.append('password', this.password);
-      axios().post('signIn',formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      axios().post('signIn', formData, { headers: { 'Content-Type': 'application/json' } })
       .then(response => {
         console.log(response.data);
       })
       .catch(error => {
         console.log(error);
       })
+      */
+      const axios = require('axios');
+      axios.post('https://crediter.kz/api/signIn', { 'iin': this.iin, 'password': this.password })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          })
     },
     loginMobileVersion() {
       if (window.innerWidth < 1160) {
