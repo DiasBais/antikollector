@@ -1,0 +1,39 @@
+@media (max-width: 1160px) {
+    .desktop8__content {
+        width: 375px !important;
+        padding: 38px 15px 0px 15px !important;
+    }
+    .desktop8__title {
+        font-size: 20px !important;
+        line-height: 24px !important;
+    }
+    .desktop8__composition {
+        display: block !important;
+    }
+    .desktop8__company-description {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        width: 287px !important;
+        margin: 0px 0px 42px 0px !important;
+    }
+    .desktop8__links {
+        display: flex;
+    }
+    .desktop8__link {
+        font-size: 14px !important;
+        line-height: 24px !important;
+    }
+    .desktop8__link-social-network {
+        display: flex;
+        align-items: end;
+    }
+    .desktop8__link-social-network img {
+        padding: 0px 5px !important;
+        margin: 0px !important;
+    }
+    .desktop8__company-name {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        padding: 26px 0px !important;
+    }
+}

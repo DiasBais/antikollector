@@ -1,0 +1,139 @@
+.desktop2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.desktop2__content {
+    width: 1080px;
+    text-align: center;
+    padding: 77px 0px 97px 0px;
+}
+.desktop2__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #000000;
+    margin: auto auto 41px auto;
+}
+.desktop2__btn-price {
+;
+}
+.desktop2__btn-price button {
+    border: 0;
+    background: linear-gradient(180deg, #C16C6C 0%, #8F2525 100%);
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    width: 315px;
+    height: 71px;
+    cursor: pointer;
+}
+.desktop2__stages {
+;
+}
+.desktop2__stages-views {
+;
+}
+.desktop2__stages-view {
+;
+}
+.desktop2__stage-couple {
+    display: flex;
+    justify-content: space-between;
+    padding: 61px 0px;
+    position: relative;
+}
+.desktop2__stage-left {
+    text-align: -moz-left;
+}
+.desktop2__stage-right {
+    text-align: -moz-right;
+}
+.desktop2__stage-icon {
+    background: rgba(255, 255, 255, 0.7);
+    border: 3px solid #CC7272;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    margin: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 55px;
+    line-height: 67px;
+    color: #8F2525;
+}
+.desktop2__stage-description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    margin: 13px;
+    color: #000000;
+    width: 400px;
+    height: 75px;
+}
+.desktop2__stage-line {
+    position: absolute;
+}
+.desktop2__stage-line-left {
+    top: 140px;
+    left: 98px;
+    width: 882px;
+}
+.desktop2__stage-line-right {
+    top: 141px;
+    left: 107px;
+    width: 1055px;
+}
+.desktop2__stages-continue {
+    margin: 100px auto auto auto;
+}
+.desktop2__stages-continue button {
+    border: 0;
+    background: #8F2525;
+    box-shadow: 0px 0px 44px -12px #8F2525;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    padding: 12px 62px;
+    cursor: pointer;
+}
+.desktop2__stage-list-progress {
+    margin: 0px 0px;
+}
+.desktop2__stage-progress {
+    display: flex;
+    margin: 8px 0px;
+    align-items: center;
+}
+.desktop2__stage-progress-image {
+    width: 123px;
+    heith: 91px;
+    margin: 0px 34px 0px 0px;
+}
+.desktop2__stage-progress-description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 43px;
+    color: #000000;
+    text-align: start;
+}

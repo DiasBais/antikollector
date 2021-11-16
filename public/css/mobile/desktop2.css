@@ -1,0 +1,120 @@
+@media (max-width: 1160px) {
+    .desktop2 {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .desktop2__content {
+        width: 255px !important;
+    }
+    .desktop2__title {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .desktop2__btn-price button {
+        border-radius: 5px !important;
+        font-weight: 500 !important;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        width: 204px !important;
+        height: 37px !important;
+    }
+    .desktop2__stage-view {
+        padding: 35px 0px !important;
+    }
+    .desktop2__stage-couple {
+        display: block !important;
+        justify-content: normal !important;
+        padding: 0px !important;
+    }
+    .desktop2__stage-left {
+        height: 106px !important;
+    }
+    .desktop2__stage-right {
+        height: 106px !important;
+    }
+    .desktop2__stage-icon {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 5px !important;
+        font-size: 30px !important;
+        line-height: 37px !important;
+    }
+    .desktop2__stage-description {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        margin: 0px !important;
+        width: 150px !important;
+        height: auto !important;
+    }
+    .desktop2__stage-line-left {
+        top: 36.5px !important;
+        left: 48px !important;
+        width: 165px !important;
+        transform: rotate(5deg);
+    }
+    .desktop2__stage-line-right {
+        top: 146px !important;
+        left: 41px !important;
+        width: 165px !important;
+        transform: rotateY(180deg) rotate(5deg);
+    }
+    .desktop2__stages-continue {
+        margin: 19px auto auto auto !important;
+    }
+    .desktop2__stage-progress {
+        padding: 11px 0px !important;
+        margin: 0px !important;
+    }
+    .desktop2__stage-progress-image {
+        width: 50px !important;
+        height: auto !important;
+        margin: 0px 17px 0px 0px !important;
+    }
+    .desktop2__stage-progress-description {
+        font-weight: normal !important;
+        font-size: 14px !important;
+        line-height: 17px !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .desktop2__content {
+        width: 1440px !important;
+    }
+    .desktop2__stage-couple {
+        display: block !important;
+        justify-content: normal !important;
+        padding: 0px !important;
+    }
+    .desktop2__stage-icon {
+        border: 3px solid #8F2525;
+    }
+    .desktop2__stage-line-left {
+        top: -7px !important;
+        left: 117px !important;
+        width: 1211px !important;
+        transform: rotate(-6.5deg);
+    }
+    .desktop2__stage-line-right {
+        top: 189px !important;
+        left: 108px !important;
+        width: 1211px !important;
+        transform: rotateY(180deg) rotate(-6.5deg);
+    }
+    /*
+    .desktop2__stage-line-left {
+        top: 36px !important;
+        left: 113px !important;
+        width: 858px !important;
+        transform: rotate(-2.5deg);
+    }
+    .desktop2__stage-line-right {
+        top: 239px !important;
+        left: 109px !important;
+        width: 857px !important;
+        transform: rotateY(180deg) rotate(-2.5deg);
+    }
+    */
+}
