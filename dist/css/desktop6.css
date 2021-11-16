@@ -1,0 +1,84 @@
+.desktop6 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.desktop6__content {
+    width: 100%;
+    text-align: center;
+    padding: 118px 0px 141px 0px;
+}
+.desktop6__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #000000;
+    margin: 0px 0px 45px 0px;
+}
+.desktop6__commentaries {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.desktop6__commentary {
+    padding: 39px 23px;
+    background: #FFFFFF;
+    border: 1px solid #C16C6C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 1027px;
+    display: flex;
+    margin: 40px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+.desktop6__commentary-author-image {
+;
+}
+.desktop6__commentary-author-image img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.desktop6__commentary-author {
+    margin: 12px 0px 0px 37px;
+    text-align: start;
+}
+.desktop6__commentary-author-name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 37px;
+    color: #000000;
+}
+.desktop6__commentary-author-city {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 37px;
+    color: #C16C6C;
+    margin: 10px 0px;
+}
+.desktop6__commentary-author-description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    width: 694px;
+}
+.desktop6__commentaries-movement {
+;
+}
+.desktop6__commentaries-movement-btn {
+    width: 20px;
+    margin: 65px 11px 0px 11px;
+}

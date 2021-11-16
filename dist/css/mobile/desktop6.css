@@ -1,0 +1,51 @@
+@media(max-width: 1160px) {
+    .desktop6__content {
+        width: 375px !important;
+        padding: 47px 74px 60px 74px !important;
+    }
+    .desktop6__title {
+        font-size: 25px !important;
+        line-height: 30px !important;
+        margin: 0px 0px 24.5px 0px !important;
+    }
+    .desktop6__commentaries {
+        display: block !important;
+        overflow-x: visible !important;
+    }
+    .desktop6__commentary {
+        padding: 12.5px 0px 12.5px 0px !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        width: 300px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0px !important;
+    }
+    .desktop6__commentary-author-image img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .desktop6__commentary-author {
+        margin: 9px 0px 0px 0px !important;
+        text-align: center !important;
+    }
+    .desktop6__commentary-author-name {
+        font-size: 15px !important;
+        line-height: 18px !important;
+    }
+    .desktop6__commentary-author-city {
+        font-size: 15px !important;
+        line-height: 18px !important;
+        margin: 1px 0px !important;
+    }
+    .desktop6__commentary-author-description {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        width: auto !important;
+        margin: 9px 0px 0px 0px !important;
+        text-align: start;
+    }
+    .desktop6__commentaries-movement {
+        display: none;
+    }
+}

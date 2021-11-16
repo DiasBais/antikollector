@@ -1,0 +1,24 @@
+.myDocuments {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 134px 0px 134px 0px;
+}
+.myDocuments__document {
+    text-align: center;
+}
+.myDocuments__document-name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+}
+.myDocuments__document-scan {
+    width: 334px;
+    height: 411px;
+    background: #9C9C9C;
+    margin: 32px;
+}
+

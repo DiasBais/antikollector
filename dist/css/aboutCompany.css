@@ -1,0 +1,57 @@
+.aboutCompany {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.aboutCompany__content {
+    width: 1080px;
+    text-align: center;
+    padding: 115px 0px;
+}
+.aboutCompany__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #000000;
+    margin: 0px 0px 98px 0px;
+}
+.aboutCompany__inside {
+    display: flex;
+}
+.aboutCompany__hello {
+    width: 339px;
+}
+.aboutCompany__description {
+    width: 846px;
+    text-align: start;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    margin: 0px;
+}
+.aboutCompany__description span {
+    color: #C16C6C;
+}
+.aboutCompany__order-service {
+    display: none;
+}
+.aboutCompany__order-service button {
+    width: 100%;
+    background: #8F2525;
+    box-shadow: 0px 0px 44px -12px #C23232;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    padding: 17px 0px;
+}
+

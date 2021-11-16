@@ -1,0 +1,43 @@
+@media(max-width: 1160px) {
+    .blockAlert-step1__content {
+        width: 292px;
+        padding: 30px 42px 30px 42px;
+        overflow-y: scroll;
+    }
+    .blockAlert-step1__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+        padding: 9px;
+    }
+    .blockAlert-step1__loading-view {
+        margin: 19px;
+    }
+    .blockAlert-step1__loading-view-filled {
+        width: 25%;
+        height: 11px;
+    }
+    .blockAlert-step1__input {
+        padding: 25px 0px 0px 0px;
+    }
+    .blockAlert-step1__input p {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0px 0px 10px 0px;
+    }
+    .blockAlert-step1__input input {
+        padding: 16px;
+    }
+    .blockAlert-step1__active {
+        padding: 53px 0px 0px 0px;
+    }
+    .blockAlert-step1__active input {
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px 17px 0px;
+        width: 100%;
+    }
+}
+
+@media(min-width: 1160px) and (max-height: 640px) {
+}
+
