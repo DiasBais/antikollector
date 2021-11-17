@@ -12,12 +12,6 @@
         </div>
         <form action="#">
           <div class="blockAlert-step2__body">
-            <div class="blockAlert-step2__input">
-              <p>Кому должен</p>
-              <select>
-                <option v-for="(organization,index) in organizations" :key="'P'+index">{{ organization.title }}</option>
-              </select>
-            </div>
             <div class="blockAlert-step2__organizations">
               <p>Кому должен</p>
               <div style="position: relative">

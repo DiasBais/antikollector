@@ -104,6 +104,7 @@ export default {
           .then(response => {
             if (response.data.success) {
               console.log(response.data);
+              this.step4BlockAlertClose();
             }
             else {
               console.log(response.data.error);
