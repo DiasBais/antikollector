@@ -1,0 +1,97 @@
+@media(max-width: 1160px) {
+    .Step3Show {
+        margin: 15px 0px 0px 0px;
+    }
+    .Step3Show__content {
+        width: 350px;
+        background-image: url('/images/looper-step3.svg');
+        padding: 10px 40px 25px 20px;
+    }
+    .Step3Show__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .Step3Show__body {
+        margin: 25px 0px 0px 0px;
+        display: block;
+        justify-content: normal;
+    }
+    .Step3Show__input {
+        margin: 20px 0px 0px 0px;
+    }
+
+    /* --- */
+
+
+    .Step3Show__list-free-services {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 15px 15px 20px 15px;
+        margin: 0px 0px 15px 0px;
+    }
+    .Step3Show__list-pay-services {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 15px 15px 20px 15px;
+        margin: 15px 0px 0px 0px;
+    }
+    .Step3Show__freeOrPay {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: #000000;
+        display: flex;
+        justify-content: center;
+    }
+    .Step3Show__list-services {
+        ;
+    }
+    .Step3Show__service {
+        list-style: none;
+        display: flex;
+    }
+    .Step3Show__service-image {
+        width: 18px;
+        margin: 0px 10px 0px 0px;
+        padding: 0;
+    }
+    .Step3Show__service-description {
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+    .Step3Show__service-has {
+        color: #494949;
+    }
+    .Step3Show__service-not {
+        color: #000;
+        text-decoration: line-through;
+    }
+
+    /* --- */
+
+    .Step3Show__footer {
+        margin: 40px 0px 0px 0px;
+    }
+    .Step3Show__free {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+        margin: 60px 0px 0px 0px;
+    }
+    .Step3Show__pay {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+        margin: 60px 0px 0px 0px;
+    }
+}
+

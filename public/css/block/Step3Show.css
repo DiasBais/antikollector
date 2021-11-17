@@ -1,0 +1,116 @@
+.Step3Show {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0px;
+}
+.Step3Show__content {
+    width: 1000px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 25px 50px 50px 50px;
+}
+.Step3Show__loading-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    color: #000000;
+    text-align: center;
+}
+.Step3Show__loading-show {
+    border: 1px solid #8F2525;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 13px;
+    margin: 15px;
+}
+.Step3Show__loading-show-filled {
+    background: #8F2525;
+    border: 1px solid #8F2525;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 11px;
+}
+.Step3Show__body {
+    margin: 45px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- */
+
+.Step3Show__list-free-services {
+    text-align: center;
+}
+.Step3Show__list-pay-services {
+    text-align: center;
+}
+.Step3Show__freeOrPay {
+    display: none;
+}
+.Step3Show__list-services {
+    text-align: start;
+    margin: 0;
+    padding: 0;
+}
+.Step3Show__service {
+    list-style: none;
+    display: flex;
+}
+.Step3Show__service-image {
+    margin: 0px 10px 0px 0px;
+    padding: 0;
+}
+.Step3Show__service-description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 23px;
+    line-height: 28px;
+    color: #494949;
+}
+.Step3Show__service-has {
+    color: #494949;
+}
+.Step3Show__service-not {
+    color: #000;
+    text-decoration: line-through;
+}
+
+/* --- */
+
+.Step3Show__free {
+    background: #FFFFFF;
+    border: 2px solid #8F2525;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 44px -12px #8F2525;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8F2525;
+    padding: 14px 99px;
+    text-align: center;
+    margin: 60px 0px 0px 0px;
+}
+.Step3Show__pay {
+    background: #8F2525;
+    box-shadow: 0px 0px 44px -12px #8F2525;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding: 14px 108px;
+    text-align: center;
+    margin: 60px 0px 0px 0px;
+}
+

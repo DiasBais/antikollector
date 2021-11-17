@@ -1,0 +1,109 @@
+@media(max-width: 1160px) {
+    .Step2Show {
+        margin: 30px 0px 0px 0px;
+    }
+    .Step2Show__content {
+        width: 350px;
+        padding: 10px 35px 25px 20px;
+    }
+    .Step2Show__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .Step2Show__body {
+        margin: 40px 0px 0px 0px;
+    }
+
+    /* --- */
+
+    .Step2Show__organizations {
+        ;
+    }
+    .Step2Show__organizations-title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .Step2Show__organizations-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .Step2Show__organizationsList-option {
+        margin: 0 !important;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .Step2Show__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .Step2Show__input-title {
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .Step2Show__input-value {
+        border: 1px solid #9C9C9C;
+        font-size: 15px;
+        line-height: 19px;
+        padding: 12.5px;
+    }
+    .Step2Show__input-price {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+
+    /* --- */
+
+    .Step2Show__problems {
+    ;
+    }
+    .Step2Show__problems-title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .Step2Show__problems-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .Step2Show__problemsList-option {
+        margin: 0 !important;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .Step2Show__footer {
+        margin: 40px 0px 0px 0px;
+    }
+    .Step2Show__back {
+        display: none;
+    }
+    .Step2Show__submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+    }
+}
+

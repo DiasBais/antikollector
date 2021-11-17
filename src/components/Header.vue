@@ -41,8 +41,10 @@
                         </div>
                     </div>
                     <!-- --- -->
-                    <div class="header__account-circle" @click="obfLoginBlockAlertOpen">
-                        <img src="/images/account-circle.svg">
+                    <div class="header__account-circle">
+                        <router-link to="/loginshow">
+                          <img src="/images/account-circle.svg">
+                        </router-link>
                     </div>
                 </div>
             </div>

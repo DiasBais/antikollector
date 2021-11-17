@@ -1,4 +1,4 @@
-body { overflow-x: hidden; margin: 0; padding: 0; }
+body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
 
 .header {
     ;
@@ -184,6 +184,9 @@ body { overflow-x: hidden; margin: 0; padding: 0; }
     }
     .header__body-looper {
         background-image: url('./images/looper-mobile.svg') !important;
+    }
+    .header__body-sliders {
+        width: 375px !important;
     }
     .header__body-slider {
         height: 216px !important;

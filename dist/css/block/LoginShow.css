@@ -1,0 +1,90 @@
+.LoginShow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0px;
+}
+.LoginShow__content {
+    width: 750px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 25px 50px 25px 50px;
+}
+.LoginShow__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+    color: #525252;
+    text-align: center;
+    margin: 0px 0px 50px 0px;
+}
+.LoginShow__input {
+    margin: 30px 0px 0px 0px;
+}
+.LoginShow__input-name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    display: flex;
+    margin: 0px 0px 5px 0px;
+}
+.LoginShow__input-name-require {
+    color: #8F2525;
+}
+.LoginShow__input-value {
+    background: #FFFFFF;
+    border: 1px solid #9C9C9C;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    padding: 15px;
+    width: 100%;
+}
+.LoginShow__links {
+    display: flex;
+    justify-content: space-between;
+}
+.LoginShow__links a {
+    text-decoration: none;
+}
+.LoginShow__links p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    color: #7D7B7B;
+    margin: 0;
+}
+.LoginShow__links span {
+    color: #8F2525;
+    margin: 0;
+}
+.LoginShow__footer {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px 0px 0px;
+}
+.LoginShow__input-submit {
+    background: #8F2525;
+    box-shadow: 0px 0px 44px -12px #8F2525;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    padding: 14px 73px;
+}

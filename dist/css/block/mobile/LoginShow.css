@@ -1,0 +1,49 @@
+@media(max-width: 1160px) {
+    .LoginShow {
+        margin: 30px 0px 0px 0px;
+    }
+    .LoginShow__content {
+        width: 350px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 15px 25px 15px 25px;
+    }
+    .LoginShow__title {
+        font-size: 20px;
+        line-height: 24px;
+        color: #000000;
+        margin: 0px 0px 50px 0px;
+    }
+    .LoginShow__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .LoginShow__input-name {
+        font-size: 18px;
+        line-height: 22px;
+        color: #525252;
+        margin: 0px 0px 2.5px 0px;
+
+    }
+    .LoginShow__input-value {
+        padding: 10px;
+    }
+    .LoginShow__links {
+        display: block;
+    }
+    .LoginShow__links p {
+        font-size: 13px;
+        line-height: 16px;
+        color: #7D7B7B;
+    }
+    .LoginShow__footer {
+        display: flex;
+        justify-content: center;
+        margin: 40px 0px 0px 0px;
+    }
+    .LoginShow__input-submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 14px 66px;
+    }
+}

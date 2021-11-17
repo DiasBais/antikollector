@@ -10,7 +10,7 @@
           <input type="number" minlength="0" maxlength="4" v-model="mySmsCode" required>
         </div>
         <div class="confirm__submit">
-          <input type="button" v-on:click="obfStep2BlockAlerts" value="Защитить меня">
+          <input type="button" v-on:click="submitRequestFirstStep" value="Защитить меня">
         </div>
       </div>
     </div>

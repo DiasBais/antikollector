@@ -12,12 +12,6 @@
           </div>
           <form action="#">
             <div class="blockAlert-step2__body">
-              <div class="blockAlert-step2__input">
-                <p>Кому должен</p>
-                <select>
-                  <option v-for="(organization,index) in organizations" :key="'P'+index">{{ organization.title }}</option>
-                </select>
-              </div>
               <div class="blockAlert-step2__organizations">
                 <p>Кому должен</p>
                 <div style="position: relative">
@@ -139,7 +133,7 @@ export default {
               this.obfStep3BlockAlerts();
             }
             else {
-              console.log(response.error);
+              console.log(response.data.error);
             }
           })
           .catch(error => {
@@ -162,9 +156,7 @@ export default {
         for (let i = 0; i < this.organizations.length; i++) this.organizations[i].hide = 'block';
         return;
       }
-      console.log(this.organization);
       for (let i = 0; i < this.organizations.length; i++) {
-        console.log(this.organizations[i].title.indexOf(this.organization));
         if (this.organizations[i].title.indexOf(this.organization) !== -1) {
           this.organizations[i].hide = 'block';
         }
@@ -205,6 +197,7 @@ export default {
     obfStep3BlockAlerts() {
       this.step2BlockAlertClose();
       this.$refs.step3BlockAlerts.step3BackStep2 = false;
+      this.$refs.step3BlockAlerts.token = this.token;
       this.$refs.step3BlockAlerts.step3BlockAlertOpen();
     },
   },

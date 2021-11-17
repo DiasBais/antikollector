@@ -19,6 +19,11 @@ import HeaderUser from './components/HeaderUser'
 import myDocuments from './components/myDocuments'
 import Notifications from './components/Notifications'
 import confirm from './components/block/confirm'
+import LoginShow from './components/block/LoginShow'
+import step1Show from './components/block/Step1Show'
+import step2Show from './components/block/Step2Show'
+import step3Show from './components/block/Step3Show'
+import ConfirmShow from './components/block/ConfirmShow'
 
 export default new VueRouter({
     mode: 'history',
@@ -82,6 +87,26 @@ export default new VueRouter({
         {
             path: '/step4',
             component: step4
+        },
+        {
+            path: '/LoginShow',
+            component: LoginShow
+        },
+        {
+            path: '/step1Show',
+            component: step1Show
+        },
+        {
+            path: '/step2Show',
+            component: step2Show
+        },
+        {
+            path: '/step3Show',
+            component: step3Show
+        },
+        {
+            path: '/ConfirmShow',
+            component: ConfirmShow
         },
         {
             path: '/headeruser',
