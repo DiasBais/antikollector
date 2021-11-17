@@ -52,9 +52,11 @@
 }
 .desktop2__stage-left {
     text-align: -moz-left;
+    text-align: -webkit-left;
 }
 .desktop2__stage-right {
     text-align: -moz-right;
+    text-align: -webkit-right;
 }
 .desktop2__stage-icon {
     background: rgba(255, 255, 255, 0.7);

@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="ashgwefcdswf" v-on:click="hello">
         <div class="header">
             <div class="header__body">
                 <div class="header__body-title">
@@ -82,6 +82,9 @@ export default {
         window.addEventListener('resize', this.initialValueMobileNav);
     },
     methods: {
+        hello() {
+          console.log(document.getElementsByClassName('ashgwefcdswf')[0].offsetTop);
+        },
         initialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
             this.mobileNavLeft = (-window.innerWidth)+'px';
@@ -106,8 +109,6 @@ export default {
         sliderMouseDown(event) {
             this.mouseDown.pressed = 1;
             this.mouseDown.cursor = 'grabbing';
-            let oldPosLeft = this.mouseDown.lastPosLeft;
-            console.log(oldPosLeft, event.clientX);
             this.mouseDown.lastPosLeft = (event.clientX);
         },
         sliderMouseUp() {

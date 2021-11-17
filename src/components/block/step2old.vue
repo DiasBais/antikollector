@@ -1,72 +1,72 @@
 <template>
   <div>
-  <div class="blockAlert-step2" :style="'display: '+step2BlockAlertDisplay" v-on:click="onClickOrganizationsList($event)">
-    <div class="blockAlert-step2__pos">
-      <div class="blockAlert-step2__background" v-on:click="step2BlockAlertClose"></div>
-      <div class="blockAlert-step2__content" ref="infoStep2BlockAlert" :style="'margin: '+step2BlockAlertMarginTop+'px 0px 0px 0px'">
-        <div class="blockAlert-step2__loading">
-          <div class="blockAlert-step2__loading-title">Шаг 2</div>
-          <div class="blockAlert-step2__loading-view">
-            <div class="blockAlert-step2__loading-view-filled"></div>
-          </div>
-        </div>
-        <form action="#">
-          <div class="blockAlert-step2__body">
-            <div class="blockAlert-step2__input">
-              <p>Кому должен</p>
-              <select>
-                <option v-for="(organization,index) in organizations" :key="'P'+index">{{ organization.title }}</option>
-              </select>
+    <div class="blockAlert-step2" :style="'display: '+step2BlockAlertDisplay" v-on:click="onClickOrganizationsList($event)">
+      <div class="blockAlert-step2__pos">
+        <div class="blockAlert-step2__background" v-on:click="step2BlockAlertClose"></div>
+        <div class="blockAlert-step2__content" ref="infoStep2BlockAlert" :style="'margin: '+step2BlockAlertMarginTop+'px 0px 0px 0px'">
+          <div class="blockAlert-step2__loading">
+            <div class="blockAlert-step2__loading-title">Шаг 2</div>
+            <div class="blockAlert-step2__loading-view">
+              <div class="blockAlert-step2__loading-view-filled"></div>
             </div>
-            <div class="blockAlert-step2__organizations">
-              <p>Кому должен</p>
-              <div style="position: relative">
-                <input type="text"
-                       v-model="organization"
-                       :style="(hideOrganization==='none'?'border-radius: 10px':'')"
-                       v-on:click="onClickOrganizationsList"
-                       v-on:keyup="enterOrganizationInput"
-                       class="blockAlert-step2__organizations-input"
-                >
-                <div class="blockAlert-step2__organizationsList"
-                     :style="'display: '+hideOrganization"
-                >
+          </div>
+          <form action="#">
+            <div class="blockAlert-step2__body">
+              <div class="blockAlert-step2__input">
+                <p>Кому должен</p>
+                <select>
+                  <option v-for="(organization,index) in organizations" :key="'P'+index">{{ organization.title }}</option>
+                </select>
+              </div>
+              <div class="blockAlert-step2__organizations">
+                <p>Кому должен</p>
+                <div style="position: relative">
+                  <input type="text"
+                         v-model="organization"
+                         :style="(hideOrganization==='none'?'border-radius: 10px':'')"
+                         v-on:click="onClickOrganizationsList"
+                         v-on:keyup="enterOrganizationInput"
+                         class="blockAlert-step2__organizations-input"
+                  >
+                  <div class="blockAlert-step2__organizationsList"
+                       :style="'display: '+hideOrganization"
+                  >
                   <span class="blockAlert-step2__organizationsList-option"
-                     v-for="(organization,index) in organizations"
-                     :key="'O'+index"
-                     v-html="organization.title"
-                     :style="'display: '+organization.hide"
-                     v-on:click="onClickOrganizationsListOption(index)"
+                        v-for="(organization,index) in organizations"
+                        :key="'O'+index"
+                        v-html="organization.title"
+                        :style="'display: '+organization.hide"
+                        v-on:click="onClickOrganizationsListOption(index)"
                   ></span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="blockAlert-step2__input-amount">
-              <p>Сколько должен</p>
-              <div class="blockAlert-step2__input-amount-option">
-                <input type="text" v-model="amountOption">
-                <span>тенге</span>
+              <div class="blockAlert-step2__input-amount">
+                <p>Сколько должен</p>
+                <div class="blockAlert-step2__input-amount-option">
+                  <input type="text" v-model="amountOption">
+                  <span>тенге</span>
+                </div>
+              </div>
+              <div class="blockAlert-step2__input-date">
+                <p>Когда брал кредит</p>
+                <input type="date" v-model="date">
+              </div>
+              <div class="blockAlert-step2__input-other">
+                <p>Какая проблема</p>
+                <input type="text" v-model="whatAProblem">
+                <a href="#">+ Добавить МФО</a>
               </div>
             </div>
-            <div class="blockAlert-step2__input-date">
-              <p>Когда брал кредит</p>
-              <input type="date" v-model="date">
+            <div class="blockAlert-step2__active">
+              <input class="blockAlert-step2__active-back" type="submit" value="Назад" v-on:click="obfStep1BlockAlertsBack">
+              <input class="blockAlert-step2__active-go" type="submit" value="Защитить меня" v-on:click="submitRequestSecondStep">
             </div>
-            <div class="blockAlert-step2__input-other">
-              <p>Какая проблема</p>
-              <input type="text" v-model="whatAProblem">
-              <a href="#">+ Добавить МФО</a>
-            </div>
-          </div>
-          <div class="blockAlert-step2__active">
-            <input class="blockAlert-step2__active-back" type="submit" value="Назад" v-on:click="obfStep1BlockAlertsBack">
-            <input class="blockAlert-step2__active-go" type="submit" value="Защитить меня" v-on:click="submitRequestSecondStep">
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <Step3 ref="step3BlockAlerts" />
+    <Step3 ref="step3BlockAlerts" />
   </div>
 </template>
 
@@ -139,7 +139,7 @@ export default {
               this.obfStep3BlockAlerts();
             }
             else {
-              console.log(response.data.error);
+              console.log(response.error);
             }
           })
           .catch(error => {
@@ -162,7 +162,9 @@ export default {
         for (let i = 0; i < this.organizations.length; i++) this.organizations[i].hide = 'block';
         return;
       }
+      console.log(this.organization);
       for (let i = 0; i < this.organizations.length; i++) {
+        console.log(this.organizations[i].title.indexOf(this.organization));
         if (this.organizations[i].title.indexOf(this.organization) !== -1) {
           this.organizations[i].hide = 'block';
         }
@@ -203,7 +205,6 @@ export default {
     obfStep3BlockAlerts() {
       this.step2BlockAlertClose();
       this.$refs.step3BlockAlerts.step3BackStep2 = false;
-      this.$refs.step3BlockAlerts.token = this.token;
       this.$refs.step3BlockAlerts.step3BlockAlertOpen();
     },
   },

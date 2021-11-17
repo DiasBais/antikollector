@@ -5,6 +5,7 @@
     width: 100%;
     height: 100%;
     display: block;
+    z-index: 99;
 }
 .blockAlert-step1__background {
     position: absolute;

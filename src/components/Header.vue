@@ -88,13 +88,22 @@ export default {
                 data: choiceLanguagesRu()
             },
             mobileNavBgLeft: '0px',
-            mobileNavLeft: '0px'
+            mobileNavLeft: '0px',
+            listHeightPages: {
+              home: 0,
+              ourAdvantages: 0,
+              services: 0,
+              aboutCompany: 0,
+              reviews: 0,
+              faq: 0,
+            },
         }
     },
     created () {
         this.headerInitialValueMobileNav();
         window.addEventListener('resize', this.headerInitialValueMobileNav);
     },
+    // mounted () {this.$refs. },
     methods: {
       headerInitialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';

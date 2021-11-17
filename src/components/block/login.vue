@@ -16,7 +16,7 @@
               <input name="password" type="password" value="" v-model="password">
             </div>
             <div class="blockAlert-login__links">
-              <p>Нет аккаунта? <span @click="obfRegisterBlockAlerts">Зарегестрируйтесь</span></p>
+              <p>Нет аккаунта? <span @click="obfStep1BlockAlerts">Зарегестрируйтесь</span></p>
               <p>Забыли пароль?</p>
             </div>
           </div>
@@ -27,17 +27,17 @@
       </div>
     </div>
   </div>
-    <Register ref="registersBlockAlerts" />
+    <Step1 ref="step1BlockAlerts" />
   </div>
 </template>
 
 <script>
-import Register from './register';
+import Step1 from './step1';
 // import axios from "../../core/axios";
 
 export default {
   components: {
-    Register,
+    Step1,
   },
   data() {
     return {
@@ -92,9 +92,9 @@ export default {
     LoginBlockAlertClose() {
       this.LoginBlockAlertDisplay = 'none';
     },
-    obfRegisterBlockAlerts() {
+    obfStep1BlockAlerts() {
       this.LoginBlockAlertClose();
-      this.$refs.registersBlockAlerts.registerBlockAlertOpen();
+      this.$refs.step1BlockAlerts.step1BlockAlertOpen();
     },
   },
 }
