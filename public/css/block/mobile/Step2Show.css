@@ -10,8 +10,20 @@
         font-size: 20px;
         line-height: 24px;
     }
+    .Step2Show__loading-show-filled {
+        height: 12px;
+    }
     .Step2Show__body {
         margin: 40px 0px 0px 0px;
+    }
+    .Step2Show__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .Step2Show__error span {
+        font-size: 12px;
+        line-height: 15px;
     }
 
     /* --- */

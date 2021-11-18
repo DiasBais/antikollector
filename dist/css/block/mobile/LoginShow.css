@@ -14,6 +14,15 @@
         color: #000000;
         margin: 0px 0px 50px 0px;
     }
+    .LoginShow__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .LoginShow__error span {
+        font-size: 12px;
+        line-height: 15px;
+    }
     .LoginShow__input {
         margin: 20px 0px 0px 0px;
     }

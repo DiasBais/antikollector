@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <VHeader></VHeader>
+    <VHeader v-if="!logged"></VHeader>
+    <HeaderUser v-if="logged"></HeaderUser>
     <router-view></router-view>
     <VFooter></VFooter>
   </div>
@@ -8,12 +9,22 @@
 
 <script>
 import VHeader from './components/Header'
+import HeaderUser from './components/HeaderUser'
 import VFooter from './components/Desktop7'
 
 export default {
   components: {
     VHeader,
+    HeaderUser,
     VFooter
+  },
+  data() {
+    return {
+      logged: '',
+    }
+  },
+  mounted() {
+    this.logged = localStorage.getItem('logged');
   }
 }
 </script>

@@ -40,6 +40,23 @@
     display: flex;
     justify-content: space-between;
 }
+.Step3Show__error {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    background: rgba(220, 53, 69, 0.4);
+    /*border-radius: 15px;*/
+    padding: 15px 20px 15px 20px;
+    color: #404040;
+    border-left: 2px solid rgba(220, 53, 69, 1);
+}
+.Step3Show__error span {
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 23px;
+}
 
 /* --- */
 

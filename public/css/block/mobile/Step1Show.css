@@ -11,8 +11,20 @@
         font-size: 20px;
         line-height: 24px;
     }
+    .Step1Show__loading-show-filled {
+        height: 12px;
+    }
     .Step1Show__body {
         margin: 35px 0px 0px 0px;
+    }
+    .Step1Show__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .Step1Show__error span {
+        font-size: 12px;
+        line-height: 15px;
     }
     .Step1Show__input {
         margin: 20px 0px 0px 0px;

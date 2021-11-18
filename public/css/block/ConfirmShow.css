@@ -43,7 +43,8 @@
     line-height: 24px;
     color: #000000;
     padding: 12.5px;
-    width: 84px;
+    width: 125px;
+    text-align: center;
 }
 .ConfirmShow__footer {
     ;
@@ -60,5 +61,6 @@
     line-height: 24px;
     color: #FFFFFF;
     padding: 19px 79.5px;
+    text-align: center;
 }
 

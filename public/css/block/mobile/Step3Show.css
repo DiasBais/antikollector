@@ -11,10 +11,22 @@
         font-size: 20px;
         line-height: 24px;
     }
+    .Step2Show__loading-show-filled {
+        height: 12px;
+    }
     .Step3Show__body {
         margin: 25px 0px 0px 0px;
         display: block;
         justify-content: normal;
+    }
+    .Step2Show__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .Step2Show__error span {
+        font-size: 12px;
+        line-height: 15px;
     }
     .Step3Show__input {
         margin: 20px 0px 0px 0px;

@@ -31,6 +31,13 @@ export default {
     })
     window.addEventListener('resize', this.mobileVersion);
   },
+  mounted() {
+    this.iin = localStorage.getItem('iin');
+    this.token = localStorage.getItem('token');
+    if (!this.iin || !this.token || !localStorage.getItem('logged')) {
+      this.$router.push({path: '/'});
+    }
+  },
   methods: {
     mobileVersion() {
       if (window.innerWidth < 1160) {

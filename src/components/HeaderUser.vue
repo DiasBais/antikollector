@@ -8,7 +8,7 @@
               <li class="header__link" v-for="(link, index) in links" :key="'A'+index">
                 <router-link :to="link.path" :style="(($route.path === link.path)?'color: #753636':'')">
                   {{ link.title }}
-                  <div v-if="link.path === 'our-advantages'">99</div>
+                  <div v-if="numRequests && link.path === 'our-advantages'">{{ numRequests }}</div>
                 </router-link>
               </li>
             </ul>
@@ -55,10 +55,12 @@
 <script>
 import choiceLanguagesRu from '../lang/ru/lang'
 import choiceLanguagesKz from '../lang/kz/lang'
+const axios = require('axios');
 
 export default {
   data () {
     return {
+      numRequests: 0,
       links: [
         { path: 'home', title: 'Мои документы' },
         { path: 'our-advantages', title: 'Уведомления' },
@@ -69,14 +71,38 @@ export default {
         data: choiceLanguagesRu()
       },
       mobileNavBgLeft: '0px',
-      mobileNavLeft: '0px'
+      mobileNavLeft: '0px',
+      iin: '',
+      token: '',
+      error: '',
     }
   },
-  created () {
+  created() {
     this.initialValueMobileNav();
     window.addEventListener('resize', this.initialValueMobileNav);
   },
+  mounted() {
+    this.iin = localStorage.getItem('iin');
+    this.token = localStorage.getItem('token');
+    this.getPush();
+  },
   methods: {
+    async getPush() {
+      await axios.post('https://crediter.kz/api/getPush', {
+        'token': this.token,
+      })
+          .then(response => {
+            if (response.data.success) {
+              this.numRequests = response.data.data.length;
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
+    },
     initialValueMobileNav() {
       this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
       this.mobileNavLeft = (-window.innerWidth)+'px';

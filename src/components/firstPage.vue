@@ -25,6 +25,11 @@ export default {
     Desktop5,
     Desktop6,
     Desktop7,
+  },
+  mounted() {
+    if (localStorage.getItem('logged')) {
+      this.$router.push({path: '/notifications'});
+    }
   }
 }
 </script>

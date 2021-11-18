@@ -6,6 +6,7 @@
         <div class="Step3Show__loading-show">
           <div class="Step3Show__loading-show-filled"></div>
         </div>
+        <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
       </div>
       <div class="Step3Show__body">
         <div class="Step3Show__list-free-services">
@@ -16,7 +17,7 @@
               <p :class="'Step3Show__service-description '+(service.advantage?'Step3Show__service-has':'Step3Show__service-not')">{{ service.title }}</p>
             </li>
           </ul>
-          <input class="Step3Show__free" type="button" value="Бесплатно">
+          <input class="Step3Show__free" type="button" value="Бесплатно" v-on:click="lastStep('free')">
         </div>
         <div class="Step3Show__freeOrPay">или</div>
         <div class="Step3Show__list-pay-services">
@@ -27,7 +28,7 @@
               <p :class="'Step3Show__service-description '+(service.advantage?'Step3Show__service-has':'Step3Show__service-not')">{{ service.title }}</p>
             </li>
           </ul>
-          <input class="Step3Show__pay" type="button" value="20 000 тг">
+          <input class="Step3Show__pay" type="button" value="20 000 тг" v-on:click="lastStep('pay')">
         </div>
       </div>
     </div>
@@ -35,6 +36,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import VueSession from 'vue-session';
+Vue.use(VueSession);
+
 export default {
   data() {
     return {
@@ -60,10 +65,46 @@ export default {
         { title: 'Письмо в Юстиции', advantage: true },
         { title: 'Письмо в палату ЧСИ', advantage: true },
       ],
+      iin: '',
+      token: '',
+      type: '',
+      error: '',
     }
   },
+  mounted() {
+    this.iin = localStorage.getItem('iin');
+    this.token = localStorage.getItem('token');
+    if (!this.iin || !this.token || !this.$session.get('step2success')) {
+      this.$router.push({path: '/step2show'});
+    }
+    else if (localStorage.getItem('logged')) {
+      this.$router.push({path: '/notifications'});
+    }
+    localStorage.setItem('smsCode', '');
+  },
   methods: {
-    asd() {}
+    async lastStep(type) {
+      this.type = type;
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/lastStep', {
+        'token': this.token,
+        'type': this.type,
+      })
+          .then(async response => {
+            if (response.data.success) {
+              console.log(response.data);
+              await this.$session.set('step2success', false);
+              await localStorage.setItem('logged', true);
+              this.$router.push({path: '/notifications'});
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
+    },
   }
 }
 </script>

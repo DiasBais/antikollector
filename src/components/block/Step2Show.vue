@@ -8,6 +8,7 @@
         </div>
       </div>
       <div class="Step2Show__body">
+        <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
         <div class="Step2Show__organizations">
           <p class="Step2Show__organizations-title">Кому должен</p>
           <input type="text"
@@ -32,13 +33,13 @@
         <div class="Step2Show__input">
           <p class="Step2Show__input-title">Сколько должен</p>
           <div class="Step2Show__input-part">
-            <input class="Step2Show__input-value" type="number">
+            <input class="Step2Show__input-value" type="number" v-model="arrears" v-on:keydown="onKeyDownArrears($event)">
             <span class="Step2Show__input-price">тенге</span>
           </div>
         </div>
         <div class="Step2Show__input">
           <p class="Step2Show__input-title">Когда брал кредит</p>
-          <input class="Step2Show__input-value" type="date">
+          <input class="Step2Show__input-value" type="date" v-model="date">
         </div>
 
         <div class="Step2Show__problems">
@@ -62,17 +63,20 @@
             ></span>
           </div>
         </div>
-
       </div>
       <div class="Step2Show__footer">
-        <input class="Step2Show__back" type="button" value="Назад">
-        <input class="Step2Show__submit" type="button" value="Защитить меня">
+        <input class="Step2Show__back" type="button" value="Назад" v-on:click="comeBackPage">
+        <input class="Step2Show__submit" type="button" value="Защитить меня" v-on:click="submitRequestSecondStep">
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueSession from 'vue-session';
+Vue.use(VueSession);
+
 export default {
   data() {
     return {
@@ -106,6 +110,8 @@ export default {
         { title: 'ТОО  МФО «TAS FINANCE GROUP»', hide: 'block' },
       ],
       hideOrganization: 'none',
+      arrears: '',
+      date: '',
       problem: '',
       problems: [
         { title: 'Кредитор', hide: 'block' },
@@ -114,9 +120,68 @@ export default {
         { title: 'Нотариус', hide: 'block' },
       ],
       hideProblem: 'none',
+      error: '',
+      iin: '',
+      token: '',
     }
   },
+  mounted() {
+    this.iin = localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
+    if (!this.iin || !this.token || !this.$session.get('smsCodeConfirmation')) {
+      this.$router.push({path: '/step1show'});
+    }
+    else if (localStorage.getItem('logged')) {
+      this.$router.push({path: '/notifications'});
+    }
+    localStorage.setItem('smsCode', '');
+  },
   methods: {
+    async submitRequestSecondStep() {
+      this.error = '';
+      if (this.validateStep2()) return;
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/secondStep', {
+        'organization': [ this.organization, this.amountOption, this.date, this.whatAProblem ],
+        'token': this.token
+      })
+          .then(async response => {
+            if (response.data.success) {
+              await this.$session.set('smsCodeConfirmation', '');
+              await this.$session.set('step2success', true);
+              await localStorage.setItem('token', this.token);
+              this.$router.push({path: '/step3show'});
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
+    },
+    onKeyDownArrears(e) {
+      if (!(e.key >= '0' && e.key <= '9') && !(e.key === 'Backspace')) e.preventDefault();
+    },
+    comeBackPage() {
+      this.$router.push(-2);
+    },
+    validateStep2() {
+      if (!this.organization) {
+        this.error = 'Поле кому должен обязательно для заполнения';
+      }
+      else if (!this.arrears) {
+        this.error = 'Поле сколько должен обязательно для заполнения';
+      }
+      else if (!this.date) {
+        this.error = 'Поле когда брал кредит обязательно для заполнения';
+      }
+      else if (!this.problem) {
+        this.error = 'Поле какая проблема обязательно для заполнения';
+      }
+      else return false;
+      return true;
+    },
     onClickList(e) {
       if (e.target.getAttribute('class') === 'Step2Show__organizations-input' ||
           e.target.getAttribute('class') === 'Step2Show__organizationsList' ||
