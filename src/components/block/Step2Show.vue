@@ -8,8 +8,8 @@
         </div>
       </div>
       <div class="Step2Show__body">
-        <div class="Step2Show__left" v-if="(mfos.length-1)">
-          <div class="Step2Show__mfo" v-for="(item,index) in (acting+1)" :key="'W'+index">
+        <div class="Step2Show__left" v-if="(mfos.length>1)">
+          <div class="Step2Show__mfo" v-for="(item,index) in (mfos.length)" :key="'W'+index">
             <img class="Step2Show__mfo-act" src="/images/active.png" v-on:click="Step2Show__actMFO(index)">
             <p>{{ item }}</p>
             <img class="Step2Show__mfo-del" src="/images/delete.png" v-on:click="Step2Show__delMFO(index)">
@@ -141,17 +141,16 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
-    // if (!this.token && !localStorage.getItem('logged')) {
-    //   localStorage.setItem('token', '');
-    //   localStorage.setItem('logged', '');
-    //   this.$router.push({path: '/'});
-    // }
+    if (!this.token && !localStorage.getItem('logged')) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('logged', '');
+      this.$router.push({path: '/'});
+    }
     localStorage.setItem('smsCode', '');
   },
   methods: {
     Step2Show__addMFO() {
       if (this.mfos.length < 10) {
-        this.acting = this.mfos.length;
         this.mfos.push({organization:'',arrears:'',date:'',problem:''});
       }
       else this.error = 'Максимальная количество организации';
@@ -159,40 +158,43 @@ export default {
     Step2Show__actMFO(i) {
       this.acting = i;
     },
-    Step2Show__delMFO(i) {
-      if (this.mfos.length > 1) {
-        this.mfos.splice(this.mfos.indexOf(i),1);
+    Step2Show__delMFO(index) {
+      if (this.mfos.length > 0) {
+        if (this.acting >= index) this.acting -= 1;
+        if (this.mfos.length-1 === index) this.mfos.splice(this.mfos.indexOf(index));
+        else {
+          for (let i = 0; i < this.mfos.length-1; i++) {
+            if (index <= i) this.mfos[i] = this.mfos[i+1];
+          }
+          this.mfos.splice(this.mfos.length-1, 1);
+        }
       }
     },
     async submitRequestSecondStep() {
       this.error = '';
       if (this.validateStep2()) return;
-      let newMFO = Array(this.mfos.length);
+      let newMFO = [];
       for (let i = 0; i < this.mfos.length; i++) {
-        newMFO.push(this.mfos[i].organization);
-        newMFO.push(this.mfos[i].arrears);
-        newMFO.push(this.mfos[i].date);
-        newMFO.push(this.mfos[i].problem);
+        newMFO.push([ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ]);
       }
-      console.log(...newMFO);
-      // const axios = require('axios');
-      // await axios.post('https://crediter.kz/api/secondStep', {
-      //   'organization': [ ...newMFO ],
-      //   'token': this.token,
-      // })
-      //     .then(async response => {
-      //       if (response.data.success) {
-      //         await this.$session.set('step2success', true);
-      //         await localStorage.setItem('token', this.token);
-      //         this.$router.push({path: '/step3show'});
-      //       }
-      //       else {
-      //         this.error = response.data.message;
-      //       }
-      //     })
-      //     .catch(error => {
-      //       this.error = error;
-      //     });
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/secondStep', {
+        'organization': newMFO,
+        'token': this.token,
+      })
+          .then(async response => {
+            if (response.data.success) {
+              await this.$session.set('step2success', true);
+              await localStorage.setItem('token', this.token);
+              this.$router.push({path: '/step3show'});
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
     },
     onKeyDownArrears(e) {
       if (!(e.key >= '0' && e.key <= '9') && !(e.key === 'Backspace')) e.preventDefault();
