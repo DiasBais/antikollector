@@ -121,18 +121,16 @@ export default {
       ],
       hideProblem: 'none',
       error: '',
-      iin: '',
       token: '',
     }
   },
   mounted() {
-    this.iin = localStorage.getItem('token');
     this.token = localStorage.getItem('token');
-    if (!this.iin || !this.token || !this.$session.get('smsCodeConfirmation')) {
+    if (!this.token || !this.$session.get('smsCodeConfirmation')) {
       this.$router.push({path: '/step1show'});
     }
-    else if (localStorage.getItem('logged')) {
-      this.$router.push({path: '/notifications'});
+    else if (!localStorage.getItem('logged')) {
+      this.$router.push({path: '/'});
     }
     localStorage.setItem('smsCode', '');
   },

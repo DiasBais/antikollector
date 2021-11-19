@@ -8,17 +8,10 @@ import Desktop5 from './components/Desktop5'
 import Desktop6 from './components/Desktop6'
 import aboutCompany from './components/aboutCompany'
 import Desktop7 from './components/Desktop7'
-import blockAlert from './components/blockAlert'
-import login from './components/block/login'
 import register from './components/block/register'
-import step1 from './components/block/step1'
-import step2 from './components/block/step2'
-import step3 from './components/block/step3'
-import step4 from './components/block/step4'
 import HeaderUser from './components/HeaderUser'
 import myDocuments from './components/myDocuments'
 import Notifications from './components/Notifications'
-import confirm from './components/block/confirm'
 import LoginShow from './components/block/LoginShow'
 import step1Show from './components/block/Step1Show'
 import step2Show from './components/block/Step2Show'
@@ -61,32 +54,8 @@ export default new VueRouter({
             component: Desktop7
         },
         {
-            path: '/blockAlert',
-            component: blockAlert
-        },
-        {
-            path: '/login',
-            component: login
-        },
-        {
             path: '/register',
             component: register
-        },
-        {
-            path: '/step1',
-            component: step1
-        },
-        {
-            path: '/step2',
-            component: step2
-        },
-        {
-            path: '/step3',
-            component: step3
-        },
-        {
-            path: '/step4',
-            component: step4
         },
         {
             path: '/LoginShow',
@@ -119,10 +88,6 @@ export default new VueRouter({
         {
             path: '/Notifications',
             component: Notifications
-        },
-        {
-            path: '/confirm',
-            component: confirm
         },
     ]
 })

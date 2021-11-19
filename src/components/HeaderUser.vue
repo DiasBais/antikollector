@@ -8,7 +8,7 @@
               <li class="header__link" v-for="(link, index) in links" :key="'A'+index">
                 <router-link :to="link.path" :style="(($route.path === link.path)?'color: #753636':'')">
                   {{ link.title }}
-                  <div v-if="numRequests && link.path === 'our-advantages'">{{ numRequests }}</div>
+                  <div v-if="numRequests && link.path === 'notifications'">{{ numRequests }}</div>
                 </router-link>
               </li>
             </ul>
@@ -26,7 +26,7 @@
                     <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index">
                       <router-link :to="link.path" :style="(($route.path === link.path)?'font-weight: bold':'')">
                         {{ link.title }}
-                        <div v-if="link.path === 'our-advantages'">+1</div>
+                        <div v-if="link.path === 'notifications'">+1</div>
                       </router-link>
                     </li>
                   </ul>
@@ -44,7 +44,7 @@
           </div>
           <!-- --- -->
           <div class="header__account-circle">
-            <img src="/images/account-circle.svg">
+            <img src="/images/account-circle.svg" v-on:click="logout">
           </div>
         </div>
       </div>
@@ -62,9 +62,9 @@ export default {
     return {
       numRequests: 0,
       links: [
-        { path: 'home', title: 'Мои документы' },
-        { path: 'our-advantages', title: 'Уведомления' },
-        { path: 'services', title: 'Заказать услугу' },
+        { path: 'myDocuments', title: 'Мои документы' },
+        { path: 'notifications', title: 'Уведомления' },
+        { path: '/step2show', title: 'Заказать услугу' },
       ],
       lang: {
         choice: 'ru',
@@ -72,7 +72,6 @@ export default {
       },
       mobileNavBgLeft: '0px',
       mobileNavLeft: '0px',
-      iin: '',
       token: '',
       error: '',
     }
@@ -82,11 +81,16 @@ export default {
     window.addEventListener('resize', this.initialValueMobileNav);
   },
   mounted() {
-    this.iin = localStorage.getItem('iin');
     this.token = localStorage.getItem('token');
     this.getPush();
   },
   methods: {
+    async logout() {
+      await localStorage.setItem('iin', '');
+      await localStorage.setItem('token', '');
+      await localStorage.setItem('logged', '');
+      this.$router.push({path: '/'});
+    },
     async getPush() {
       await axios.post('https://crediter.kz/api/getPush', {
         'token': this.token,

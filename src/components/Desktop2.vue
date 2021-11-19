@@ -2,9 +2,9 @@
   <div class="desktop2">
     <div class="desktop2__content">
       <div class="desktop2__title">Как мы защищаем от Коллекторов, ЧСИ, МФО?</div>
-      <div class="desktop2__btn-price">
+      <router-link :to="priceLink" class="desktop2__btn-price">
         <button type="button">{{ price }}</button>
-      </div>
+      </router-link>
       <div class="desktop2__stages">
         <div class="desktop2__stages-views">
           <div class="desktop2__stage-view">
@@ -44,6 +44,7 @@ export default {
   data () {
     return {
       price: 'БЕСПЛАТНО',
+      priceLink: 'step1show',
       lines: {
         left: '/images/stages-line-left.svg',
         right: '/images/stages-line-right.svg'

@@ -5,7 +5,7 @@ export default function axios() {
         baseURL: 'https://crediter.kz/api/',
     });
     axios.interceptors.request.use(config => {
-        const data = {token: '53258406383fbb1f3ab66a40e893c3ccb4a9d116'};
+        const data = {token: localStorage.getItem('token')};
         console.log(config.data);
         config.data = {...config.data, ...data};
         return config;

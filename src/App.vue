@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <VHeader v-if="!logged"></VHeader>
-    <HeaderUser v-if="logged"></HeaderUser>
+    <HeaderUser v-else></HeaderUser>
     <router-view></router-view>
     <VFooter></VFooter>
   </div>
@@ -18,14 +18,20 @@ export default {
     HeaderUser,
     VFooter
   },
-  data() {
+  data () {
     return {
-      logged: '',
+      logged: false,
     }
   },
-  mounted() {
+  mounted () {
     this.logged = localStorage.getItem('logged');
-  }
+    this.$el.addEventListener('click', this.onClick);
+  },
+  methods: {
+    onClick() {
+      this.logged = localStorage.getItem('logged');
+    }
+  },
 }
 </script>
 

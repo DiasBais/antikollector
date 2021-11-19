@@ -32,9 +32,10 @@ export default {
     window.addEventListener('resize', this.mobileVersion);
   },
   mounted() {
-    this.iin = localStorage.getItem('iin');
     this.token = localStorage.getItem('token');
-    if (!this.iin || !this.token || !localStorage.getItem('logged')) {
+    if (!this.token && !localStorage.getItem('logged')) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('logged', '');
       this.$router.push({path: '/'});
     }
     this.getPush();

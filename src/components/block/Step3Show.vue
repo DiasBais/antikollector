@@ -72,13 +72,12 @@ export default {
     }
   },
   mounted() {
-    this.iin = localStorage.getItem('iin');
     this.token = localStorage.getItem('token');
-    if (!this.iin || !this.token || !this.$session.get('step2success')) {
+    if (!this.token || !this.$session.get('step2success')) {
       this.$router.push({path: '/step2show'});
     }
-    else if (localStorage.getItem('logged')) {
-      this.$router.push({path: '/notifications'});
+    else if (!localStorage.getItem('logged')) {
+      this.$router.push({path: '/'});
     }
     localStorage.setItem('smsCode', '');
   },
@@ -94,7 +93,6 @@ export default {
             if (response.data.success) {
               console.log(response.data);
               await this.$session.set('step2success', false);
-              await localStorage.setItem('logged', true);
               this.$router.push({path: '/notifications'});
             }
             else {

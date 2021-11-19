@@ -42,7 +42,7 @@ export default {
   methods: {
     async nextPage() {
       if (this.validateStep2() || this.dataSMSCode === this.smsCode) return;
-      await localStorage.setItem('smsCode', false);
+      await localStorage.setItem('smsCode', '');
       await this.$session.set('smsCodeConfirmation', true);
       this.$router.push({path: '/step2show'});
     },

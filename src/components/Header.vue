@@ -6,7 +6,10 @@
                     <div class="header__links">
                         <ul class="header__list-links">
                             <li class="header__link" v-for="(link, index) in links" :key="'A'+index">
-                                <router-link :to="link.path" :style="(($route.path === link.path)?'color: #753636':'')">
+                                <router-link :to="($route.path==='/')?'#':'/'"
+                                             :style="(($route.path === link.path)?'color: #753636':'')"
+                                             v-on:click="onClickHeader($event, link)"
+                                >
                                   {{ link.title }}
                                 </router-link>
                             </li>
@@ -49,29 +52,24 @@
                 </div>
             </div>
         </div>
-        <Login ref="loginBlockAlerts" />
     </div>
 </template>
 
 <script>
 import choiceLanguagesRu from '../lang/ru/lang'
 import choiceLanguagesKz from '../lang/kz/lang'
-import Login from './block/login';
 
 
 export default {
-    components: {
-      Login,
-    },
     data () {
         return {
             links: [
-                { path: '/', title: 'Главная страница' },
-                { path: '/our-advantages', title: 'Наши преимущества' },
-                { path: '/services', title: 'Услуги' },
-                { path: '/about-company', title: 'О компании' },
-                { path: '/reviews', title: 'Отзывы' },
-                { path: '/faq', title: 'FAQ' },
+                { path: '/', title: 'Главная страница', here: 0 },
+                { path: '/our-advantages', title: 'Наши преимущества', here: {original: 2250, opened: 4663 } },
+                { path: '/services', title: 'Услуги', here: 1020 },
+                { path: '/about-company', title: 'О компании', here: 0 },
+                { path: '/reviews', title: 'Отзывы', here: 6385 },
+                { path: '/faq', title: 'FAQ', here: 7318 },
             ],
             sliders: [
                 { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },
@@ -107,7 +105,21 @@ export default {
     },
     // mounted () {this.$refs. },
     methods: {
-      headerInitialValueMobileNav() {
+        onClickHeader(e,link) {
+          console.log('yeah');
+          console.log(e);
+          e.preventDefault();
+          console.log(link);
+          if (this.$route.path === '/') {
+            console.log('yes');
+            window.scroll(0, link.here);
+          }
+          else {
+            console.log('no');
+            window.scroll(0, 200);
+          }
+        },
+        headerInitialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
             this.mobileNavLeft = (-window.innerWidth)+'px';
         },

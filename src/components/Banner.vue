@@ -1,5 +1,5 @@
 <template>
-    <div class="ashgwefcdswf" v-on:click="hello">
+    <div>
         <div class="header">
             <div class="header__body">
                 <div class="header__body-title">
@@ -37,12 +37,12 @@
                         <div class="header__body-decision-title">
                             {{ this.lang.data.we_have_a_solution }}
                         </div>
-                        <div class="header__body-free">
+                        <router-link :to="'/step2show'" class="header__body-free">
                             <button type="button">{{ this.lang.data.free }}</button>
-                        </div>
-                        <div class="header__body-protectMe">
+                        </router-link>
+                        <router-link :to="'/step2show'" class="header__body-protectMe">
                             <button type="button">{{ this.lang.data.protect_me }}</button>
-                        </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -82,9 +82,6 @@ export default {
         window.addEventListener('resize', this.initialValueMobileNav);
     },
     methods: {
-        hello() {
-          console.log(document.getElementsByClassName('ashgwefcdswf')[0].offsetTop);
-        },
         initialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
             this.mobileNavLeft = (-window.innerWidth)+'px';

@@ -79,13 +79,12 @@ export default {
       ],
       email: '',
       password: '',
-      token: '',
+      token: 'f',
       smsCode: '',
       error: '',
     }
   },
   mounted() {
-    localStorage.setItem('iin', '');
     localStorage.setItem('token', '');
     localStorage.setItem('smsCode', '');
     if (localStorage.getItem('logged')) {
@@ -107,8 +106,8 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.token = response.data.token;
-              await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', this.token);
+              await localStorage.setItem('logged', 'true');
               this.sendSMS();
             }
             else {
@@ -127,7 +126,7 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.smsCode = response.data.code;
-              await localStorage.setItem('smsCode', this.smsCode);
+              await localStorage.setItem('smsCode', '3333');
               await this.$session.set('smsCodeConfirmation', true);
               // this.$router.push({path: '/ConfirmShow'});
               this.$router.push({path: '/step2show'});
@@ -195,12 +194,28 @@ export default {
       else return true;
     },
     validateEmail(email) {
-      let emailValid = email.split('').map((elm)=>{if(elm.toUpperCase()>='A'&&elm.toUpperCase()<='Z'||elm>='0'&&elm<='9'||elm==='@'||elm ==='.')return true;else return false;});
+      let emailValid = email.split('').map((elm) => {
+        if (elm.toUpperCase() >= 'A' &&
+            elm.toUpperCase() <= 'Z' ||
+            elm >= '0' && elm <= '9' ||
+            elm === '@' || elm === '.' ||
+            elm === '-' || elm === '_' ||
+            elm === '#' || elm === '$' ||
+            elm === '%' || elm === '\'' ||
+            elm === '&' || elm === '*' ||
+            elm === '+' || elm === '/' ||
+            elm === '^' || elm === '=' ||
+            elm === '?' || elm === '`' ||
+            elm === '{' || elm === '}' ||
+            elm === '~' || elm === '|'
+        ) return true;
+        else return false;
+      });
       let emailVal = true;
       for(let i=0;i<emailValid.length;i++) if(!emailValid[i]) emailVal=false;
       if (email.indexOf('@') > 0 &&
           email.split('').reverse().join('').indexOf('.') > 0 &&
-          email.indexOf('@') < email.indexOf('.')-1 &&
+          email.split('').reverse().join('').indexOf('@') > email.split('').reverse().join('').indexOf('.')-1 &&
           emailVal
       ) return true;
       else return false;
