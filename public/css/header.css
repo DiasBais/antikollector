@@ -166,6 +166,12 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     .header__mobile-links {
         display: flex !important;
     }
+    .header__mobile-bg {
+        position: fixed !important;
+    }
+    .header__mobile {
+        position: fixed !important;
+    }
     .header__account-circle {
         margin: 16.5px !important;
     }

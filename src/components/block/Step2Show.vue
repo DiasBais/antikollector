@@ -126,10 +126,9 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
-    if (!this.token || !this.$session.get('smsCodeConfirmation')) {
-      this.$router.push({path: '/step1show'});
-    }
-    else if (!localStorage.getItem('logged')) {
+    if (!this.token && !localStorage.getItem('logged')) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('logged', '');
       this.$router.push({path: '/'});
     }
     localStorage.setItem('smsCode', '');

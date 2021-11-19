@@ -73,11 +73,13 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
-    if (!this.token || !this.$session.get('step2success')) {
-      this.$router.push({path: '/step2show'});
-    }
-    else if (!localStorage.getItem('logged')) {
+    if (!this.token && !localStorage.getItem('logged')) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('logged', '');
       this.$router.push({path: '/'});
+    }
+    else if (!this.$session.get('step2success')) {
+      this.$router.push({path: '/step2show'});
     }
     localStorage.setItem('smsCode', '');
   },

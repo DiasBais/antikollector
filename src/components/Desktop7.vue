@@ -21,12 +21,12 @@
             </li>
           </ul>
           <div class="desktop8__link-social-network">
-            <router-link :to="linkInstagram">
+            <a :href="linkInstagram">
               <img src="/images/footer/instagram.svg">
-            </router-link>
-            <router-link :to="linkFacebook">
+            </a>
+            <a :href="linkFacebook">
               <img src="/images/footer/facebook.svg">
-            </router-link>
+            </a>
           </div>
         </div>
       </div>

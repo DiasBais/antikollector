@@ -34,12 +34,12 @@
                                 </div>
                             </div>
                             <div class="header__mobile-links-SN">
-                                <div class="header__mobile-link-instagram">
+                                <a :href="linkInstagram" class="header__mobile-link-instagram">
                                     <img src="/images/instagram.svg">
-                                </div>
-                                <div class="header__mobile-link-facebook">
+                                </a>
+                                <a :href="linkFacebook" class="header__mobile-link-facebook">
                                     <img src="/images/facebook.svg">
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -97,6 +97,8 @@ export default {
               reviews: 0,
               faq: 0,
             },
+            linkInstagram: '/',
+            linkFacebook: '/',
         }
     },
     created () {
