@@ -37,7 +37,9 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
-    if (!this.token || !localStorage.getItem('logged')) {
+    if (!this.token && !localStorage.getItem('logged')) {
+      localStorage.setItem('token', '');
+      localStorage.setItem('logged', '');
       this.$router.push({path: '/'});
     }
     this.getDocumentLink();
@@ -67,9 +69,7 @@ export default {
         this.asd = '';
       }
       else {
-        if (this.$refs.infoBlockAlert.clientHeight >= window.innerHeight) {
-          this.blockAlertMarginTop = (this.$refs.infoBlockAlert.clientHeight - window.innerHeight);
-        }
+        this.asd = '';
       }
     },
   }

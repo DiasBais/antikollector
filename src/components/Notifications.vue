@@ -68,9 +68,7 @@ export default {
         this.asd = '';
       }
       else {
-        if (this.$refs.infoBlockAlert.clientHeight >= window.innerHeight) {
-          this.blockAlertMarginTop = (this.$refs.infoBlockAlert.clientHeight - window.innerHeight);
-        }
+        this.asd = '';
       }
     },
   }
