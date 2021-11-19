@@ -37,6 +37,42 @@
 }
 .Step2Show__body {
     margin: 65px 0px 0px 0px;
+    display: flex;
+}
+.Step2Show__left {
+    display: block;
+    width: 10%;
+    text-align: center;
+}
+.Step2Show__mfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Step2Show__mfo-act {
+    /*background: #00FF00;*/
+}
+.Step2Show__mfo-del {
+    /*background: #FF0000;*/
+}
+.Step2Show__mfo p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    width: 22.5px;
+    margin: 2.5px;
+    text-align: center;
+}
+.Step2Show__mfo img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.Step2Show__right {
+    width: 90%;
+    margin: 40px 0px 0px 0px;
 }
 .Step1Show__error {
     font-family: Montserrat;
@@ -106,6 +142,16 @@
     color: #000000;
     cursor: pointer;
     width: 720px;
+}
+
+.Step2Show__addMFO {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    cursor: pointer;
 }
 
 /* --- */

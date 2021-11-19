@@ -3,48 +3,66 @@
     <div class="ConfirmShow__content">
       <div class="ConfirmShow__title">Подтвердите номер телефона</div>
       <div class="ConfirmShow__body">
+        <div class="ConfirmShow__error" v-if="error">Error: <span>{{ error }}</span></div>
         <p class="ConfirmShow__description">Введите код из СМС</p>
         <input class="ConfirmShow__code" type="text" v-model="smsCode" v-on:keydown="onKeyDownSMSCode($event)">
       </div>
       <div class="ConfirmShow__footer">
-        <input class="ConfirmShow__submit" type="text" value="Защитить меня">
+        <input class="ConfirmShow__submit" type="button" value="Защитить меня" v-on:click="checkCode">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import VueSession from 'vue-session';
-Vue.use(VueSession);
+const axios = require('axios');
 
 export default {
   data() {
     return {
       smsCode: '_ _ _ _',
       smsCodeOriginal: '',
-      iin: '',
       token: '',
-      dataSMSCode: '',
+      phoneNumber: '',
+      error: '',
     }
   },
   mounted() {
-    this.iin = localStorage.getItem('token');
     this.token = localStorage.getItem('token');
-    this.dataSMSCode = localStorage.getItem('smsCode');
-    if (!this.iin || !this.token || !this.dataSMSCode) {
-      this.$router.push({path: '/step1show'});
-    }
-    else if (localStorage.getItem('logged')) {
+    if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
+    this.phoneNumber = this.$session.get('phoneNumber');
+    this.$session.set('phoneNumber', '');
   },
   methods: {
-    async nextPage() {
-      if (this.validateStep2() || this.dataSMSCode === this.smsCode) return;
-      await localStorage.setItem('smsCode', '');
-      await this.$session.set('smsCodeConfirmation', true);
-      this.$router.push({path: '/step2show'});
+    async checkCode() {
+      this.error = '';
+      if (this.validateSMSCode()) return;
+      await axios.get('https://crediter.kz/api/checkCode?phone='+('7'+this.phoneNumber)+'&code='+this.smsCodeOriginal)
+          .then(async response => {
+            if (response.data.success) {
+              await localStorage.setItem('logged', 'true');
+              console.log(response.data);
+              this.$router.push({path: '/step2show'});
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
+    },
+    validateSMSCode() {
+      if (!this.smsCodeOriginal) {
+        this.error = 'Поле обязательно для заполнения';
+      }
+      else if (this.smsCodeOriginal.length < 4) {
+        this.error = 'СМС код минимум 4 символа';
+      }
+      else return false;
+      return true;
     },
     onKeyDownSMSCode(e) {
       if (this.smsCodeOriginal.length > 3 && e.key !== 'Backspace') {e.preventDefault();return;}

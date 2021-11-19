@@ -107,7 +107,6 @@ export default {
             if (response.data.success) {
               this.token = response.data.token;
               await localStorage.setItem('token', this.token);
-              await localStorage.setItem('logged', 'true');
               this.sendSMS();
             }
             else {
@@ -126,10 +125,8 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.smsCode = response.data.code;
-              await localStorage.setItem('smsCode', '3333');
-              await this.$session.set('smsCodeConfirmation', true);
-              // this.$router.push({path: '/ConfirmShow'});
-              this.$router.push({path: '/step2show'});
+              await this.$session.set('phoneNumber', 'phoneNumberOriginal');
+              this.$router.push({path: '/ConfirmShow'});
             }
             else {
               this.error = response.data.message;
@@ -152,7 +149,7 @@ export default {
       else if (!this.iin) {
         this.error = 'Поле ИИН обязательно для заполнения';
       }
-      else if (this.iin.length !== 12) {
+      else if (!this.validateIIN(this.iin)) {
         this.error = 'Неправильный ИИН';
       }
       else if (!this.phoneNumberOriginal) {
@@ -192,6 +189,34 @@ export default {
       }
       if (fioValidate) return false;
       else return true;
+    },
+    validateIIN(iin) {
+      // console.log((12 === iin.length && typeof parseInt(iin) === 'number' && this.isChecksumValid(iin)));
+      return (12 === iin.length && typeof parseInt(iin) === 'number' && this.isChecksumValid(iin));
+    },
+    isChecksumValid(iin) {
+      console.log(iin);
+      let weights = [];
+      for (let i=1;i<12;i++) weights.push(i);
+      let weights2 = [];
+      for (let i=3;i<12;i++) weights2.push(i);
+      weights2 = [...weights2, 1, 2];
+      console.log(weights2);
+
+      let checksum = this.calc(iin, weights);
+
+      if (checksum === 10) {
+        checksum = this.calc(iin, weights2);
+      }
+
+      return checksum < 10 ? parseInt(iin.substr(11, 1)) === checksum : false;
+    },
+    calc(iin, weights) {
+      let convolution = 0;
+      for (let i = 0; i < 11; i++) {
+        convolution += iin[i] * weights[i];
+      }
+      return convolution % 11;
     },
     validateEmail(email) {
       let emailValid = email.split('').map((elm) => {

@@ -8,60 +8,70 @@
         </div>
       </div>
       <div class="Step2Show__body">
-        <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
-        <div class="Step2Show__organizations">
-          <p class="Step2Show__organizations-title">Кому должен</p>
-          <input type="text"
-                 v-model="organization"
-                 :style="(hideOrganization==='none'?'border-radius: 10px':'')"
-                 v-on:click="onClickList"
-                 v-on:keyup="enterOrganizationInput"
-                 class="Step2Show__organizations-input"
-          >
-          <div class="Step2Show__organizationsList"
-               :style="'display: '+hideOrganization"
-          >
-            <span class="Step2Show__organizationsList-option"
-                  v-for="(organization,index) in organizations"
-                  :key="'O'+index"
-                  v-html="organization.title"
-                  :style="'display: '+organization.hide"
-                  v-on:click="onClickOrganizationsListOption(index)"
-            ></span>
+        <div class="Step2Show__left" v-if="(mfos.length-1)">
+          <div class="Step2Show__mfo" v-for="(item,index) in (acting+1)" :key="'W'+index">
+            <img class="Step2Show__mfo-act" src="/images/active.png" v-on:click="Step2Show__actMFO(index)">
+            <p>{{ item }}</p>
+            <img class="Step2Show__mfo-del" src="/images/delete.png" v-on:click="Step2Show__delMFO(index)">
           </div>
         </div>
-        <div class="Step2Show__input">
-          <p class="Step2Show__input-title">Сколько должен</p>
-          <div class="Step2Show__input-part">
-            <input class="Step2Show__input-value" type="number" v-model="arrears" v-on:keydown="onKeyDownArrears($event)">
-            <span class="Step2Show__input-price">тенге</span>
+        <div class="Step2Show__right">
+          <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
+          <div class="Step2Show__organizations">
+            <p class="Step2Show__organizations-title">Кому должен</p>
+            <input type="text"
+                   v-model="mfos[acting].organization"
+                   :style="(hideOrganization==='none'?'border-radius: 10px':'')"
+                   v-on:click="onClickList"
+                   v-on:keyup="enterOrganizationInput"
+                   class="Step2Show__organizations-input"
+            >
+            <div class="Step2Show__organizationsList"
+                 :style="'display: '+hideOrganization"
+            >
+              <span class="Step2Show__organizationsList-option"
+                    v-for="(organization,index) in mfos[acting].organizations"
+                    :key="'O'+index"
+                    v-html="organization.title"
+                    :style="'display: '+organization.hide"
+                    v-on:click="onClickOrganizationsListOption(index)"
+              ></span>
+            </div>
           </div>
-        </div>
-        <div class="Step2Show__input">
-          <p class="Step2Show__input-title">Когда брал кредит</p>
-          <input class="Step2Show__input-value" type="date" v-model="date">
-        </div>
+          <div class="Step2Show__input">
+            <p class="Step2Show__input-title">Сколько должен</p>
+            <div class="Step2Show__input-part">
+              <input class="Step2Show__input-value" type="number" v-model="mfos[acting].arrears" v-on:keydown="onKeyDownArrears($event)">
+              <span class="Step2Show__input-price">тенге</span>
+            </div>
+          </div>
+          <div class="Step2Show__input">
+            <p class="Step2Show__input-title">Когда брал кредит</p>
+            <input class="Step2Show__input-value" type="date" v-model="mfos[acting].date">
+          </div>
 
-        <div class="Step2Show__problems">
-          <p class="Step2Show__problems-title">Какая проблема</p>
-          <input type="text"
-                 v-model="problem"
-                 :style="(hideProblem==='none'?'border-radius: 10px':'')"
-                 v-on:click="onClickList"
-                 v-on:keyup="enterProblemInput"
-                 class="Step2Show__problems-input"
-          >
-          <div class="Step2Show__problemsList"
-               :style="'display: '+hideProblem"
-          >
-            <span class="Step2Show__problemsList-option"
-                  v-for="(problem,index) in problems"
-                  :key="'P'+index"
-                  v-html="problem.title"
-                  :style="'display: '+problem.hide"
-                  v-on:click="onClickProblemsListOption(index)"
-            ></span>
+          <div class="Step2Show__problems">
+            <p class="Step2Show__problems-title">Какая проблема</p>
+            <input type="text"
+                   v-model="mfos[acting].problem"
+                   :style="(hideProblem==='none'?'border-radius: 10px':'')"
+                   v-on:click="onClickList"
+                   v-on:keyup="enterProblemInput"
+                   class="Step2Show__problems-input"
+            >
+            <div class="Step2Show__problemsList"
+                 :style="'display: '+hideProblem"
+            >
+              <span class="Step2Show__problemsList-option"
+                    v-for="(problem,index) in problems"
+                    :key="'P'+index"
+                    v-html="problem.title"
+                    :style="'display: '+problem.hide"
+                    v-on:click="onClickProblemsListOption(index)"
+              ></span>
+            </div>
           </div>
+          <div class="Step2Show__addMFO" v-on:click="Step2Show__addMFO">+ Добавить МФО</div>
         </div>
       </div>
       <div class="Step2Show__footer">
@@ -80,7 +90,15 @@ Vue.use(VueSession);
 export default {
   data() {
     return {
-      organization: '',
+      acting: 0,
+      mfos: [
+          {
+            organization: '',
+            arrears: '',
+            date: '',
+            problem: '',
+          },
+      ],
       organizations: [
         { title: 'ТОО "МФО «ФинтехФинанс"', hide: 'block' },
         { title: 'ТОО "МФО СиСиЛоун.кз"', hide: 'block' },
@@ -110,9 +128,6 @@ export default {
         { title: 'ТОО  МФО «TAS FINANCE GROUP»', hide: 'block' },
       ],
       hideOrganization: 'none',
-      arrears: '',
-      date: '',
-      problem: '',
       problems: [
         { title: 'Кредитор', hide: 'block' },
         { title: 'Коллектор', hide: 'block' },
@@ -126,36 +141,58 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
-    if (!this.token && !localStorage.getItem('logged')) {
-      localStorage.setItem('token', '');
-      localStorage.setItem('logged', '');
-      this.$router.push({path: '/'});
-    }
+    // if (!this.token && !localStorage.getItem('logged')) {
+    //   localStorage.setItem('token', '');
+    //   localStorage.setItem('logged', '');
+    //   this.$router.push({path: '/'});
+    // }
     localStorage.setItem('smsCode', '');
   },
   methods: {
+    Step2Show__addMFO() {
+      if (this.mfos.length < 10) {
+        this.acting = this.mfos.length;
+        this.mfos.push({organization:'',arrears:'',date:'',problem:''});
+      }
+      else this.error = 'Максимальная количество организации';
+    },
+    Step2Show__actMFO(i) {
+      this.acting = i;
+    },
+    Step2Show__delMFO(i) {
+      if (this.mfos.length > 1) {
+        this.mfos.splice(this.mfos.indexOf(i),1);
+      }
+    },
     async submitRequestSecondStep() {
       this.error = '';
       if (this.validateStep2()) return;
-      const axios = require('axios');
-      await axios.post('https://crediter.kz/api/secondStep', {
-        'organization': [ this.organization, this.amountOption, this.date, this.whatAProblem ],
-        'token': this.token
-      })
-          .then(async response => {
-            if (response.data.success) {
-              await this.$session.set('smsCodeConfirmation', '');
-              await this.$session.set('step2success', true);
-              await localStorage.setItem('token', this.token);
-              this.$router.push({path: '/step3show'});
-            }
-            else {
-              this.error = response.data.message;
-            }
-          })
-          .catch(error => {
-            this.error = error;
-          });
+      let newMFO = Array(this.mfos.length);
+      for (let i = 0; i < this.mfos.length; i++) {
+        newMFO.push(this.mfos[i].organization);
+        newMFO.push(this.mfos[i].arrears);
+        newMFO.push(this.mfos[i].date);
+        newMFO.push(this.mfos[i].problem);
+      }
+      console.log(...newMFO);
+      // const axios = require('axios');
+      // await axios.post('https://crediter.kz/api/secondStep', {
+      //   'organization': [ ...newMFO ],
+      //   'token': this.token,
+      // })
+      //     .then(async response => {
+      //       if (response.data.success) {
+      //         await this.$session.set('step2success', true);
+      //         await localStorage.setItem('token', this.token);
+      //         this.$router.push({path: '/step3show'});
+      //       }
+      //       else {
+      //         this.error = response.data.message;
+      //       }
+      //     })
+      //     .catch(error => {
+      //       this.error = error;
+      //     });
     },
     onKeyDownArrears(e) {
       if (!(e.key >= '0' && e.key <= '9') && !(e.key === 'Backspace')) e.preventDefault();
@@ -164,16 +201,16 @@ export default {
       this.$router.push(-2);
     },
     validateStep2() {
-      if (!this.organization) {
+      if (!this.mfos[this.acting].organization) {
         this.error = 'Поле кому должен обязательно для заполнения';
       }
-      else if (!this.arrears) {
+      else if (!this.mfos[this.acting].arrears) {
         this.error = 'Поле сколько должен обязательно для заполнения';
       }
-      else if (!this.date) {
+      else if (!this.mfos[this.acting].date) {
         this.error = 'Поле когда брал кредит обязательно для заполнения';
       }
-      else if (!this.problem) {
+      else if (!this.mfos[this.acting].problem) {
         this.error = 'Поле какая проблема обязательно для заполнения';
       }
       else return false;
@@ -200,35 +237,35 @@ export default {
       }
     },
     enterOrganizationInput() {
-      if (this.organization === '') {
+      if (this.mfos[this.acting].organization === '') {
         for (let i = 0; i < this.organizations.length; i++) this.organizations[i].hide = 'block';
         return;
       }
       for (let i = 0; i < this.organizations.length; i++) {
-        if (this.organizations[i].title.indexOf(this.organization) !== -1) {
+        if (this.organizations[i].title.indexOf(this.mfos[this.acting].organization) !== -1) {
           this.organizations[i].hide = 'block';
         }
         else this.organizations[i].hide = 'none';
       }
     },
     onClickOrganizationsListOption(index) {
-      this.organization = this.organizations[index].title;
+      this.mfos[this.acting].organization = this.organizations[index].title;
       this.enterOrganizationInput();
     },
     enterProblemInput() {
-      if (this.problem === '') {
+      if (this.mfos[this.acting].problem === '') {
         for (let i = 0; i < this.problems.length; i++) this.problems[i].hide = 'block';
         return;
       }
       for (let i = 0; i < this.problems.length; i++) {
-        if (this.problems[i].title.toLowerCase().indexOf(this.problem.toLowerCase()) !== -1) {
+        if (this.problems[i].title.toLowerCase().indexOf(this.mfos[this.acting].problem.toLowerCase()) !== -1) {
           this.problems[i].hide = 'block';
         }
         else this.problems[i].hide = 'none';
       }
     },
     onClickProblemsListOption(index) {
-      this.problem = this.problems[index].title;
+      this.mfos[this.acting].problem = this.problems[index].title;
       this.enterProblemInput();
     },
   }
