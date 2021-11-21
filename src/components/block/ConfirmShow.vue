@@ -22,8 +22,12 @@ export default {
     return {
       smsCode: '_ _ _ _',
       smsCodeOriginal: '',
-      token: '',
+      fio: '',
+      iin: '',
+      email: '',
+      password: '',
       phoneNumber: '',
+      token: '',
       error: '',
     }
   },
@@ -32,14 +36,22 @@ export default {
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
+    this.fio = this.$session.get('fio');
+    this.iin = this.$session.get('iin');
+    this.email = this.$session.get('email');
+    this.password = this.$session.get('password');
     this.phoneNumber = this.$session.get('phoneNumber');
+    this.$session.set('fio', '');
+    this.$session.set('iin', '');
+    this.$session.set('email', '');
+    this.$session.set('password', '');
     this.$session.set('phoneNumber', '');
   },
   methods: {
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
-      await axios.get('https://crediter.kz/api/checkCode?phone='+('7'+this.phoneNumber)+'&code='+this.smsCodeOriginal)
+      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=8'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password+'&token='+this.token)
           .then(async response => {
             if (response.data.success) {
               await localStorage.setItem('logged', 'true');

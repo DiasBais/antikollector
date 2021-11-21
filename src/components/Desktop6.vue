@@ -1,5 +1,5 @@
 <template>
-  <div class="desktop6" v-on:click="hello">
+  <div class="desktop6">
     <div class="desktop6__content">
       <div class="desktop6__title">Отзывы</div>
       <div class="desktop6__commentaries"
@@ -71,9 +71,6 @@ export default {
     // this.commentariesOldSliderMargin.right = -(this.$refs.infoCommentaries.clientWidth/1.5);
   },
   methods: {
-    hello() {
-      console.log(document.getElementsByClassName('ashgwefcdswf')[0].offsetTop);
-    },
     clickCommentaryBtn(index) {
       console.log(index);
       // let CSMR = 0;

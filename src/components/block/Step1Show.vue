@@ -99,7 +99,7 @@ export default {
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
-        'phone': ('+7'+this.phoneNumberOriginal),
+        'phone': ('8'+this.phoneNumberOriginal),
         'email': this.email,
         'password': this.password,
       })
@@ -119,21 +119,41 @@ export default {
     },
     async sendSMS() {
       await axios.post('https://crediter.kz/api/sendMessage', {
-        'phone': this.phoneNumberOriginal,
+        'fio': this.fio,
+        'iin': this.iin,
+        'phone': ('+7'+this.phoneNumberOriginal),
+        'email': this.email,
+        'password': this.password,
         'token': this.token,
       })
           .then(async response => {
             if (response.data.success) {
               this.smsCode = response.data.code;
-              await this.$session.set('phoneNumber', 'phoneNumberOriginal');
+              await this.$session.set('fio', this.fio);
+              await this.$session.set('iin', this.iin);
+              await this.$session.set('email', this.email);
+              await this.$session.set('password', this.password);
+              await this.$session.set('phoneNumber', this.phoneNumberOriginal);
               this.$router.push({path: '/ConfirmShow'});
             }
             else {
               this.error = response.data.message;
+              await this.$session.set('fio', this.fio);
+              await this.$session.set('iin', this.iin);
+              await this.$session.set('email', this.email);
+              await this.$session.set('password', this.password);
+              await this.$session.set('phoneNumber', this.phoneNumberOriginal);
+              this.$router.push({path: '/ConfirmShow'});
             }
           })
-          .catch(error => {
+          .catch(async error => {
             this.error = error;
+            await this.$session.set('fio', this.fio);
+            await this.$session.set('iin', this.iin);
+            await this.$session.set('email', this.email);
+            await this.$session.set('password', this.password);
+            await this.$session.set('phoneNumber', this.phoneNumberOriginal);
+            this.$router.push({path: '/ConfirmShow'});
           });
     },
     validateStep1() {

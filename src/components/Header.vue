@@ -5,10 +5,9 @@
                 <div class="header__main-center">
                     <div class="header__links">
                         <ul class="header__list-links">
-                            <li class="header__link" v-for="(link, index) in links" :key="'A'+index">
+                            <li class="header__link" v-for="(link, index) in links" :key="'A'+index" v-on:click="onClickHeader($event,link)">
                                 <router-link :to="($route.path==='/')?'#':'/'"
                                              :style="(($route.path === link.path)?'color: #753636':'')"
-                                             v-on:click="onClickHeader($event, link)"
                                 >
                                   {{ link.title }}
                                 </router-link>
@@ -25,8 +24,8 @@
                                 <div class="header__mobile-lang" @click="choiceLanguages()">KZ | RU</div>
                                 <div class="header__mobile-links-nav">
                                     <ul class="header__mobile-list-links">
-                                        <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index">
-                                            <router-link :to="link.path" :style="(($route.path === link.path)?'font-weight: bold':'')">
+                                        <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index" v-on:click="onClickHeader($event,link)">
+                                            <router-link :to="($route.path==='/')?'#':'/'" :style="(($route.path === link.path)?'font-weight: bold':'')">
                                               {{ link.title }}
                                             </router-link>
                                         </li>
@@ -64,12 +63,12 @@ export default {
     data () {
         return {
             links: [
-                { path: '/', title: 'Главная страница', here: 0 },
-                { path: '/our-advantages', title: 'Наши преимущества', here: {original: 2250, opened: 4663 } },
-                { path: '/services', title: 'Услуги', here: 1020 },
-                { path: '/about-company', title: 'О компании', here: 0 },
-                { path: '/reviews', title: 'Отзывы', here: 6385 },
-                { path: '/faq', title: 'FAQ', here: 7318 },
+                { path: '/', title: 'Главная страница', here: { original: 0, mobile: 0 } },
+                { path: '/our-advantages', title: 'Наши преимущества', here: { original: 1834, mobile: 1433 } },
+                { path: '/services', title: 'Услуги', here: { original: 650, mobile: 565 } },
+                { path: '/about-company', title: 'О компании', here: { original: 3119, mobile: 2215 } },
+                { path: '/reviews', title: 'Отзывы', here: { original: 3556, mobile: 2413 } },
+                { path: '/faq', title: 'FAQ', here: { original: 4491, mobile: 3703 } },
             ],
             sliders: [
                 { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },
@@ -105,21 +104,14 @@ export default {
         this.headerInitialValueMobileNav();
         window.addEventListener('resize', this.headerInitialValueMobileNav);
     },
-    // mounted () {this.$refs. },
     methods: {
         onClickHeader(e,link) {
-          console.log('yeah');
-          console.log(e);
           e.preventDefault();
-          console.log(link);
           if (this.$route.path === '/') {
-            console.log('yes');
-            window.scroll(0, link.here);
+            if (window.innerWidth < 1160) window.scrollBy(0,link.here.mobile);
+            else window.scrollBy(0,link.here.original);
           }
-          else {
-            console.log('no');
-            window.scroll(0, 200);
-          }
+          else window.scroll(0, 200);
         },
         headerInitialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
@@ -142,15 +134,9 @@ export default {
                 this.lang.data = choiceLanguagesRu();
             }
         },
-        changePosSlider(index) {
-            console.log(index);
-            // this.sliderMargin = { top: 'auto', left: (), bottom: 'auto', right: 'auto' };
-        },
         sliderMouseDown(event) {
             this.mouseDown.pressed = 1;
             this.mouseDown.cursor = 'grabbing';
-            let oldPosLeft = this.mouseDown.lastPosLeft;
-            console.log(oldPosLeft, event.clientX);
             this.mouseDown.lastPosLeft = (event.clientX);
         },
         sliderMouseUp() {

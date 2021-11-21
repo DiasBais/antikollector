@@ -9,10 +9,21 @@
       </div>
       <div class="Step2Show__body">
         <div class="Step2Show__left" v-if="(mfos.length>1)">
-          <div class="Step2Show__mfo" v-for="(item,index) in (mfos.length)" :key="'W'+index">
-            <img class="Step2Show__mfo-act" src="/images/active.png" v-on:click="Step2Show__actMFO(index)">
+          <div class="Step2Show__mfo"
+               v-for="(item,index) in (mfos.length)"
+               :key="'W'+index"
+               v-on:mousemove="onMouseMoveMFO(index)"
+               v-on:mouseleave="onMouseleaveMFO(index)"
+          >
+            <img class="Step2Show__mfo-act"
+                 :src="imageMFO[index].imageAct"
+                 v-on:click="Step2Show__actMFO(index)"
+            >
             <p>{{ item }}</p>
-            <img class="Step2Show__mfo-del" src="/images/delete.png" v-on:click="Step2Show__delMFO(index)">
+            <img class="Step2Show__mfo-del"
+                 :src="imageMFO[index].imageDel"
+                 v-on:click="Step2Show__delMFO(index)"
+            >
           </div>
         </div>
         <div class="Step2Show__right">
@@ -137,6 +148,15 @@ export default {
       hideProblem: 'none',
       error: '',
       token: '',
+      imageMFO: [
+        { imageAct: '/images/activeActive.png', imageDel: '/images/deleteActive.png' }
+      ],
+      activeImageAct: '/images/activeActive.png',
+      activeImageDel: '/images/deleteActive.png',
+      defaultImageAct: '/images/active.png',
+      defaultImageDel: '/images/delete.png',
+      imageChangeMoveActMFO: '/images/moveActive.png',
+      imageChangeMoveDelMFO: '/images/moveDelete.png',
     }
   },
   mounted() {
@@ -149,23 +169,51 @@ export default {
     localStorage.setItem('smsCode', '');
   },
   methods: {
+    onMouseMoveMFO(index) {
+      if (index !== this.acting) {
+        this.imageMFO[index].imageAct = this.imageChangeMoveActMFO;
+        this.imageMFO[index].imageDel = this.imageChangeMoveDelMFO;
+      }
+    },
+    onMouseleaveMFO(index) {
+      if (index !== this.acting) {
+        this.imageMFO[index].imageAct = this.defaultImageAct;
+        this.imageMFO[index].imageDel = this.defaultImageDel;
+      }
+    },
     Step2Show__addMFO() {
       if (this.mfos.length < 10) {
+        this.imageMFO.push({ imageAct: this.defaultImageAct, imageDel: this.defaultImageDel });
         this.mfos.push({organization:'',arrears:'',date:'',problem:''});
       }
       else this.error = 'Максимальная количество организации';
     },
     Step2Show__actMFO(i) {
+      this.imageMFO[this.acting].imageAct = this.defaultImageAct;
+      this.imageMFO[this.acting].imageDel = this.defaultImageDel;
       this.acting = i;
+      this.imageMFO[i].imageAct = this.activeImageAct;
+      this.imageMFO[i].imageDel = this.activeImageDel;
     },
     Step2Show__delMFO(index) {
       if (this.mfos.length > 0) {
-        if (this.acting >= index) this.acting -= 1;
-        if (this.mfos.length-1 === index) this.mfos.splice(this.mfos.indexOf(index));
+        if (this.acting >= index) {
+          this.acting -= 1;
+          this.imageMFO[this.acting].imageAct = this.activeImageAct;
+          this.imageMFO[this.acting].imageDel = this.activeImageDel;
+        }
+        if (this.mfos.length-1 === index) {
+          this.imageMFO.splice(this.imageMFO.indexOf(index));
+          this.mfos.splice(this.mfos.indexOf(index));
+        }
         else {
           for (let i = 0; i < this.mfos.length-1; i++) {
-            if (index <= i) this.mfos[i] = this.mfos[i+1];
+            if (index <= i) {
+              this.imageMFO[i] = this.imageMFO[i+1];
+              this.mfos[i] = this.mfos[i+1];
+            }
           }
+          this.imageMFO.splice(this.imageMFO.length-1, 1);
           this.mfos.splice(this.mfos.length-1, 1);
         }
       }

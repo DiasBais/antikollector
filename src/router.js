@@ -17,6 +17,7 @@ import step1Show from './components/block/Step1Show'
 import step2Show from './components/block/Step2Show'
 import step3Show from './components/block/Step3Show'
 import ConfirmShow from './components/block/ConfirmShow'
+import forgotPassword from './components/block/forgotPassword'
 
 export default new VueRouter({
     mode: 'history',
@@ -88,6 +89,10 @@ export default new VueRouter({
         {
             path: '/Notifications',
             component: Notifications
+        },
+        {
+            path: '/forgotPassword',
+            component: forgotPassword
         },
     ]
 })

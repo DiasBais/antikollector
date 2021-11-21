@@ -24,7 +24,9 @@
               <span>Зарегестрируйтесь</span>
             </router-link>
           </p>
-          <p>Забыли пароль?</p>
+          <p>
+            <router-link to="/forgotPassword">Забыли пароль?</router-link>
+          </p>
         </div>
       </div>
       <div class="LoginShow__footer">

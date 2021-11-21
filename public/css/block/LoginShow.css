@@ -84,6 +84,10 @@
     color: #7D7B7B;
     margin: 0;
 }
+.LoginShow__links p a {
+    color: #7D7B7B;
+    text-decoration: none;
+}
 .LoginShow__links span {
     color: #8F2525;
     margin: 0;

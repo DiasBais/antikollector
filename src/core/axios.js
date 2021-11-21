@@ -6,7 +6,6 @@ export default function axios() {
     });
     axios.interceptors.request.use(config => {
         const data = {token: localStorage.getItem('token')};
-        console.log(config.data);
         config.data = {...config.data, ...data};
         return config;
     });

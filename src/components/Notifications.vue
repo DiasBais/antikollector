@@ -47,7 +47,6 @@ export default {
       })
           .then(async response => {
             if (response.data.success) {
-              console.log(response.data.data);
               for (let i = 0; i < response.data.data.length; i++) {
                 this.requests.push({
                   direction: response.data.data[i].message,

@@ -34,15 +34,17 @@
                         </div>
                     </div>
                     <div class="header__body-decision">
-                        <div class="header__body-decision-title">
-                            {{ this.lang.data.we_have_a_solution }}
+                        <div class="header__body-decision-content">
+                            <div class="header__body-decision-title">
+                                {{ this.lang.data.we_have_a_solution }}
+                            </div>
+                            <router-link :to="'/step2show'" class="header__body-free">
+                                <button type="button">{{ this.lang.data.free }}</button>
+                            </router-link>
+                            <router-link :to="'/step2show'" class="header__body-protectMe">
+                                <button type="button">{{ this.lang.data.protect_me }}</button>
+                            </router-link>
                         </div>
-                        <router-link :to="'/step2show'" class="header__body-free">
-                            <button type="button">{{ this.lang.data.free }}</button>
-                        </router-link>
-                        <router-link :to="'/step2show'" class="header__body-protectMe">
-                            <button type="button">{{ this.lang.data.protect_me }}</button>
-                        </router-link>
                     </div>
                 </div>
             </div>

@@ -51,7 +51,6 @@ export default {
       })
           .then(response => {
             if (response.data.success) {
-              console.log(response.data);
               this.documents.push({path: response.data.doc1});
               this.documents.push({path: response.data.doc2});
               this.documents.push({path: response.data.doc3});
