@@ -3,7 +3,7 @@
     <VHeader v-if="!logged"></VHeader>
     <HeaderUser v-else></HeaderUser>
     <router-view></router-view>
-    <VFooter></VFooter>
+    <VFooter v-if="hideFooter"></VFooter>
   </div>
 </template>
 
@@ -21,15 +21,55 @@ export default {
   data () {
     return {
       logged: false,
+      router: '',
+      hideFooter: true,
     }
   },
   mounted () {
     this.logged = localStorage.getItem('logged');
+    this.router = this.$route.path.toLowerCase();
+    if (this.router === '/loginshow'.toLowerCase()) {
+      this.hideFooter = false;
+    }
+    else if (this.router === '/step1show'.toLowerCase()) {
+      this.hideFooter = false;
+    }
+    else if (this.router === '/step2show'.toLowerCase()) {
+      this.hideFooter = false;
+    }
+    else if (this.router === '/step3show'.toLowerCase()) {
+      this.hideFooter = false;
+    }
+    else if (this.router === '/forgotpassword'.toLowerCase()) {
+      this.hideFooter = false;
+    }
+    else {
+      this.hideFooter = true;
+    }
     this.$el.addEventListener('click', this.onClick);
   },
   methods: {
     onClick() {
       this.logged = localStorage.getItem('logged');
+      this.router = this.$route.path.toLowerCase();
+      if (this.router === '/loginshow'.toLowerCase()) {
+        this.hideFooter = false;
+      }
+      else if (this.router === '/step1show'.toLowerCase()) {
+        this.hideFooter = false;
+      }
+      else if (this.router === '/step2show'.toLowerCase()) {
+        this.hideFooter = false;
+      }
+      else if (this.router === '/step3show'.toLowerCase()) {
+        this.hideFooter = false;
+      }
+      else if (this.router === '/forgotpassword'.toLowerCase()) {
+        this.hideFooter = false;
+      }
+      else {
+        this.hideFooter = true;
+      }
     }
   },
 }

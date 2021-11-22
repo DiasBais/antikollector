@@ -54,8 +54,11 @@ export default {
       await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=8'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password+'&token='+this.token)
           .then(async response => {
             if (response.data.success) {
+              this.token = response.data.token;
+              await localStorage.setItem('token', this.token);
               await localStorage.setItem('logged', 'true');
               console.log(response.data);
+              this.$forceUpdate();
               this.$router.push({path: '/step2show'});
             }
             else {

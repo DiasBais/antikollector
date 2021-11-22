@@ -41,7 +41,7 @@
                  :style="'display: '+hideOrganization"
             >
               <span class="Step2Show__organizationsList-option"
-                    v-for="(organization,index) in mfos[acting].organizations"
+                    v-for="(organization,index) in organizations"
                     :key="'O'+index"
                     v-html="organization.title"
                     :style="'display: '+organization.hide"
@@ -137,6 +137,48 @@ export default {
         { title: 'ТОО МФО «365 ТЕНГЕ»', hide: 'block' },
         { title: 'ТОО «МФО «Friendly Finance Kazakhstan»', hide: 'block' },
         { title: 'ТОО  МФО «TAS FINANCE GROUP»', hide: 'block' },
+        { title: 'moneyman.kz', hide: 'block' },
+        { title: 'ccloan.kz', hide: 'block' },
+        { title: 'zaimer.kz', hide: 'block' },
+        { title: 'solva.kz', hide: 'block' },
+        { title: '4slovo.kz', hide: 'block' },
+        { title: 'creditplus.kz', hide: 'block' },
+        { title: '7kredit.kz', hide: 'block' },
+        { title: 'credit365.kz', hide: 'block' },
+        { title: 'turbomoney.kz', hide: 'block' },
+        { title: 'quickmoney.kz', hide: 'block' },
+        { title: 'kclp.kz', hide: 'block' },
+        { title: 'dengiclick.kz', hide: 'block' },
+        { title: 'dopo.kz', hide: 'block' },
+        { title: 'koke.kz', hide: 'block' },
+        { title: 'tengo.kz', hide: 'block' },
+        { title: 'kviku.com/kz', hide: 'block' },
+        { title: 'zanachka.kz', hide: 'block' },
+        { title: 'gofingo.kz', hide: 'block' },
+        { title: 'Kredit24.kz', hide: 'block' },
+        { title: 'gm24.kz', hide: 'block' },
+        { title: 'aLTenge', hide: 'block' },
+        { title: '1kredit.kz', hide: 'block' },
+        { title: 'TengeDa', hide: 'block' },
+        { title: 'CashU', hide: 'block' },
+        { title: '365 Тенге', hide: 'block' },
+        { title: 'Mycredit KZ', hide: 'block' },
+        { title: 'TAS GROUP', hide: 'block' },
+        { title: 'MoneyMan', hide: 'block' },
+        { title: 'ccloan.kz', hide: 'block' },
+        { title: 'Займер. Робот онлайн займов', hide: 'block' },
+        { title: 'solva', hide: 'block' },
+        { title: 'Честное слово', hide: 'block' },
+        { title: 'credit plus', hide: 'block' },
+        { title: 'Credit 365', hide: 'block' },
+        { title: 'turbo money', hide: 'block' },
+        { title: 'АКША БАР', hide: 'block' },
+        { title: 'Quick money', hide: 'block' },
+        { title: 'Kaz Credit Line', hide: 'block' },
+        { title: 'Деньги Click', hide: 'block' },
+        { title: 'До получки', hide: 'block' },
+        { title: 'kviku', hide: 'block' },
+        { title: 'zana4ka.kz', hide: 'block' },
       ],
       hideOrganization: 'none',
       problems: [
@@ -223,7 +265,8 @@ export default {
       if (this.validateStep2()) return;
       let newMFO = [];
       for (let i = 0; i < this.mfos.length; i++) {
-        newMFO.push([ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ]);
+        // newMFO.push([ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ]);
+        newMFO = [ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ];
       }
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/secondStep', {
@@ -248,7 +291,7 @@ export default {
       if (!(e.key >= '0' && e.key <= '9') && !(e.key === 'Backspace')) e.preventDefault();
     },
     comeBackPage() {
-      this.$router.push(-2);
+      window.history.back();
     },
     validateStep2() {
       if (!this.mfos[this.acting].organization) {
@@ -292,7 +335,8 @@ export default {
         return;
       }
       for (let i = 0; i < this.organizations.length; i++) {
-        if (this.organizations[i].title.indexOf(this.mfos[this.acting].organization) !== -1) {
+        if (this.organizations[i].title.toLowerCase().indexOf(this.mfos[this.acting].organization.toLowerCase()) !== -1 &&
+            this.organizations[i].title.toLowerCase() !== this.mfos[this.acting].organization.toLowerCase()) {
           this.organizations[i].hide = 'block';
         }
         else this.organizations[i].hide = 'none';
@@ -308,7 +352,8 @@ export default {
         return;
       }
       for (let i = 0; i < this.problems.length; i++) {
-        if (this.problems[i].title.toLowerCase().indexOf(this.mfos[this.acting].problem.toLowerCase()) !== -1) {
+        if (this.problems[i].title.toLowerCase().indexOf(this.mfos[this.acting].problem.toLowerCase()) !== -1 &&
+            this.problems[i].title.toLowerCase() !== this.mfos[this.acting].problem.toLowerCase()) {
           this.problems[i].hide = 'block';
         }
         else this.problems[i].hide = 'none';

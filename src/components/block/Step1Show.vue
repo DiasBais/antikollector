@@ -8,41 +8,55 @@
         </div>
       </div>
       <div class="Step1Show__body">
-        <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
+        <div class="Step1Show__error" v-if="error"><span>{{ error }}</span></div>
         <div class="Step1Show__input">
           <p class="Step1Show__input-name">
             ФИО
             <span class="Step1Show__input-name-require">*</span>
           </p>
-          <input class="Step1Show__input-value" type="text" v-model="fio">
+          <input :class="'Step1Show__input-value '+(this.errorFIO?'Step1Show__error-input':'')" type="text" v-model="fio" v-on:keyup="onKeyUpInput($event, 'fio')">
+          <div class="Step1Show__error" v-if="errorFIO"><span>{{ errorFIO }}</span></div>
         </div>
         <div class="Step1Show__input">
           <p class="Step1Show__input-name">
             ИИН
             <span class="Step1Show__input-name-require">*</span>
           </p>
-          <input class="Step1Show__input-value" type="text" v-model="iin">
+          <input :class="'Step1Show__input-iin Step1Show__input-value '+(this.errorIIN?'Step1Show__error-input':'')" type="text" v-model="iin" v-on:keyup="onKeyUpInput($event, 'iin')">
+          <div class="Step1Show__error" v-if="errorIIN"><span>{{ errorIIN }}</span></div>
         </div>
         <div class="Step1Show__input">
           <p class="Step1Show__input-name">
             Номер телефона
             <span class="Step1Show__input-name-require">*</span>
           </p>
-          <input class="Step1Show__input-value" type="text" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)">
+          <input :class="'Step1Show__input-phone Step1Show__input-value '+(this.errorPhone?'Step1Show__error-input':'')" type="text" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpInput($event, 'phone')">
+          <div class="Step1Show__error" v-if="errorPhone"><span>{{ errorPhone }}</span></div>
         </div>
         <div class="Step1Show__input">
           <p class="Step1Show__input-name">
             Электронная почта
             <span class="Step1Show__input-name-require">*</span>
           </p>
-          <input class="Step1Show__input-value" type="text" v-model="email">
+          <input :class="'Step1Show__input-email Step1Show__input-value '+(this.errorEmail?'Step1Show__error-input':'')" type="text" v-model="email" v-on:keyup="onKeyUpInput($event, 'email')">
+          <div class="Step1Show__error" v-if="errorEmail"><span>{{ errorEmail }}</span></div>
         </div>
         <div class="Step1Show__input">
           <p class="Step1Show__input-name">
             Придумайте пароль
             <span class="Step1Show__input-name-require">*</span>
           </p>
-          <input class="Step1Show__input-value" type="text" v-model="password">
+          <div class="Step1Show__input-passwords">
+            <input :class="'Step1Show__input-password Step1Show__input-value '+(this.errorPassword?'Step1Show__error-input-password':'')"
+                   :type="passwordType"
+                   v-model="password"
+                   v-on:keyup="onKeyUpInput($event, 'password')"
+            >
+            <div :class="'Step1Show__input-password-icon '+(errorPassword?'Step1Show__error-input-password-icon':'')">
+              <img :src="passwordIcon" v-on:click="onClickPasswordIcon">
+            </div>
+          </div>
+          <div class="Step1Show__error" v-if="errorPassword"><span>{{ errorPassword }}</span></div>
         </div>
       </div>
       <div class="Step1Show__footer">
@@ -82,6 +96,13 @@ export default {
       token: 'f',
       smsCode: '',
       error: '',
+      errorFIO: '',
+      errorIIN: '',
+      errorPhone: '',
+      errorEmail: '',
+      errorPassword: '',
+      passwordType: 'password',
+      passwordIcon: '/images/show-password.png',
     }
   },
   mounted() {
@@ -93,6 +114,91 @@ export default {
     localStorage.setItem('smsCode', '');
   },
   methods: {
+    onClickPasswordIcon() {
+      if (this.passwordIcon === '/images/show-password.png') {
+        this.passwordType = 'text';
+        this.passwordIcon = '/images/show-hide-password.png';
+      }
+      else {
+        this.passwordType = 'password';
+        this.passwordIcon = '/images/show-password.png';
+      }
+    },
+    onKeyUpInput(e, name) {
+      console.log('yes');
+      if (e.key === 'Enter') {
+        if (name === 'fio') {
+          document.getElementsByClassName('Step1Show__input-iin')[0].focus();
+        }
+        else if (name === 'iin') {
+          document.getElementsByClassName('Step1Show__input-phone')[0].focus();
+        }
+        else if (name === 'phone') {
+          document.getElementsByClassName('Step1Show__input-email')[0].focus();
+        }
+        else if (name === 'email') {
+          document.getElementsByClassName('Step1Show__input-password')[0].focus();
+        }
+        else if (name === 'password') {
+          this.submitRequestFirstStep();
+        }
+      }
+      if (name === 'fio') {
+        if (!this.fio) {
+          this.errorFIO = 'Поле ФИО обязательно для заполнения';
+        } else if (!this.validateFIO(this.fio)) {
+          this.errorFIO = 'Введите ФИО только на киррилице';
+        } else if (!this.validateFullFIO(this.fio)) {
+          this.errorFIO = 'Введите полное имя ( Например: Абаев Абылай)';
+        } else {
+          this.errorFIO = '';
+        }
+      } else if (name === 'iin') {
+        if (!this.iin) {
+          this.errorIIN = 'Поле ИИН обязательно для заполнения';
+        } else if (!this.validateIIN(this.iin)) {
+          this.errorIIN = 'Неправильный ИИН';
+        } else {
+          this.errorIIN = '';
+        }
+      } else if (name === 'phone') {
+        if (!this.phoneNumberOriginal) {
+          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
+        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
+          this.errorPhone = 'Нет соответствующего оператора номер телефона';
+        } else if (!(this.phoneNumberOriginal.length === 10)) {
+          this.errorPhone = 'Неверный номер телефона';
+        } else {
+          this.errorPhone = '';
+        }
+      } else if (name === 'email') {
+        if (!this.email) {
+          this.errorEmail = 'Поле электронная почта обязательно для заполнения';
+        } else if (!this.validateEmail(this.email)) {
+          this.errorEmail = 'Неправильный email';
+        } else {
+          this.errorEmail = '';
+        }
+      } else if (name === 'password') {
+        if (!this.password) {
+          this.errorPassword = 'Поле пароль обязательно для заполнения';
+        } else if (!(this.password.length > 5)) {
+          this.errorPassword = 'Минимальная длина пароля должна быть не менее 6 символов';
+        } else if (this.checkPassword(this.password)) {
+          this.errorPassword = 'Нельзя ввести пароль на киррилице';
+        } else {
+          this.errorPassword = '';
+        }
+      }
+    },
+    checkPassword(password) {
+      for (let i = 0; i < password.length; i++) {
+        if (password[i].toUpperCase() >= 'А' && password[i].toUpperCase() <= 'Я') {
+          return true;
+        }
+      }
+      return false;
+    },
     async submitRequestFirstStep() {
       this.error = '';
       if (this.validateStep1()) return;
@@ -105,9 +211,12 @@ export default {
       })
           .then(async response => {
             if (response.data.success) {
-              this.token = response.data.token;
-              await localStorage.setItem('token', this.token);
-              this.sendSMS();
+              await this.$session.set('fio', this.fio);
+              await this.$session.set('iin', this.iin);
+              await this.$session.set('email', this.email);
+              await this.$session.set('password', this.password);
+              await this.$session.set('phoneNumber', this.phoneNumberOriginal);
+              this.$router.push({path: '/ConfirmShow'});
             }
             else {
               this.error = response.data.message;
@@ -117,81 +226,16 @@ export default {
             this.error = error;
           });
     },
-    async sendSMS() {
-      await axios.post('https://crediter.kz/api/sendMessage', {
-        'fio': this.fio,
-        'iin': this.iin,
-        'phone': ('+7'+this.phoneNumberOriginal),
-        'email': this.email,
-        'password': this.password,
-        'token': this.token,
-      })
-          .then(async response => {
-            if (response.data.success) {
-              this.smsCode = response.data.code;
-              await this.$session.set('fio', this.fio);
-              await this.$session.set('iin', this.iin);
-              await this.$session.set('email', this.email);
-              await this.$session.set('password', this.password);
-              await this.$session.set('phoneNumber', this.phoneNumberOriginal);
-              this.$router.push({path: '/ConfirmShow'});
-            }
-            else {
-              this.error = response.data.message;
-              await this.$session.set('fio', this.fio);
-              await this.$session.set('iin', this.iin);
-              await this.$session.set('email', this.email);
-              await this.$session.set('password', this.password);
-              await this.$session.set('phoneNumber', this.phoneNumberOriginal);
-              this.$router.push({path: '/ConfirmShow'});
-            }
-          })
-          .catch(async error => {
-            this.error = error;
-            await this.$session.set('fio', this.fio);
-            await this.$session.set('iin', this.iin);
-            await this.$session.set('email', this.email);
-            await this.$session.set('password', this.password);
-            await this.$session.set('phoneNumber', this.phoneNumberOriginal);
-            this.$router.push({path: '/ConfirmShow'});
-          });
-    },
     validateStep1() {
-      if (!this.fio) {
-        this.error = 'Поле ФИО обязательно для заполнения';
+      this.onKeyUpInput('Enter','fio');
+      this.onKeyUpInput('Enter','iin');
+      this.onKeyUpInput('Enter','email');
+      this.onKeyUpInput('Enter','phone');
+      this.onKeyUpInput('Enter','password');
+      if (!this.error && !this.errorFIO && !this.errorIIN && !this.errorEmail && !this.errorPhone && !this.errorPassword) {
+        return false;
       }
-      else if (!this.validateFIO(this.fio)) {
-        this.error = 'Введите ФИО только на киррилице';
-      }
-      else if (!this.validateFullFIO(this.fio)) {
-        this.error = 'Введите полное имя ( Например: Абаев Абылай)';
-      }
-      else if (!this.iin) {
-        this.error = 'Поле ИИН обязательно для заполнения';
-      }
-      else if (!this.validateIIN(this.iin)) {
-        this.error = 'Неправильный ИИН';
-      }
-      else if (!this.phoneNumberOriginal) {
-        this.error = 'Поле номер телефон обязательно для заполнения';
-      }
-      else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-        this.error = 'Нет соответствующего оператора номер телефона';
-      }
-      else if (!this.email) {
-        this.error = 'Поле электронная почта обязательно для заполнения';
-      }
-      else if (!this.validateEmail(this.email)) {
-        this.error = 'Неправильный email';
-      }
-      else if (!this.password) {
-        this.error = 'Поле пароль обязательно для заполнения';
-      }
-      else if (!(this.password.length > 5)) {
-        this.error = 'Минимальная длина пароля должна быть не менее 6 символов';
-      }
-      else return false;
-      return true;
+      else return true;
     },
     validateFIO(fio) {
       fio = fio.split(' ').join('').split('').map((e) => {if(e.toUpperCase() >= 'А' && e.toUpperCase() <= 'Я')return true;else return false});
@@ -277,6 +321,11 @@ export default {
       else return false;
     },
     onKeyDownPhoneNumber(e) {
+      if (e.key === 'Enter') {
+        document.getElementsByClassName('Step1Show__input-email')[0].focus();
+        return;
+      }
+      this.onKeyUpInput(e,'phone');
       if (this.phoneNumberOriginal.length > 9 && e.key !== 'Backspace') {e.preventDefault();return;}
       if (e.key >= '0' && e.key <= '9') {
         this.phoneNumberOriginal += e.key;
@@ -304,6 +353,14 @@ export default {
         else break;
       }
       this.phoneNumber = pn;
+    },
+    checkCyrillic(text) {
+      for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я') return false;
+      return true;
+    },
+    checkLatin(text) {
+      for (let i = 0; i < text.length; i++) if (text[i] >= 'A' && text[i] <= 'Z') return false;
+      return true;
     },
   },
 }

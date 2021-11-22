@@ -86,8 +86,8 @@ export default {
                 choice: 'ru',
                 data: choiceLanguagesRu()
             },
-            mobileNavBgLeft: '0px',
-            mobileNavLeft: '0px',
+            mobileNavBgLeft: '-1000px',
+            mobileNavLeft: '-1000px',
             listHeightPages: {
               home: 0,
               ourAdvantages: 0,
