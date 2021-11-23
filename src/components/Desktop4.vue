@@ -144,7 +144,7 @@ export default {
   methods: {
     timerAddPeople() {
       this.animationChangeCounter();
-      setTimeout(this.timerAddPeople, 8000);
+      setTimeout(this.timerAddPeople, 30000);
     },
     addPeople() {
       this.numPeople = ((new Array(((this.protectionNumbers.now.length+1)-this.numPeopleOriginal.toString().length)).join(' '))+(1010+this.numPeopleOriginal).toString());
