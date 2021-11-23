@@ -94,7 +94,6 @@ export default {
       email: '',
       password: '',
       token: 'f',
-      smsCode: '',
       error: '',
       errorFIO: '',
       errorIIN: '',
@@ -107,11 +106,9 @@ export default {
   },
   mounted() {
     localStorage.setItem('token', '');
-    localStorage.setItem('smsCode', '');
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
-    localStorage.setItem('smsCode', '');
   },
   methods: {
     onClickPasswordIcon() {
@@ -125,7 +122,6 @@ export default {
       }
     },
     onKeyUpInput(e, name) {
-      console.log('yes');
       if (e.key === 'Enter') {
         if (name === 'fio') {
           document.getElementsByClassName('Step1Show__input-iin')[0].focus();
@@ -144,6 +140,11 @@ export default {
         }
       }
       if (name === 'fio') {
+        if (e.key.toUpperCase() >= 'А' && e.key.toUpperCase() <= 'Я' || e.key.toUpperCase() === 'Ё') {
+          if (this.fio.length === 1 || this.fio[this.fio.length-2] === ' ') {
+            this.fio = (this.fio.split('').splice(0,this.fio.length-1).join('')+e.key.toUpperCase());
+          }
+        }
         if (!this.fio) {
           this.errorFIO = 'Поле ФИО обязательно для заполнения';
         } else if (!this.validateFIO(this.fio)) {
@@ -193,7 +194,7 @@ export default {
     },
     checkPassword(password) {
       for (let i = 0; i < password.length; i++) {
-        if (password[i].toUpperCase() >= 'А' && password[i].toUpperCase() <= 'Я') {
+        if (password[i].toUpperCase() >= 'А' && password[i].toUpperCase() <= 'Я' || password[i].toUpperCase() === 'Ё') {
           return true;
         }
       }
@@ -205,7 +206,7 @@ export default {
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
-        'phone': ('8'+this.phoneNumberOriginal),
+        'phone': ('7'+this.phoneNumberOriginal),
         'email': this.email,
         'password': this.password,
       })
@@ -238,7 +239,7 @@ export default {
       else return true;
     },
     validateFIO(fio) {
-      fio = fio.split(' ').join('').split('').map((e) => {if(e.toUpperCase() >= 'А' && e.toUpperCase() <= 'Я')return true;else return false});
+      fio = fio.split(' ').join('').split('').map((e) => {if(e.toUpperCase() >= 'А' && e.toUpperCase() <= 'Я' || e.toUpperCase() === 'Ё')return true;else return false});
       for (let i = 0; i < fio.length; i++) {
         if (!fio[i]) return false;
       }
@@ -249,23 +250,20 @@ export default {
       let fioValidate = false;
       if (fio.length < 2) return false;
       for (let i = 0; i < fio.length; i++) {
-        if (!(fio[i][0] >= 'А' && fio[i][0] <= 'Я') && (fio[i][0] >= 'а' && fio[i][0] <= 'я')) fioValidate = true;
+        if (!(fio[i][0] >= 'А' && fio[i][0] <= 'Я' || fio[i][0] === 'Ё') && (fio[i][0] >= 'а' && fio[i][0] <= 'я' || fio[i][0] === 'ё')) fioValidate = true;
       }
       if (fioValidate) return false;
       else return true;
     },
     validateIIN(iin) {
-      // console.log((12 === iin.length && typeof parseInt(iin) === 'number' && this.isChecksumValid(iin)));
       return (12 === iin.length && typeof parseInt(iin) === 'number' && this.isChecksumValid(iin));
     },
     isChecksumValid(iin) {
-      console.log(iin);
       let weights = [];
       for (let i=1;i<12;i++) weights.push(i);
       let weights2 = [];
       for (let i=3;i<12;i++) weights2.push(i);
       weights2 = [...weights2, 1, 2];
-      console.log(weights2);
 
       let checksum = this.calc(iin, weights);
 
@@ -355,7 +353,7 @@ export default {
       this.phoneNumber = pn;
     },
     checkCyrillic(text) {
-      for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я') return false;
+      for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я' || text[i] === 'Ё') return false;
       return true;
     },
     checkLatin(text) {

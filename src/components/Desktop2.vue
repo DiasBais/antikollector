@@ -2,6 +2,7 @@
   <div class="desktop2">
     <div class="desktop2__content">
       <div class="desktop2__title">Как мы защищаем от Коллекторов, ЧСИ, МФО?</div>
+      <div class="desktop2__body-decision-title">У НАС ЕСТЬ РЕШЕНИЕ!</div>
       <router-link :to="priceLink" class="desktop2__btn-price">
         <button type="button">{{ price }}</button>
       </router-link>

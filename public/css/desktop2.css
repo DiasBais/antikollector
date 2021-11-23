@@ -16,10 +16,20 @@
     line-height: 59px;
     text-align: center;
     color: #000000;
-    margin: auto auto 41px auto;
+    margin: auto auto 37px auto;
+}
+.desktop2__body-decision-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    color: #8F2525;
+    margin: auto auto 27px auto;
 }
 .desktop2__btn-price {
-;
+    ;
 }
 .desktop2__btn-price button {
     border: 0;
@@ -35,6 +45,13 @@
     height: 71px;
     cursor: pointer;
 }
+.desktop2__btn-price button:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.desktop2__btn-price button:active {
+    background: #D28D8D;
+    box-shadow: none;
+}
 .desktop2__stages {
 ;
 }
@@ -49,6 +66,7 @@
     justify-content: space-between;
     padding: 61px 0px;
     position: relative;
+    z-index: -99;
 }
 .desktop2__stage-left {
     text-align: -moz-left;
@@ -89,6 +107,7 @@
 }
 .desktop2__stage-line {
     position: absolute;
+    z-index: -99;
 }
 .desktop2__stage-line-left {
     top: 140px;
@@ -116,6 +135,13 @@
     color: #FFFFFF;
     padding: 12px 62px;
     cursor: pointer;
+}
+.desktop2__stages-continue button:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.desktop2__stages-continue button:active {
+    background: #D28D8D;
+    box-shadow: none;
 }
 .desktop2__stage-list-progress {
     margin: 0px 0px;

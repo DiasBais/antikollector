@@ -13,7 +13,6 @@ export default function() {
         have_your_accounts_been_blocked: 'Ваши счета заблокировали?',
         are_you_paid_salary_with_deductions: 'Вам выплачивают зп с удержаниями?',
         have_your_credit_history_been_ruined: 'Вам испортили кредитную историю?',
-        we_have_a_solution: 'У НАС ЕСТЬ РЕШЕНИЕ!',
         free: 'БЕСПЛАТНО',
         protect_me: 'Защитить меня',
     }

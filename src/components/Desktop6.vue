@@ -72,13 +72,12 @@ export default {
   },
   methods: {
     clickCommentaryBtn(index) {
-      console.log(index);
-      // let CSMR = 0;
-      // if (index == 0) CSMR = 115;
-      // else if (index == 1) CSMR = -((this.commentariesSliderMargin.right+this.$refs.infoCommentaries.clientWidth)/1.5);
-      // else CSMR = -2115;
-      // this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: CSMR };
-      // this.commentariesOldSliderMargin = this.commentariesSliderMargin;
+      let CSMR = 0;
+      if (index == 0) CSMR = 1700;
+      else if (index == 1) CSMR = 115;
+      else CSMR = -2115;
+      this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: CSMR };
+      this.commentariesOldSliderMargin = this.commentariesSliderMargin;
     },
     commentariesMobileVersion() {
       if (window.innerWidth < 1160) {

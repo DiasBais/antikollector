@@ -98,6 +98,7 @@
     margin: 50px 0px 0px 0px;
 }
 .LoginShow__input-submit {
+    border: 0;
     background: #8F2525;
     box-shadow: 0px 0px 44px -12px #8F2525;
     border-radius: 15px;
@@ -109,3 +110,11 @@
     color: #FFFFFF;
     padding: 14px 73px;
 }
+.LoginShow__input-submit:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.LoginShow__input-submit:active {
+    background: #D28D8D;
+    box-shadow: none;
+}
+

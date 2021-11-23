@@ -43,7 +43,7 @@
     display: block;
     width: 10%;
     text-align: center;
-    margin: 0px 10px 0px 0px;
+    margin: 0px 0px 0px 10px;
 }
 .Step2Show__mfo {
     display: flex;
@@ -163,7 +163,14 @@
 
 /* --- */
 
-
+.Step2Show_priceMFOS {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+}
 
 /* --- */
 
@@ -254,6 +261,7 @@
     border-right: 1px solid #9C9C9C;
     border-bottom: 1px solid #9C9C9C;
     width: 100%;
+    z-index: 99;
 }
 .Step2Show__problemsList-option {
     border-bottom: 1px solid #9C9C9C;
@@ -267,6 +275,37 @@
     color: #000000;
     cursor: pointer;
     width: 95.75%;
+}
+
+/* --- */
+
+.Step2Show__descriptionProblems {
+    position: relative;
+    margin: 35px 0px 15px 0px;
+}
+.Step2Show__descriptionProblems-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #7D7B7B;
+    margin: 0px 0px 3px 0px;
+}
+.Step2Show__descriptionProblems-input {
+    background: #FFFFFF;
+    border: 1px solid #9C9C9C;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 15px 15px 15px 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    width: 100%;
+    overflow: scroll;
 }
 
 /* --- */
@@ -289,8 +328,18 @@
     line-height: 24px;
     color: #8F2525;
     padding: 19px 47.5px;
+    cursor: pointer;
+}
+.Step2Show__back:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.Step2Show__back:active {
+    border: 3px solid #D28D8D;
+    color: #D28D8D;
+    box-shadow: none;
 }
 .Step2Show__submit {
+    border: 0;
     background: #8F2525;
     box-shadow: 0px 0px 44px -12px #8F2525;
     border-radius: 15px;
@@ -301,5 +350,20 @@
     line-height: 24px;
     color: #FFFFFF;
     padding: 19px 79.5px;
+    cursor: pointer;
+}
+.Step2Show__submit p {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0;
+}
+.Step2Show__submit:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.Step2Show__submit:active {
+    background: #D28D8D;
+    box-shadow: none;
 }
 

@@ -8,24 +8,6 @@
         </div>
       </div>
       <div class="Step2Show__body">
-        <div class="Step2Show__left" v-if="(mfos.length>1)">
-          <div class="Step2Show__mfo"
-               v-for="(item,index) in (mfos.length)"
-               :key="'W'+index"
-               v-on:mousemove="onMouseMoveMFO(index)"
-               v-on:mouseleave="onMouseleaveMFO(index)"
-          >
-            <img class="Step2Show__mfo-act"
-                 :src="imageMFO[index].imageAct"
-                 v-on:click="Step2Show__actMFO(index)"
-            >
-            <p>{{ item }}</p>
-            <img class="Step2Show__mfo-del"
-                 :src="imageMFO[index].imageDel"
-                 v-on:click="Step2Show__delMFO(index)"
-            >
-          </div>
-        </div>
         <div class="Step2Show__right">
           <div class="Step1Show__error" v-if="error">Error: <span>{{ error }}</span></div>
           <div class="Step2Show__organizations">
@@ -82,7 +64,31 @@
               ></span>
             </div>
           </div>
+          <div class="Step2Show__descriptionProblems">
+            <p class="Step2Show__descriptionProblems-title">Опишите проблему</p>
+            <input type="text" class="Step2Show__descriptionProblems-input" v-model="mfos[acting].descriptionProblem">
+          </div>
           <div class="Step2Show__addMFO" v-on:click="Step2Show__addMFO">+ Добавить МФО</div>
+        </div>
+        <div class="Step2Show__left">
+          <div class="Step2Show__left-content" v-if="(mfos.length>1)">
+            <div class="Step2Show__mfo"
+                 v-for="(item,index) in (mfos.length)"
+                 :key="'W'+index"
+                 v-on:mousemove="onMouseMoveMFO(index)"
+                 v-on:mouseleave="onMouseleaveMFO(index)"
+            >
+              <img class="Step2Show__mfo-act"
+                   :src="imageMFO[index].imageAct"
+                   v-on:click="Step2Show__actMFO(index)"
+              >
+              <p>{{ item }}</p>
+              <img class="Step2Show__mfo-del"
+                   :src="imageMFO[index].imageDel"
+                   v-on:click="Step2Show__delMFO(index)"
+              >
+            </div>
+          </div>
         </div>
       </div>
       <div class="Step2Show__footer">
@@ -108,9 +114,11 @@ export default {
             arrears: '',
             date: '',
             problem: '',
+            descriptionProblem: '',
           },
       ],
       organizations: [
+        { title: 'ТОО "МФО"I-CREDIT.KZ"', hide: 'block' },
         { title: 'ТОО "МФО «ФинтехФинанс"', hide: 'block' },
         { title: 'ТОО "МФО СиСиЛоун.кз"', hide: 'block' },
         { title: 'ТОО "МФО Робокэш.кз"', hide: 'block' },
@@ -137,6 +145,7 @@ export default {
         { title: 'ТОО МФО «365 ТЕНГЕ»', hide: 'block' },
         { title: 'ТОО «МФО «Friendly Finance Kazakhstan»', hide: 'block' },
         { title: 'ТОО  МФО «TAS FINANCE GROUP»', hide: 'block' },
+        { title: 'i-credit.kz', hide: 'block' },
         { title: 'moneyman.kz', hide: 'block' },
         { title: 'ccloan.kz', hide: 'block' },
         { title: 'zaimer.kz', hide: 'block' },
@@ -208,7 +217,6 @@ export default {
       localStorage.setItem('logged', '');
       this.$router.push({path: '/'});
     }
-    localStorage.setItem('smsCode', '');
   },
   methods: {
     onMouseMoveMFO(index) {
@@ -227,6 +235,11 @@ export default {
       if (this.mfos.length < 10) {
         this.imageMFO.push({ imageAct: this.defaultImageAct, imageDel: this.defaultImageDel });
         this.mfos.push({organization:'',arrears:'',date:'',problem:''});
+        this.imageMFO[this.acting].imageAct = this.defaultImageAct;
+        this.imageMFO[this.acting].imageDel = this.defaultImageDel;
+        this.acting = this.mfos.length-1;
+        this.imageMFO[this.acting].imageAct = this.activeImageAct;
+        this.imageMFO[this.acting].imageDel = this.activeImageDel;
       }
       else this.error = 'Максимальная количество организации';
     },
@@ -265,8 +278,7 @@ export default {
       if (this.validateStep2()) return;
       let newMFO = [];
       for (let i = 0; i < this.mfos.length; i++) {
-        // newMFO.push([ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ]);
-        newMFO = [ this.mfos[i].organization, this.mfos[i].arrears, this.mfos[i].date, this.mfos[i].problem ];
+        newMFO.push([ this.mfos[i].organization+'-'+this.mfos[i].arrears+'-'+this.mfos[i].date+'-'+this.mfos[i].problem+'-'+this.mfos[i].descriptionProblem ]);
       }
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/secondStep', {
@@ -277,6 +289,8 @@ export default {
             if (response.data.success) {
               await this.$session.set('step2success', true);
               await localStorage.setItem('token', this.token);
+              await localStorage.setItem('mfos', this.mfos);
+              await localStorage.setItem('priceMFOS', (10000+(this.mfos.length-1)*5000));
               this.$router.push({path: '/step3show'});
             }
             else {
@@ -294,20 +308,29 @@ export default {
       window.history.back();
     },
     validateStep2() {
-      if (!this.mfos[this.acting].organization) {
-        this.error = 'Поле кому должен обязательно для заполнения';
+      for (let i = 0; i < this.mfos.length; i++) {
+        if (!this.mfos[i].organization) {
+          this.error = 'Поле['+i+'] кому должен обязательно для заполнения';
+          return true;
+        }
+        else if (!this.mfos[i].arrears) {
+          this.error = 'Поле['+i+'] сколько должен обязательно для заполнения';
+          return true;
+        }
+        else if (!this.mfos[i].date) {
+          this.error = 'Поле['+i+'] когда брал кредит обязательно для заполнения';
+          return true;
+        }
+        else if (!this.mfos[i].problem) {
+          this.error = 'Поле['+i+'] какая проблема обязательно для заполнения';
+          return true;
+        }
+        else if (!this.mfos[i].descriptionProblem) {
+          this.error = 'Поле['+i+'] опишите проблема обязательно для заполнения';
+          return true;
+        }
       }
-      else if (!this.mfos[this.acting].arrears) {
-        this.error = 'Поле сколько должен обязательно для заполнения';
-      }
-      else if (!this.mfos[this.acting].date) {
-        this.error = 'Поле когда брал кредит обязательно для заполнения';
-      }
-      else if (!this.mfos[this.acting].problem) {
-        this.error = 'Поле какая проблема обязательно для заполнения';
-      }
-      else return false;
-      return true;
+      return false;
     },
     onClickList(e) {
       if (e.target.getAttribute('class') === 'Step2Show__organizations-input' ||

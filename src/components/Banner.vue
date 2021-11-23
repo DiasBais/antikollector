@@ -9,12 +9,12 @@
                 <div class="header__body-looper">
                     <div
                         class="header__body-sliders"
-                        :style="'cursor: '+mouseDown.cursor+'; margin: '+(sliderMargin.top+' '+sliderMargin.left+'px '+' '+sliderMargin.bottom+' '+' '+sliderMargin.right)"
+                        :style="((!mobileVersion)?('cursor: '+mouseDown.cursor+'; margin: '+(sliderMargin.top+' '+sliderMargin.left+'px '+' '+sliderMargin.bottom+' '+' '+sliderMargin.right)):'')"
                         @mousemove="sliderMouseMotionMove($event)"
                         @mouseleave="sliderMouseMotionLeave()"
                         @mousedown="sliderMouseDown($event)"
                         @mouseup="sliderMouseUp()"
-                    >
+                    >{{ mobileVersion }}
                         <div
                             class="header__body-slider"
                             v-for="(slider, index) in sliders"
@@ -35,9 +35,6 @@
                     </div>
                     <div class="header__body-decision">
                         <div class="header__body-decision-content">
-                            <div class="header__body-decision-title">
-                                {{ this.lang.data.we_have_a_solution }}
-                            </div>
                             <router-link :to="'/step1show'" class="header__body-protectMe">
                                 <button type="button">{{ this.lang.data.protect_me }}</button>
                             </router-link>
@@ -64,6 +61,7 @@ export default {
                 { src: './images/accounts-blocked.svg', description: 'Вам выплачивают зп с удержаниями?' },
                 { src: './images/accounts-blocked.svg', description: 'Вам испортили кредитную историю?' },
             ],
+            mobileVersion: false,
             mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },
             mouseMotion: 0,
             sliderMargin: { top: 'auto', left: 0, bottom: 'auto', right: 'auto' },
@@ -77,10 +75,17 @@ export default {
         }
     },
     created () {
+        this.desktop2MobileVersion();
+        window.addEventListener('resize', this.desktop2MobileVersion);
         this.initialValueMobileNav();
         window.addEventListener('resize', this.initialValueMobileNav);
     },
     methods: {
+        desktop2MobileVersion() {
+          if (window.innerWidth < 1160) this.mobileVersion = true;
+          else if (window.innerWidth > 1439) this.mobileVersion = false;
+          else this.mobileVersion = false;
+        },
         initialValueMobileNav() {
             this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
             this.mobileNavLeft = (-window.innerWidth)+'px';
@@ -105,6 +110,8 @@ export default {
         sliderMouseDown(event) {
             this.mouseDown.pressed = 1;
             this.mouseDown.cursor = 'grabbing';
+            let oldPosLeft = this.mouseDown.lastPosLeft;
+            console.log(oldPosLeft, event.clientX);
             this.mouseDown.lastPosLeft = (event.clientX);
         },
         sliderMouseUp() {

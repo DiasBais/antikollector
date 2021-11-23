@@ -12,6 +12,10 @@
         line-height: 24px !important;
         margin: auto auto 8px auto !important;
     }
+    .desktop2__body-decision-title {
+        font-size: 32px !important;
+        line-height: 39px !important;
+    }
     .desktop2__btn-price button {
         border-radius: 5px !important;
         font-weight: 500 !important;

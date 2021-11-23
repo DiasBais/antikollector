@@ -59,7 +59,6 @@
         margin: 0px !important;
     }
     .desktop4__block-of-protection-block {
-        background: none !important;
         width: auto !important;
         height: 23px !important;
         margin: 13px 0px 5px 0px;
@@ -68,9 +67,15 @@
         font-family: Montserrat;
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
+        font-size: 20px !important;
+        line-height: 24px !important;
         color: #5E5E5E;
+    }
+    .desktop4__block-of-protection-item {
+        display: none;
+    }
+    .desktop4__block-of-protection-item-mobile {
+        display: flex;
     }
     .desktop4__block-of-protection-num {
         width: 23px;
