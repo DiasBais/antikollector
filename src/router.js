@@ -2,13 +2,12 @@ import VueRouter from 'vue-router'
 
 import firstPage from './components/firstPage'
 import Banner from './components/Banner'
-import Desktop2 from './components/Desktop2'
-import Desktop4 from './components/Desktop4'
-import Desktop5 from './components/Desktop5'
-import Desktop6 from './components/Desktop6'
+import protectionAgainstCollectors from './components/protectionAgainstCollectors'
+import ourAdvantages from './components/ourAdvantages'
+import stock from './components/stock'
+import reviews from './components/reviews'
 import aboutCompany from './components/aboutCompany'
 import Desktop7 from './components/Desktop7'
-import register from './components/block/register'
 import HeaderUser from './components/HeaderUser'
 import myDocuments from './components/myDocuments'
 import Notifications from './components/Notifications'
@@ -24,27 +23,28 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            component: firstPage
+            component: firstPage,
+            title: 'sfgsdf'
         },
         {
             path: '/banner',
             component: Banner
         },
         {
-            path: '/desktop2',
-            component: Desktop2
+            path: '/protectionAgainstCollectors',
+            component: protectionAgainstCollectors
         },
         {
-            path: '/desktop4',
-            component: Desktop4
+            path: '/ourAdvantages',
+            component: ourAdvantages
         },
         {
-            path: '/desktop5',
-            component: Desktop5
+            path: '/stock',
+            component: stock
         },
         {
-            path: '/desktop6',
-            component: Desktop6
+            path: '/reviews',
+            component: reviews
         },
         {
             path: '/aboutCompany',
@@ -53,10 +53,6 @@ export default new VueRouter({
         {
             path: '/desktop7',
             component: Desktop7
-        },
-        {
-            path: '/register',
-            component: register
         },
         {
             path: '/LoginShow',

@@ -1,0 +1,43 @@
+@media(max-width: 1160px) {
+    .Notifications__content {
+        width: 315px;
+        padding: 50px 30px 50px 30px;
+    }
+    .Notifications__title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .Notifications__body {
+        margin: 30px 0px 0px 0px;
+    }
+    .Notifications__item {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 10px 6px;
+        display: flex;
+        margin: 6px;
+    }
+    .Notifications__item-default {
+        background: #FFFFFF;
+    }
+    .Notifications__item-current {
+        background: #F0CBCB;
+    }
+    .Notifications__condition {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 12px;
+    }
+    .Notifications__condition-agree {
+        background: #4FC706;
+    }
+    .Notifications__condition-onProgress {
+        background: #FFC739;
+    }
+    .Notifications__direction {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

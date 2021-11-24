@@ -1,9 +1,17 @@
 <template>
   <div class="Notifications">
     <div class="Notifications__content">
+      <div class="antiCollector__body-looper">
+        <div class="antiCollector__body-looper-content">
+          <img class="antiCollector__body-looper-image" src="/images/loopers/looper-notifications.svg">
+        </div>
+      </div>
+      <div class="antiCollector__body-looper-mobile">
+        <img class="antiCollector__body-looper-image-mobile" src="/images/loopers/looper-notifications-mobile.svg">
+      </div>
       <div class="Notifications__title">Состояние дела:</div>
       <div class="Notifications__body">
-        <div :class="'Notifications__item '+ ((index===0)?'Notifications__item-current':'')" v-for="(request,index) in requests" :key="'N'+index">
+        <div :class="'Notifications__item '+ ((index===0)?'Notifications__item-current':'Notifications__item-default')" v-for="(request,index) in requests" :key="'N'+index">
           <div :class="'Notifications__condition '+ (!request.condition?'Notifications__condition-agree':'Notifications__condition-onProgress')"></div>
           <span class="Notifications__direction">{{ request.direction }}</span>
         </div>
@@ -75,6 +83,7 @@ export default {
 </script>
 
 <style>
-@import '/css/notifications.css'
+@import '/css/notifications.css';
+@import '/css/mobile/notifications.css';
 </style>
 

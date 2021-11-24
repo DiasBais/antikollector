@@ -1,0 +1,37 @@
+.antiCollector__body-looper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.antiCollector__body-looper-content {
+    position: relative;
+    width: 1440px;
+}
+.antiCollector__body-looper-image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -99;
+}
+.antiCollector__body-looper-mobile {
+    width: 100%;
+    display: none;
+}
+.antiCollector__body-looper-image-mobile {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -99;
+}
+
+@media(max-width: 1160px) {
+    .antiCollector__body-looper {
+        display: none;
+    }
+    .antiCollector__body-looper-mobile {
+        display: block;
+    }
+}
+

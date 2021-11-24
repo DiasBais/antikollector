@@ -1,29 +1,29 @@
 <template>
   <div class="">
-    <div class="header">
-      <div class="header__main">
-        <div class="header__main-center">
-          <div class="header__links">
-            <ul class="header__list-links">
-              <li class="header__link" v-for="(link, index) in links" :key="'A'+index">
+    <div class="headeruser">
+      <div class="headeruser__main">
+        <div class="headeruser__main-center">
+          <div class="headeruser__links">
+            <ul class="headeruser__list-links">
+              <li class="headeruser__link" v-for="(link, index) in links" :key="'A'+index">
                 <router-link :to="link.path" :style="(($route.path === link.path)?'color: #753636':'')">
                   {{ link.title }}
                   <div v-if="numRequests && link.path === 'notifications'">{{ numRequests }}</div>
                 </router-link>
               </li>
             </ul>
-            <div class="header__lang" @click="choiceLanguages()">KZ | RU</div>
+            <div class="headeruser__lang" @click="choiceLanguages()">KZ | RU</div>
           </div>
           <!-- Моб версия -->
-          <div class="header__mobile-links">
-            <div class="header__mobile-icon" @click="openMobileNav()" :style="'left: '+mobileNavBgLeft"></div>
-            <div class="header__mobile-bg" @click="closeMobileNav()" :style="'left: '+mobileNavLeft"></div>
-            <div class="header__mobile" :style="'left: '+mobileNavLeft">
-              <div class="header__mobile-nav">
-                <div class="header__mobile-lang" @click="choiceLanguages()">KZ | RU</div>
-                <div class="header__mobile-links-nav">
-                  <ul class="header__mobile-list-links">
-                    <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index">
+          <div class="headeruser__mobile-links">
+            <div class="headeruser__mobile-icon" @click="openMobileNav()" :style="'left: '+mobileNavBgLeft"></div>
+            <div class="headeruser__mobile-bg" @click="closeMobileNav()" :style="'left: '+mobileNavLeft"></div>
+            <div class="headeruser__mobile" :style="'left: '+mobileNavLeft">
+              <div class="headeruser__mobile-nav">
+                <div class="headeruser__mobile-lang" @click="choiceLanguages()">KZ | RU</div>
+                <div class="headeruser__mobile-links-nav">
+                  <ul class="headeruser__mobile-list-links">
+                    <li class="headeruser__mobile-link" v-for="(link, index) in links" :key="'B'+index">
                       <router-link :to="link.path" :style="(($route.path === link.path)?'font-weight: bold':'')">
                         {{ link.title }}
                         <div v-if="link.path === 'notifications'">+1</div>
@@ -32,18 +32,18 @@
                   </ul>
                 </div>
               </div>
-              <div class="header__mobile-links-SN">
-                <div class="header__mobile-link-instagram">
+              <div class="headeruser__mobile-links-SN">
+                <div class="headeruser__mobile-link-instagram">
                   <img src="/images/instagram.svg">
                 </div>
-                <div class="header__mobile-link-facebook">
+                <div class="headeruser__mobile-link-facebook">
                   <img src="/images/facebook.svg">
                 </div>
               </div>
             </div>
           </div>
           <!-- --- -->
-          <div class="header__account-circle">
+          <div class="headeruser__account-circle">
             <img src="/images/account-circle.svg" v-on:click="logout">
           </div>
         </div>

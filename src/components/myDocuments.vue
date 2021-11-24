@@ -1,19 +1,34 @@
 <template>
   <div class="myDocuments">
-    <div class="myDocuments__document">
-      <a :href="documents[0].path" class="myDocuments__document-name">Документ 1</a>
-      <div class="myDocuments__document-scan"></div>
-      <img alt="Сканы док-ов">
-    </div>
-    <div class="myDocuments__document">
-      <a :href="documents[1].path" class="myDocuments__document-name">Документ 2</a>
-      <div class="myDocuments__document-scan"></div>
-      <img alt="Сканы док-ов">
-    </div>
-    <div class="myDocuments__document">
-      <a :href="documents[2].path" class="myDocuments__document-name">Документ 3</a>
-      <div class="myDocuments__document-scan"></div>
-      <img alt="Сканы док-ов">
+    <div class="myDocuments__content">
+      <div class="antiCollector__body-looper" style="position: absolute">
+        <div class="antiCollector__body-looper-content">
+          <img class="antiCollector__body-looper-image" src="/images/loopers/looper-my-documents.svg">
+        </div>
+      </div>
+      <div class="antiCollector__body-looper-mobile">
+        <div class="antiCollector__body-looper-content-mobile">
+          <img class="antiCollector__body-looper-image-mobile" src="/images/loopers/looper-my-documents-mobile.svg">
+        </div>
+      </div>
+      <div class="myDocuments__document">
+        <a :href="document1" class="myDocuments__document-name">Документ 1</a>
+        <div class="myDocuments__document-scan">
+          <img class="myDocuments__document-image" alt="Сканы док-ов">
+        </div>
+      </div>
+      <div class="myDocuments__document">
+        <a :href="document2" class="myDocuments__document-name">Документ 2</a>
+        <div class="myDocuments__document-scan">
+          <img class="myDocuments__document-image" alt="Сканы док-ов">
+        </div>
+      </div>
+      <div class="myDocuments__document">
+        <a :href="document3" class="myDocuments__document-name">Документ 3</a>
+        <div class="myDocuments__document-scan">
+          <img class="myDocuments__document-image" alt="Сканы док-ов">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -26,14 +41,10 @@ export default {
     return {
       token: '',
       error: '',
-      documents: []
+      document1: '',
+      document2: '',
+      document3: '',
     }
-  },
-  created () {
-    window.addEventListener('load', () => {
-      this.mobileVersion();
-    })
-    window.addEventListener('resize', this.mobileVersion);
   },
   mounted() {
     this.token = localStorage.getItem('token');
@@ -51,9 +62,9 @@ export default {
       })
           .then(response => {
             if (response.data.success) {
-              this.documents.push({path: response.data.doc1});
-              this.documents.push({path: response.data.doc2});
-              this.documents.push({path: response.data.doc3});
+              this.document1 = response.data.doc1;
+              this.document2 = response.data.doc2;
+              this.document3 = response.data.doc3;
             }
             else {
               this.error = response.data.message;
@@ -63,19 +74,12 @@ export default {
             this.error = error;
           });
     },
-    mobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.asd = '';
-      }
-      else {
-        this.asd = '';
-      }
-    },
   }
 }
 </script>
 
 <style>
-@import '/css/mydocuments.css'
+@import '/css/mydocuments.css';
+@import '/css/mobile/mydocuments.css';
 </style>
 

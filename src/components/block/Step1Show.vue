@@ -102,13 +102,15 @@ export default {
       errorPassword: '',
       passwordType: 'password',
       passwordIcon: '/images/show-password.png',
+      goesLoading: '',
     }
   },
   mounted() {
-    localStorage.setItem('token', '');
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
+    localStorage.setItem('token', '');
+    localStorage.setItem('logged', '');
   },
   methods: {
     onClickPasswordIcon() {
@@ -154,14 +156,14 @@ export default {
         } else {
           this.errorFIO = '';
         }
-      } else if (name === 'iin') {
-        if (!this.iin) {
-          this.errorIIN = 'Поле ИИН обязательно для заполнения';
-        } else if (!this.validateIIN(this.iin)) {
-          this.errorIIN = 'Неправильный ИИН';
-        } else {
-          this.errorIIN = '';
-        }
+      // } else if (name === 'iin') {
+      //   if (!this.iin) {
+      //     this.errorIIN = 'Поле ИИН обязательно для заполнения';
+      //   } else if (!this.validateIIN(this.iin)) {
+      //     this.errorIIN = 'Неправильный ИИН';
+      //   } else {
+      //     this.errorIIN = '';
+      //   }
       } else if (name === 'phone') {
         if (!this.phoneNumberOriginal) {
           this.errorPhone = 'Поле номер телефон обязательно для заполнения';
@@ -201,6 +203,8 @@ export default {
       return false;
     },
     async submitRequestFirstStep() {
+      if (this.goesLoading) return;
+      this.goesLoading = true;
       this.error = '';
       if (this.validateStep1()) return;
       await axios.post('https://crediter.kz/api/firstStep', {
@@ -218,21 +222,24 @@ export default {
               await this.$session.set('password', this.password);
               await this.$session.set('phoneNumber', this.phoneNumberOriginal);
               this.$router.push({path: '/ConfirmShow'});
+              this.goesLoading = false;
             }
             else {
               this.error = response.data.message;
+              this.goesLoading = false;
             }
           })
           .catch(error => {
             this.error = error;
+            this.goesLoading = false;
           });
     },
     validateStep1() {
-      this.onKeyUpInput('Enter','fio');
-      this.onKeyUpInput('Enter','iin');
-      this.onKeyUpInput('Enter','email');
-      this.onKeyUpInput('Enter','phone');
-      this.onKeyUpInput('Enter','password');
+      this.onKeyUpInput({key:'Enter'},'fio');
+      this.onKeyUpInput({key:'Enter'},'iin');
+      this.onKeyUpInput({key:'Enter'},'email');
+      this.onKeyUpInput({key:'Enter'},'phone');
+      this.onKeyUpInput({key:'Enter'},'password');
       if (!this.error && !this.errorFIO && !this.errorIIN && !this.errorEmail && !this.errorPhone && !this.errorPassword) {
         return false;
       }

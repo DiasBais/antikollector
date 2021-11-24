@@ -1,6 +1,11 @@
 <template>
   <div class="aboutCompany">
     <div class="aboutCompany__content">
+      <div class="antiCollector__body-looper">
+        <div class="antiCollector__body-looper-content">
+          <img class="antiCollector__body-looper-image" src="/images/loopers/looper-about-company.svg">
+        </div>
+      </div>
       <div class="aboutCompany__title">О компании</div>
       <div class="aboutCompany__inside">
         <div class="aboutCompany__hello"></div>

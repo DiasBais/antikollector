@@ -76,5 +76,6 @@ export default {
 </script>
 
 <style>
+@import url('/css/looper.css');
 @import url('/css/fonts.css');
 </style>

@@ -66,9 +66,10 @@ export default {
                 { path: '/', title: 'Главная страница', here: { original: 0, mobile: 0 } },
                 { path: '/our-advantages', title: 'Наши преимущества', here: { original: 1834, mobile: 1433 } },
                 { path: '/services', title: 'Услуги', here: { original: 650, mobile: 565 } },
-                { path: '/about-company', title: 'О компании', here: { original: 3119, mobile: 2215 } },
+                { path: '/about-company', title: 'О компании', here: { original: 4491, mobile: 3703 } },
                 { path: '/reviews', title: 'Отзывы', here: { original: 3556, mobile: 2413 } },
-                { path: '/faq', title: 'FAQ', here: { original: 4491, mobile: 3703 } },
+                // { path: '/faq', title: 'FAQ', here: { original: 4491, mobile: 3703 } },
+                { path: '/faq', title: 'FAQ', here: { original: 5553, mobile: 4795 } },
             ],
             sliders: [
                 { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },
@@ -86,8 +87,8 @@ export default {
                 choice: 'ru',
                 data: choiceLanguagesRu()
             },
-            mobileNavBgLeft: '-1000px',
-            mobileNavLeft: '-1000px',
+            mobileNavBgLeft: '0px',
+            mobileNavLeft: '0px',
             listHeightPages: {
               home: 0,
               ourAdvantages: 0,
@@ -100,7 +101,7 @@ export default {
             linkFacebook: '/',
         }
     },
-    created () {
+    mounted () {
         this.headerInitialValueMobileNav();
         window.addEventListener('resize', this.headerInitialValueMobileNav);
     },

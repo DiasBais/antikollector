@@ -190,11 +190,12 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
         margin: 19px auto auto auto !important;
     }
     .header__body-looper {
-        background-image: url('./images/looper-mobile.svg') !important;
+        background-image: url('/images/looper-mobile.svg') !important;
     }
     .header__body-sliders {
         width: auto !important;
         overflow-x: scroll;
+        overflow-y: hidden;
         justify-content: normal !important;
     }
     .header__body-slider {
@@ -234,10 +235,11 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     height: 40px;
 }
 .header__body {
+    position: relative;
     text-align: center;
 }
 .header__body-title {
-;
+    ;
 }
 .header__body-title h1 {
     font-family: Montserrat;
@@ -261,11 +263,6 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     line-height: 43px;
     color: #000000;
     margin: 20px auto auto auto;
-}
-.header__body-looper {
-    background-image: url('./images/looper.svg');
-    background-size: 100% 100%;
-    width: 100%;
 }
 .header__body-sliders {
     display: flex;

@@ -51,7 +51,7 @@ export default {
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
-      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=8'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password+'&token='+this.token)
+      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
               this.token = response.data.token;

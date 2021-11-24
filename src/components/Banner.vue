@@ -6,39 +6,42 @@
                     <h1>АНТИ<span>КОЛЛЕКТОР</span></h1>
                     <p>{{ this.lang.data.we_will_protect_you_from_collectors_npi_and_mfos }}</p>
                 </div>
-                <div class="header__body-looper">
+                <div class="antiCollector__body-looper">
+                    <div class="antiCollector__body-looper-content">
+                        <img class="antiCollector__body-looper-image" src="/images/loopers/looper.svg">
+                    </div>
+                </div>
+                <div
+                    class="header__body-sliders"
+                    :style="((!mobileVersion)?('cursor: '+mouseDown.cursor+'; margin: '+(sliderMargin.top+' '+sliderMargin.left+'px '+' '+sliderMargin.bottom+' '+' '+sliderMargin.right)):'')"
+                    @mousemove="sliderMouseMotionMove($event)"
+                    @mouseleave="sliderMouseMotionLeave()"
+                    @mousedown="sliderMouseDown($event)"
+                    @mouseup="sliderMouseUp()"
+                >
                     <div
-                        class="header__body-sliders"
-                        :style="((!mobileVersion)?('cursor: '+mouseDown.cursor+'; margin: '+(sliderMargin.top+' '+sliderMargin.left+'px '+' '+sliderMargin.bottom+' '+' '+sliderMargin.right)):'')"
-                        @mousemove="sliderMouseMotionMove($event)"
-                        @mouseleave="sliderMouseMotionLeave()"
-                        @mousedown="sliderMouseDown($event)"
-                        @mouseup="sliderMouseUp()"
-                    >{{ mobileVersion }}
-                        <div
-                            class="header__body-slider"
-                            v-for="(slider, index) in sliders"
-                            :key="'C'+index"
-                        >
-                            <div class="header__body-slider-circle">
-                                <img :src="slider.src">
-                            </div>
-                            <div class="header__body-slider-description">
-                                {{ slider.description }}
-                            </div>
+                        class="header__body-slider"
+                        v-for="(slider, index) in sliders"
+                        :key="'C'+index"
+                    >
+                        <div class="header__body-slider-circle">
+                            <img :src="slider.src">
+                        </div>
+                        <div class="header__body-slider-description">
+                            {{ slider.description }}
                         </div>
                     </div>
-                    <div class="header__body-slider-transitions">
-                        <div class="header__body-slider-transition" v-for="(slider, index) in sliders" :key="'D'+index">
-                            <img class="header__body-slider-transition-img" src="/images/ellipse.svg">
-                        </div>
+                </div>
+                <div class="header__body-slider-transitions">
+                    <div class="header__body-slider-transition" v-for="(slider, index) in sliders" :key="'D'+index">
+                        <img class="header__body-slider-transition-img" src="/images/ellipse.svg">
                     </div>
-                    <div class="header__body-decision">
-                        <div class="header__body-decision-content">
-                            <router-link :to="'/step1show'" class="header__body-protectMe">
-                                <button type="button">{{ this.lang.data.protect_me }}</button>
-                            </router-link>
-                        </div>
+                </div>
+                <div class="header__body-decision">
+                    <div class="header__body-decision-content">
+                        <router-link :to="'/step1show'" class="header__body-protectMe">
+                            <button type="button">{{ this.lang.data.protect_me }}</button>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -59,7 +62,7 @@ export default {
                 { src: './images/morally-pressured.svg', description: 'На Вас оказывают моральное давление?' },
                 { src: './images/credit-card.svg', description: 'Ваши счета заблокировали?' },
                 { src: './images/accounts-blocked.svg', description: 'Вам выплачивают зп с удержаниями?' },
-                { src: './images/accounts-blocked.svg', description: 'Вам испортили кредитную историю?' },
+                { src: './images/history-credit.svg', description: 'Вам испортили кредитную историю?' },
             ],
             mobileVersion: false,
             mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },

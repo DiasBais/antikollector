@@ -1,27 +1,30 @@
 <template>
   <div>
     <Banner />
-    <Desktop2 />
-    <Desktop4 />
-    <Desktop5 />
-    <Desktop6 />
+    <protectionAgainstCollectors />
+    <ourAdvantages />
+    <stock />
+    <reviews />
+    <aboutCompany />
   </div>
 </template>
 
 <script>
 import Banner from './Banner';
-import Desktop2 from './Desktop2';
-import Desktop4 from './Desktop4';
-import Desktop5 from './Desktop5';
-import Desktop6 from './Desktop6';
+import protectionAgainstCollectors from './protectionAgainstCollectors';
+import ourAdvantages from './ourAdvantages';
+import stock from './stock';
+import reviews from './reviews';
+import aboutCompany from './aboutCompany';
 
 export default {
   components: {
     Banner,
-    Desktop2,
-    Desktop4,
-    Desktop5,
-    Desktop6,
+    protectionAgainstCollectors,
+    ourAdvantages,
+    stock,
+    reviews,
+    aboutCompany,
   },
   mounted() {
     if (localStorage.getItem('logged')) {

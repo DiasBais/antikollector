@@ -1,0 +1,12 @@
+@media(max-width: 1160px) {
+    .stock__title {
+        font-size: 30px !important;
+        line-height: 37px !important;
+        margin: 0px 0px 6px 0px !important;
+    }
+    .stock__description {
+        font-size: 22px !important;
+        line-height: 27px !important;
+        width: 100% !important;
+    }
+}

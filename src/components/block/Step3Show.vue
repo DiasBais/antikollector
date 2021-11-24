@@ -191,6 +191,7 @@ export default {
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/lastStep', {
         'token': this.token,
+        'amount': this.priceMFOS,
         'type': this.type,
       })
           .then(async response => {
