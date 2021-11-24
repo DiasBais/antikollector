@@ -276,9 +276,10 @@ export default {
     async submitRequestSecondStep() {
       this.error = '';
       if (this.validateStep2()) return;
-      let newMFO = [];
+      let newMFO = [ '' ];
       for (let i = 0; i < this.mfos.length; i++) {
-        newMFO.push([ this.mfos[i].organization+'-'+this.mfos[i].arrears+'-'+this.mfos[i].date+'-'+this.mfos[i].problem+'-'+this.mfos[i].descriptionProblem ]);
+        if (this.mfos.length-1 === i) newMFO[0] += this.mfos[i].organization+'-'+this.mfos[i].arrears+'-'+(this.mfos[i].date.split('-').join('.'))+'-'+this.mfos[i].problem+'-'+this.mfos[i].descriptionProblem;
+        else newMFO[0] += this.mfos[i].organization+'-'+this.mfos[i].arrears+'-'+(this.mfos[i].date.split('-').join('.'))+'-'+this.mfos[i].problem+'-'+this.mfos[i].descriptionProblem+', ';
       }
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/secondStep', {
