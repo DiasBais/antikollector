@@ -42,6 +42,7 @@
     display: none;
 }
 .aboutCompany__order-service button {
+    border: 0;
     width: 100%;
     background: #8F2525;
     box-shadow: 0px 0px 44px -12px #C23232;
@@ -53,5 +54,12 @@
     line-height: 18px;
     color: #FFFFFF;
     padding: 17px 0px;
+}
+.aboutCompany__order-service button:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.aboutCompany__order-service button:active {
+    background: #D28D8D;
+    box-shadow: none;
 }
 

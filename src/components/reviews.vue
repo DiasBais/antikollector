@@ -65,18 +65,29 @@ export default {
       commentariesMobileNavBgLeft: '0px',
       commentariesMobileNavRight: '0px',
       widthCommentaries: 0,
+      mobileVersion: false,
     }
   },
   created () {
     this.commentariesMobileVersion();
     window.addEventListener('resize', this.commentariesMobileVersion);
   },
-  mounted () {
-    // this.commentariesSliderMargin.right = -(this.$refs.infoCommentaries.clientWidth/1.5);
-    // this.commentariesOldSliderMargin.right = -(this.$refs.infoCommentaries.clientWidth/1.5);
-  },
   methods: {
+    commentariesMobileVersion() {
+      if (window.innerWidth < 1160) {
+        this.mobileVersion = true;
+        this.commentariesMouseDown = { pressed: 0, lastPosRight: 0, cursor: 'grab' };
+        this.commentariesMouseMotion = 0;
+        this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: 0 };
+        this.commentariesOldSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: 0 };
+        this.commentariesMobileNavBgLeft = '0px';
+        this.commentariesMobileNavRight = '0px';
+        this.widthCommentaries = 0;
+      }
+      else this.mobileVersion = false;
+    },
     clickCommentaryBtn(index) {
+      if (this.mobileVersion) return;
       let CSMR = 0;
       if (index == 0) CSMR = 1700;
       else if (index == 1) CSMR = 115;
@@ -84,20 +95,14 @@ export default {
       this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: CSMR };
       this.commentariesOldSliderMargin = this.commentariesSliderMargin;
     },
-    commentariesMobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.asd = '';
-      }
-      else {
-        this.asd = '';
-      }
-    },
     commentariesSliderMouseDown(event) {
+      if (this.mobileVersion) return;
       this.commentariesMouseDown.pressed = 1;
       this.commentariesMouseDown.cursor = 'grabbing';
       this.commentariesMouseDown.lastPosRight = (event.clientX);
     },
     commentariesSliderMouseUp() {
+      if (this.mobileVersion) return;
       if (this.commentariesMouseDown.pressed === 1) {
         this.commentariesMouseDown.cursor = 'grab';
         this.commentariesOldSliderMargin = this.commentariesSliderMargin;
@@ -105,6 +110,7 @@ export default {
       }
     },
     commentariesSliderMouseMotionMove(event) {
+      if (this.mobileVersion) return;
       if (this.commentariesMouseDown.pressed) {
         let lastPosRight = this.commentariesMouseDown.lastPosRight;
         let posX = event.clientX;
@@ -115,6 +121,7 @@ export default {
       }
     },
     commentariesSliderMouseMotionLeave() {
+      if (this.mobileVersion) return;
       if (this.commentariesMouseDown.pressed === 1) {
         this.commentariesMouseDown.cursor = 'grab';
         this.commentariesOldSliderMargin = this.commentariesSliderMargin;

@@ -17,35 +17,15 @@
         </div>
       </div>
       <div class="aboutCompany__order-service">
-        <button type="button">Заказать услугу</button>
+        <router-link to="step-1">
+          <button type="button">Заказать услугу</button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      asd: ''
-    }
-  },
-  created () {
-    this.mobileVersion();
-    window.addEventListener('resize', this.mobileVersion);
-  },
-  methods: {
-    mobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.asd = '';
-      }
-      else {
-        this.asd = '';
-      }
-    }
-  },
-}
-</script>
+<script></script>
 
 <style>
 @import url('/css/aboutCompany.css');

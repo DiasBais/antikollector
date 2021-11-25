@@ -1,0 +1,44 @@
+@media(max-width: 1160px) {
+    .confirm {
+        margin: 15px 0px 0px 0px;
+    }
+    .confirm__content {
+        width: 350px;
+        background-image: url('/images/looper-step1.svg');
+        padding: 10px 30px 25px 30px;
+    }
+    .confirm__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .confirm__body {
+        margin: 35px 0px 0px 0px;
+    }
+    .confirm__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .confirm__input-name {
+        font-size: 18px;
+        line-height: 22px;
+        color: #525252;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .confirm__input-value {
+        border: 1px solid #9C9C9C;
+        font-size: 15px;
+        line-height: 19px;
+        padding: 12.5px;
+    }
+    .confirm__footer {
+        margin: 40px 0px 0px 0px;
+    }
+    .confirm__submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        padding: 17px 0px;
+        width: 100%;
+    }
+}
+

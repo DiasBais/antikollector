@@ -1,21 +1,13 @@
 import VueRouter from 'vue-router'
 
-import firstPage from './components/firstPage'
-import Banner from './components/Banner'
-import protectionAgainstCollectors from './components/protectionAgainstCollectors'
-import ourAdvantages from './components/ourAdvantages'
-import stock from './components/stock'
-import reviews from './components/reviews'
-import aboutCompany from './components/aboutCompany'
-import Desktop7 from './components/Desktop7'
-import HeaderUser from './components/HeaderUser'
-import myDocuments from './components/myDocuments'
-import Notifications from './components/Notifications'
-import LoginShow from './components/block/LoginShow'
-import step1Show from './components/block/Step1Show'
-import step2Show from './components/block/Step2Show'
-import step3Show from './components/block/Step3Show'
-import ConfirmShow from './components/block/ConfirmShow'
+import main from './components/main'
+import myDocuments from './components/user/myDocuments'
+import notifications from './components/user/notifications'
+import login from './components/block/login'
+import step1 from './components/block/step1'
+import step2 from './components/block/step2'
+import step3 from './components/block/step3'
+import confirm from './components/block/confirm'
 import forgotPassword from './components/block/forgotPassword'
 
 export default new VueRouter({
@@ -23,71 +15,38 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            component: firstPage,
-            title: 'sfgsdf'
+            component: main
         },
         {
-            path: '/banner',
-            component: Banner
+            path: '/login',
+            component: login
         },
         {
-            path: '/protectionAgainstCollectors',
-            component: protectionAgainstCollectors
+            path: '/step-1',
+            component: step1
         },
         {
-            path: '/ourAdvantages',
-            component: ourAdvantages
+            path: '/step-2',
+            component: step2
         },
         {
-            path: '/stock',
-            component: stock
+            path: '/step-3',
+            component: step3
         },
         {
-            path: '/reviews',
-            component: reviews
+            path: '/confirm',
+            component: confirm
         },
         {
-            path: '/aboutCompany',
-            component: aboutCompany
-        },
-        {
-            path: '/desktop7',
-            component: Desktop7
-        },
-        {
-            path: '/LoginShow',
-            component: LoginShow
-        },
-        {
-            path: '/step1Show',
-            component: step1Show
-        },
-        {
-            path: '/step2Show',
-            component: step2Show
-        },
-        {
-            path: '/step3Show',
-            component: step3Show
-        },
-        {
-            path: '/ConfirmShow',
-            component: ConfirmShow
-        },
-        {
-            path: '/headeruser',
-            component: HeaderUser
-        },
-        {
-            path: '/myDocuments',
+            path: '/my-documents',
             component: myDocuments
         },
         {
-            path: '/Notifications',
-            component: Notifications
+            path: '/notifications',
+            component: notifications
         },
         {
-            path: '/forgotPassword',
+            path: '/forgot-password',
             component: forgotPassword
         },
     ]

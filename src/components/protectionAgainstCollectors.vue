@@ -8,7 +8,7 @@
       </div>
       <div class="protectionAgainstCollectors__title">Как мы защищаем от Коллекторов, ЧСИ, МФО?</div>
       <div class="protectionAgainstCollectors__body-decision-title">У НАС ЕСТЬ РЕШЕНИЕ!</div>
-      <router-link :to="priceLink" class="protectionAgainstCollectors__btn-price">
+      <router-link to="step-1" class="protectionAgainstCollectors__btn-price">
         <button type="button">{{ price }}</button>
       </router-link>
       <div class="protectionAgainstCollectors__stages">
@@ -56,7 +56,6 @@ export default {
   data () {
     return {
       price: 'БЕСПЛАТНО',
-      priceLink: 'step1show',
       lines: {
         left: '/images/stages-line-left.svg',
         right: '/images/stages-line-right.svg'

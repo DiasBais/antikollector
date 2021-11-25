@@ -142,26 +142,30 @@ export default {
     }
   },
   mounted() {
-    var now = new Date();
-    var old = new Date('November 22, 2021 17:00:00');
-    this.numPeopleOriginal = parseInt((now - old) / 1000 / 30);
-    this.numPeopleOriginalShadow = parseInt((now - old) / 1000 / 30);
-    this.addPeople();
-    this.addPeopleShadow();
-    this.animationChangeCounter();
-    // setTimeout(this.timerAddPeople, ((parseInt((now-old)/1000%30))*1000));
-    setTimeout(this.timerAddPeople, 8000);
+    this.counterStartValue();
   },
   methods: {
+    counterStartValue() {
+      let now = new Date();
+      let old = new Date('Nov 23, 2021 11:00:00');
+      this.numPeopleOriginal = parseInt((now - old) / 1000 / 30);
+      this.numPeopleOriginalShadow = parseInt((now - old) / 1000 / 30);
+      this.addPeople();
+      this.addPeopleShadow();
+      this.animationChangeCounter();
+      setTimeout(this.timerAddPeople, ((parseInt((now - old) / 1000 % 30)) * 1000));
+    },
     timerAddPeople() {
       this.animationChangeCounter();
-      setTimeout(this.timerAddPeople, 8000);
+      setTimeout(this.timerAddPeople, 30000);
     },
     addPeople() {
-      this.numPeople = ((new Array(((this.protectionNumbers.now.length+1)-this.numPeopleOriginal.toString().length)).join(' '))+(1010+this.numPeopleOriginal).toString());
+      let emptyLayers = (new Array((this.protectionNumbers.now.length+1)-this.numPeopleOriginal.toString().length).join(' '));
+      this.numPeople = (emptyLayers+(1010+this.numPeopleOriginal).toString());
     },
     addPeopleShadow() {
-      this.numPeopleShadow = ((new Array(((this.protectionNumbers.new.length+1)-this.numPeopleOriginalShadow.toString().length)).join(' '))+(1010+this.numPeopleOriginalShadow).toString());
+      let emptyLayers = (new Array((this.protectionNumbers.new.length+1)-this.numPeopleOriginalShadow.toString().length).join(' '));
+      this.numPeopleShadow = (emptyLayers+(1010+this.numPeopleOriginalShadow).toString());
     },
     thinkNumberChanged(oldNum) {
       let newNum = (oldNum+1).toString();

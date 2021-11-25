@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import VHeader from './components/Header'
-import HeaderUser from './components/HeaderUser'
-import VFooter from './components/Desktop7'
+import VHeader from './components/header'
+import HeaderUser from './components/user/header'
+import VFooter from './components/footer'
 
 export default {
   components: {
@@ -28,19 +28,19 @@ export default {
   mounted () {
     this.logged = localStorage.getItem('logged');
     this.router = this.$route.path.toLowerCase();
-    if (this.router === '/loginshow'.toLowerCase()) {
+    if (this.router === '/login'.toLowerCase()) {
       this.hideFooter = false;
     }
-    else if (this.router === '/step1show'.toLowerCase()) {
+    else if (this.router === '/step-1'.toLowerCase()) {
       this.hideFooter = false;
     }
-    else if (this.router === '/step2show'.toLowerCase()) {
+    else if (this.router === '/step-2'.toLowerCase()) {
       this.hideFooter = false;
     }
-    else if (this.router === '/step3show'.toLowerCase()) {
+    else if (this.router === '/step-3'.toLowerCase()) {
       this.hideFooter = false;
     }
-    else if (this.router === '/forgotpassword'.toLowerCase()) {
+    else if (this.router === '/forgot-password'.toLowerCase()) {
       this.hideFooter = false;
     }
     else {
@@ -52,19 +52,19 @@ export default {
     onClick() {
       this.logged = localStorage.getItem('logged');
       this.router = this.$route.path.toLowerCase();
-      if (this.router === '/loginshow'.toLowerCase()) {
+      if (this.router === '/login'.toLowerCase()) {
         this.hideFooter = false;
       }
-      else if (this.router === '/step1show'.toLowerCase()) {
+      else if (this.router === '/step-1'.toLowerCase()) {
         this.hideFooter = false;
       }
-      else if (this.router === '/step2show'.toLowerCase()) {
+      else if (this.router === '/step-2'.toLowerCase()) {
         this.hideFooter = false;
       }
-      else if (this.router === '/step3show'.toLowerCase()) {
+      else if (this.router === '/step-3'.toLowerCase()) {
         this.hideFooter = false;
       }
-      else if (this.router === '/forgotpassword'.toLowerCase()) {
+      else if (this.router === '/forgot-password'.toLowerCase()) {
         this.hideFooter = false;
       }
       else {

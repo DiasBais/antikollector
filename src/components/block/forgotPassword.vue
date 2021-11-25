@@ -3,8 +3,8 @@
     <div class="forgotPassword__content">
       <div class="forgotPassword__title">Забыли пароль?</div>
       <div class="forgotPassword__body">
-        <div class="LoginShow__input">
-          <p class="LoginShow__input-name">Введите телефон</p>
+        <div class="forgotPassword__input">
+          <p class="forgotPassword__input-name">Введите телефон</p>
           <input class="forgotPassword__phoneInput" type="text" value="" v-model="phone">
         </div>
       </div>

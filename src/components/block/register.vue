@@ -71,10 +71,10 @@ export default {
         }
       })
           .then(response => {
-            console.log(response.data);
+            this.error = response.data;
           })
           .catch(error => {
-            console.log(error);
+            this.error = error;
           })
     },
     registerMobileVersion() {

@@ -22,12 +22,8 @@ export default {
   },
   methods: {
     stockMobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.heightStock = (0.528 * window.innerWidth * 0) + 198;
-      }
-      else {
-        this.heightStock = (0.30347 * window.innerWidth * 0) + 437;
-      }
+      if (window.innerWidth < 1160) this.heightStock = (0.528 * window.innerWidth * 0) + 198;
+      else this.heightStock = (0.30347 * window.innerWidth * 0) + 437;
     }
   },
 }

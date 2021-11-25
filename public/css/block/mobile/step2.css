@@ -1,0 +1,121 @@
+@media(max-width: 1160px) {
+    .step2 {
+        margin: 30px 0px 0px 0px;
+    }
+    .step2__content {
+        width: 350px;
+        padding: 10px 35px 25px 20px;
+    }
+    .step2__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .step2__loading-show-filled {
+        height: 12px;
+    }
+    .step2__body {
+        margin: 40px 0px 0px 0px;
+    }
+    .step2__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .step2__error span {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    /* --- */
+
+    .step2__organizations {
+    ;
+    }
+    .step2__organizations-title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__organizations-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .step2__organizationsList-option {
+        margin: 0 !important;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .step2__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .step2__input-title {
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__input-value {
+        border: 1px solid #9C9C9C;
+        font-size: 15px;
+        line-height: 19px;
+        padding: 12.5px;
+    }
+    .step2__input-price {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+
+    /* --- */
+
+    .step2__problems {
+    ;
+    }
+    .step2__problems-title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__problems-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .step2__problemsList-option {
+        margin: 0 !important;
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .step2__footer {
+        margin: 40px 0px 0px 0px;
+    }
+    .step2__back {
+        display: none;
+    }
+    .step2__submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+    }
+}
+
