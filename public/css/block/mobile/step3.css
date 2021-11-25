@@ -86,7 +86,22 @@
 
     /* --- */
 
+    .step3__agreements-and-list-mfos {
+        display: block;
+    }
+    .step3__agreements {
+        width: 100%;
+    }
+    .step3__mfos {
+        width: 100%;
+        margin: 35px 0px 0px 0px;
+    }
+
+    /* --- */
+
     .step3__footer {
+        display: block;
+        justify-content: normal;
         margin: 40px 0px 0px 0px;
     }
     .step3__free {
@@ -103,7 +118,7 @@
         line-height: 18px;
         padding: 17px 0px;
         width: 100%;
-        margin: 60px 0px 0px 0px;
+        margin: 20px 0px 0px 0px;
     }
 }
 

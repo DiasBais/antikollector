@@ -132,25 +132,35 @@ export default {
       iin: '',
       token: '',
       priceMFOS: 0,
-      mfos: [],
+      mfos: [
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+        { organization: 'rfbrgbegveawgweagv' },
+      ],
       type: '',
       error: '',
     }
   },
   mounted() {
-    this.token = localStorage.getItem('token');
-    this.mfos = JSON.parse(localStorage.getItem('mfos'));
-    this.priceMFOS = localStorage.getItem('priceMFOS');
-    if (!this.token && !localStorage.getItem('logged')) {
-      localStorage.setItem('token', '');
-      localStorage.setItem('logged', '');
-      this.$router.push({path: '/'});
-    }
-    else if (!this.$session.get('step2success')) {
-      this.$router.push({path: '/step-2'});
-    }
-    localStorage.setItem('mfos', '');
-    localStorage.setItem('priceMFOS', '');
+    // this.token = localStorage.getItem('token');
+    // this.mfos = JSON.parse(localStorage.getItem('mfos'));
+    // this.priceMFOS = localStorage.getItem('priceMFOS');
+    // if (!this.token && !localStorage.getItem('logged')) {
+    //   localStorage.setItem('token', '');
+    //   localStorage.setItem('logged', '');
+    //   this.$router.push({path: '/'});
+    // }
+    // else if (!this.$session.get('step2success')) {
+    //   this.$router.push({path: '/step-2'});
+    // }
+    // localStorage.setItem('mfos', '');
+    // localStorage.setItem('priceMFOS', '');
   },
   methods: {
     onClickCheckBoxAgreement(index) {
