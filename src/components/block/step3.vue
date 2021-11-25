@@ -64,7 +64,8 @@
             <div class="step3__mfo step3__mfo-left"
                  :title="mfos[(index*2)].organization"
             >
-              <p>{{ mfos[(index*2)].organization }}</p><span> - 5 000 тг</span>
+              <p v-if="!index">{{ mfos[(index*2)].organization }}</p><span> - 10 000 тг</span>
+              <p v-if="index">{{ mfos[(index*2)].organization }}</p><span> - 5 000 тг</span>
             </div>
             <div class="step3__mfo step3__mfo-right"
                  v-if="(!(mfos.length%2) && (index === Math.ceil(mfos.length/2)-1)) || (index !== Math.ceil(mfos.length/2)-1)"

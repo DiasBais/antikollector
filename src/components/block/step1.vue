@@ -81,6 +81,7 @@ export default {
         { number: '701' },
         { number: '702' },
         { number: '705' },
+        { number: '706' },
         { number: '707' },
         { number: '708' },
         { number: '727' },
