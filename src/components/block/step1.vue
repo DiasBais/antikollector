@@ -156,14 +156,14 @@ export default {
         } else {
           this.errorFIO = '';
         }
-      // } else if (name === 'iin') {
-      //   if (!this.iin) {
-      //     this.errorIIN = 'Поле ИИН обязательно для заполнения';
-      //   } else if (!this.validateIIN(this.iin)) {
-      //     this.errorIIN = 'Неправильный ИИН';
-      //   } else {
-      //     this.errorIIN = '';
-      //   }
+      } else if (name === 'iin') {
+        if (!this.iin) {
+          this.errorIIN = 'Поле ИИН обязательно для заполнения';
+        } else if (!this.validateIIN(this.iin)) {
+          this.errorIIN = 'Неправильный ИИН';
+        } else {
+          this.errorIIN = '';
+        }
       } else if (name === 'phone') {
         if (!this.phoneNumberOriginal) {
           this.errorPhone = 'Поле номер телефон обязательно для заполнения';
