@@ -55,6 +55,18 @@ export default {
   },
   methods: {
     submitRequestLogin() {
+      /*
+      let formData = new FormData();
+      formData.append('iin', this.iin);
+      formData.append('password', this.password);
+      axios().post('signIn', formData, { headers: { 'Content-Type': 'application/json' } })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      */
       this.error = '';
       if (this.validateLogin()) return;
       const axios = require('axios');

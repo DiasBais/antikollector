@@ -74,7 +74,7 @@ export default {
     return {
       fio: '',
       iin: '',
-      phoneNumber: '',
+      phoneNumber: '+7 (',
       phoneNumberOriginal: '',
       operatorsPhoneNumber: [
         { number: '700' },

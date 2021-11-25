@@ -55,6 +55,7 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.token = response.data.token;
+              await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', this.token);
               await localStorage.setItem('logged', 'true');
               this.$forceUpdate();
