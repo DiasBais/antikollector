@@ -16,11 +16,12 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            component: main
+            component: main,
         },
         {
             path: '/login',
-            component: login
+            component: login,
+            title: 'Авторизация'
         },
         {
             path: '/step-1',

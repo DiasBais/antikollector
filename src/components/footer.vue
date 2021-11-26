@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="footer__company-name">TOO «Nash Company»</div>
+<!--      <div class="footer__company-name">TOO «Nash Company»</div>-->
     </div>
   </div>
 </template>

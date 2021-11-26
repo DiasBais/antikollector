@@ -21,6 +21,29 @@
             <img class="step4__payment-image step4__kassa24-image" src="/images/kassa24.png">
           </div>
         </div>
+        <div class="step4__description">После нажатия кнопки оплатить вы будете перенаправлены на страницу оплаты</div>
+        <!--
+        <div class="step4__descriptionPayment">
+          <div class="step4__descriptionPayment-title">ИНСТРУКЦИЯ</div>
+          <div class="step4__payment-content step4__qiwi">
+            <div class="step4__payment-content-title step4__qiwi-title">Qiwi терминал</div>
+            <div class="step4__payment-content-body step4__qiwi-body">
+              <p>1. В сенсорной панели Qiwi терминала нажать на «Оплату услуг».</p>
+              <p>2. Нажать на категорию Погашение кредитов/фин. услуги</p>
+              <p>3. В открывшемся меню нажать на подкатегорию МКО и МФО</p>
+              <p>4. С помощью кнопки Вперед найти микрофинансовую организацию «I-credit».</p>
+              <p>5. На 3 странице кликнуть логотип МКО «I-credit».</p>
+              <p></p>
+            </div>
+          </div>
+          <div class="step4__payment-content step4__kassa24">
+            <div class="step4__payment-content-title step4__kassa24-title">Онлайн-оплата через мобильное приложение PLUS 24</div>
+            <div class="step4__payment-content-body step4__kassa24-body">
+              <p><strong>ИНСТРУКЦИЯ:</strong> Главная  → Поиск →i-credit.kz → ИИН → (указать  сумму)→ оплатить</p>
+            </div>
+          </div>
+        </div>
+        -->
       </div>
       <div class="step4__footer">
         <input class="step4__submit"
@@ -63,8 +86,6 @@ export default {
     else if (!this.$session.get('step3success')) {
       this.$router.push({path: '/step-3'});
     }
-    localStorage.setItem('mfos', '');
-    localStorage.setItem('priceMFOS', '');
   },
   methods: {
     changePaymentMethod(method) {
@@ -98,9 +119,14 @@ export default {
     async payment(firstPart, secondPart) {
       this.error = '';
       const axios = require('axios');
-      await axios.post(firstPart, secondPart, { header: { 'Access-Control-Allow-Origin': '*' } })
+      await axios.post(firstPart, secondPart, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        }
+      })
           .then(async response => {
             if (response.data) {
+              console.log(response.data);
               document.location.href = (response.data.split('"')[7]);
             }
             else {

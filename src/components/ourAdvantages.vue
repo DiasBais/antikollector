@@ -147,7 +147,7 @@ export default {
   methods: {
     counterStartValue() {
       let now = new Date();
-      let old = new Date('Nov 23, 2021 11:00:00');
+      let old = new Date('Nov 21, 2021 11:00:00');
       this.numPeopleOriginal = parseInt((now - old) / 1000 / 30);
       this.numPeopleOriginalShadow = parseInt((now - old) / 1000 / 30);
       this.addPeople();

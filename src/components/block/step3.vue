@@ -102,12 +102,12 @@ Vue.use(VueSession);
 export default {
   data() {
     return {
-      document1: false,
-      document1Image: 'images/check-default.png',
-      document2: false,
-      document2Image: 'images/check-default.png',
-      document3: false,
-      document3Image: 'images/check-default.png',
+      document1: true,
+      document1Image: 'images/check-success.png',
+      document2: true,
+      document2Image: 'images/check-success.png',
+      document3: true,
+      document3Image: 'images/check-success.png',
       freeServices: [
         { title: 'Отградим от незаконных действий МФО', advantage: true },
         { title: 'Отградим от незаконных действий Коллекторов', advantage: true },

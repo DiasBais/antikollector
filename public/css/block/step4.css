@@ -63,6 +63,14 @@
     line-height: 37px;
     padding: 15px;
 }
+.step4__description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 40px 0px 0px 15px;
+}
 .step4__body {
     margin: 15px 0px 15px 0px;
 }
@@ -92,6 +100,70 @@
     border: 1px solid #e8e8e8;
     background: #FFFFFF;
     padding: 14px;
+}
+
+/* --- */
+
+.step4__descriptionPayment {
+    margin: 45px 0px 0px 0px;
+}
+.step4__descriptionPayment-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    line-height: 37px;
+    color: #000000;
+}
+.step4__payment-content {
+    margin: 45px 0px;
+}
+.step4__payment-content-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+}
+.step4__payment-content-body {
+    font-family: Montserrat;
+    font-style: normal;
+    color: #000000;
+}
+.step4__payment-content-body p {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+}
+.step4__payment-content-body strong {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
+.step4__qiwi {
+    ;
+}
+.step4__qiwi-title {
+    ;
+}
+.step4__qiwi-body {
+    ;
+}
+.step4__qiwi-body p {
+    ;
+}
+.step4__kassa24 {
+    ;
+}
+.step4__kassa24-title {
+    ;
+}
+.step4__kassa24-body {
+    ;
+}
+.step4__kassa24-body p {
+    ;
 }
 
 /* --- */
