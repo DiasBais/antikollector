@@ -9,14 +9,14 @@
             ИИН
             <span class="login__input-name-require">*</span>
           </p>
-          <input class="login__input-value" type="text" v-model="iin">
+          <input class="login__input-value" type="text" name="iin" v-model="iin">
         </div>
         <div class="login__input">
           <p class="login__input-name">
             Введите пароль
             <span class="login__input-name-require">*</span>
           </p>
-          <input class="login__input-value" type="password" v-model="password">
+          <input class="login__input-value" type="password" name="password" v-model="password">
         </div>
         <div class="login__links">
           <p>Нет аккаунта?

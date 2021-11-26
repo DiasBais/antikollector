@@ -14,7 +14,7 @@
             ФИО
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-value '+(this.errorFIO?'step1__error-input':'')" type="text" v-model="fio" v-on:keyup="onKeyUpInput($event, 'fio')">
+          <input :class="'step1__input-value '+(this.errorFIO?'step1__error-input':'')" type="text" autocomplete="new_fio" name="fio" v-model="fio" v-on:keyup="onKeyUpInput($event, 'fio')">
           <div class="step1__error" v-if="errorFIO"><span>{{ errorFIO }}</span></div>
         </div>
         <div class="step1__input">
@@ -22,7 +22,7 @@
             ИИН
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-iin step1__input-value '+(this.errorIIN?'step1__error-input':'')" type="text" v-model="iin" v-on:keyup="onKeyUpInput($event, 'iin')">
+          <input :class="'step1__input-iin step1__input-value '+(this.errorIIN?'step1__error-input':'')" type="text" autocomplete="new_iin" name="iin" v-model="iin" v-on:keyup="onKeyUpInput($event, 'iin')">
           <div class="step1__error" v-if="errorIIN"><span>{{ errorIIN }}</span></div>
         </div>
         <div class="step1__input">
@@ -30,7 +30,7 @@
             Номер телефона
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpInput($event, 'phone')">
+          <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpInput($event, 'phone')">
           <div class="step1__error" v-if="errorPhone"><span>{{ errorPhone }}</span></div>
         </div>
         <div class="step1__input">
@@ -38,7 +38,7 @@
             Электронная почта
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-email step1__input-value '+(this.errorEmail?'step1__error-input':'')" type="text" v-model="email" v-on:keyup="onKeyUpInput($event, 'email')">
+          <input :class="'step1__input-email step1__input-value '+(this.errorEmail?'step1__error-input':'')" type="text" autocomplete="new_email" name="email" v-model="email" v-on:keyup="onKeyUpInput($event, 'email')">
           <div class="step1__error" v-if="errorEmail"><span>{{ errorEmail }}</span></div>
         </div>
         <div class="step1__input">
@@ -49,6 +49,8 @@
           <div class="step1__input-passwords">
             <input :class="'step1__input-password step1__input-value '+(this.errorPassword?'step1__error-input-password':'')"
                    :type="passwordType"
+                   name="password"
+                   autocomplete="new_password"
                    v-model="password"
                    v-on:keyup="onKeyUpInput($event, 'password')"
             >
@@ -102,7 +104,7 @@ export default {
       ],
       email: '',
       password: '',
-      token: 'f',
+      token: '',
       error: '',
       errorFIO: '',
       errorIIN: '',

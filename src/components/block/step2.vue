@@ -13,6 +13,7 @@
           <div class="step2__organizations">
             <p class="step2__organizations-title">Кому должен</p>
             <input type="text"
+                   autocomplete="new_organization"
                    v-model="mfos[acting].organization"
                    :style="(hideOrganization==='none'?'border-radius: 10px':'')"
                    v-on:click="onClickList"
@@ -34,18 +35,19 @@
           <div class="step2__input">
             <p class="step2__input-title">Сколько должен</p>
             <div class="step2__input-part">
-              <input class="step2__input-value" type="number" v-model="mfos[acting].arrears" v-on:keydown="onKeyDownArrears($event)">
+              <input class="step2__input-value" type="number" autocomplete="new_arrears" v-model="mfos[acting].arrears" v-on:keydown="onKeyDownArrears($event)">
               <span class="step2__input-price">тенге</span>
             </div>
           </div>
           <div class="step2__input">
             <p class="step2__input-title">Когда брал кредит</p>
-            <input class="step2__input-value" type="date" v-model="mfos[acting].date">
+            <input class="step2__input-value" type="date" autocomplete="new_date" v-model="mfos[acting].date">
           </div>
 
           <div class="step2__problems">
             <p class="step2__problems-title">Какая проблема</p>
             <input type="text"
+                   autocomplete="new_problem"
                    v-model="mfos[acting].problem"
                    :style="(hideProblem==='none'?'border-radius: 10px':'')"
                    v-on:click="onClickList"
@@ -66,7 +68,7 @@
           </div>
           <div class="step2__descriptionProblems">
             <p class="step2__descriptionProblems-title">Опишите проблему</p>
-            <input type="text" class="step2__descriptionProblems-input" v-model="mfos[acting].descriptionProblem">
+            <input type="text" autocomplete="new_descriptionProblem" class="step2__descriptionProblems-input" v-model="mfos[acting].descriptionProblem">
           </div>
           <div class="step2__addMFO" v-on:click="step2__addMFO">+ Добавить МФО</div>
         </div>

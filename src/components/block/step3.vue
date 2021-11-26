@@ -6,7 +6,7 @@
         <div class="step3__loading-show">
           <div class="step3__loading-show-filled"></div>
         </div>
-        <div class="Step3Show__error" v-if="error">Error: <span>{{ error }}</span></div>
+        <div class="step3__error" v-if="error">Error: <span>{{ error }}</span></div>
       </div>
       <div class="step3__body">
         <div class="step3__list-free-services">
@@ -130,7 +130,6 @@ export default {
         { title: 'Письмо в Юстиции', advantage: true },
         { title: 'Письмо в палату ЧСИ', advantage: true },
       ],
-      iin: '',
       token: '',
       priceMFOS: 0,
       mfos: [],
@@ -139,7 +138,6 @@ export default {
     }
   },
   mounted() {
-    this.iin = localStorage.getItem('iin');
     this.token = localStorage.getItem('token');
     this.mfos = JSON.parse(localStorage.getItem('mfos'));
     this.priceMFOS = localStorage.getItem('priceMFOS');
@@ -151,8 +149,6 @@ export default {
     else if (!this.$session.get('step2success')) {
       this.$router.push({path: '/step-2'});
     }
-    localStorage.setItem('mfos', '');
-    localStorage.setItem('priceMFOS', '');
   },
   methods: {
     onClickCheckBoxAgreement(index) {
@@ -199,43 +195,9 @@ export default {
           .then(async response => {
             if (response.data.success) {
               await this.$session.set('step2success', false);
-              if (type === 'Платно') this.makePayment();
+              await this.$session.set('step3success', true);
+              if (type === 'Платно') this.$router.push({path: '/step-4'});
               else this.$router.push({path: '/notifications'});
-            }
-            else {
-              this.error = response.data.message;
-            }
-          })
-          .catch(error => {
-            this.error = error;
-          });
-    },
-    async makePayment() {
-      this.error = '';
-      const axios = require('axios');
-      await axios.post('https://crediter.kz/api/makePayment', {
-        'amount': this.priceMFOS,
-        'iin': this.iin,
-      })
-          .then(async response => {
-            if (response.data) {
-              this.payment(response.data[0], response.data[1]);
-            }
-            else {
-              this.error = response.data.message;
-            }
-          })
-          .catch(error => {
-            this.error = error;
-          });
-    },
-    async payment(firstPart, secondPart) {
-      this.error = '';
-      const axios = require('axios');
-      await axios.post(firstPart, secondPart, { header: { 'Access-Control-Allow-Origin': '*' } })
-          .then(async response => {
-            if (response.data) {
-              document.location.href = (response.data.split('"')[7]);
             }
             else {
               this.error = response.data.message;

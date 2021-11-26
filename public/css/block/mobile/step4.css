@@ -1,0 +1,124 @@
+@media(max-width: 1160px) {
+    .step4 {
+        margin: 15px 0px 0px 0px;
+    }
+    .step4__content {
+        width: 350px;
+        background-image: url('/images/looper-step4.svg');
+        padding: 10px 40px 25px 20px;
+    }
+    .step4__loading-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .step4__loading-show-filled {
+        height: 12px;
+    }
+    .step4__body {
+        margin: 25px 0px 0px 0px;
+        display: block;
+        justify-content: normal;
+    }
+    .step4__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .step4__error span {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .step4__input {
+        margin: 20px 0px 0px 0px;
+    }
+
+    /* --- */
+
+
+    .step4__list-free-services {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 15px 15px 20px 15px;
+        margin: 0px 0px 15px 0px;
+    }
+    .step4__list-pay-services {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 15px 15px 20px 15px;
+        margin: 15px 0px 0px 0px;
+    }
+    .step4__freeOrPay {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: #000000;
+        display: flex;
+        justify-content: center;
+    }
+    .step4__list-services {
+    ;
+    }
+    .step4__service {
+        list-style: none;
+        display: flex;
+    }
+    .step4__service-image {
+        width: 18px;
+        margin: 0px 10px 0px 0px;
+        padding: 0;
+    }
+    .step4__service-description {
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+    .step4__service-has {
+        color: #494949;
+    }
+    .step4__service-not {
+        color: #000;
+        text-decoration: line-through;
+    }
+
+    /* --- */
+
+    .step4__agreements-and-list-mfos {
+        display: block;
+    }
+    .step4__agreements {
+        width: 100%;
+    }
+    .step4__mfos {
+        width: 100%;
+        margin: 35px 0px 0px 0px;
+    }
+
+    /* --- */
+
+    .step4__footer {
+        display: block;
+        justify-content: normal;
+        margin: 40px 0px 0px 0px;
+    }
+    .step4__free {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+        margin: 60px 0px 0px 0px;
+    }
+    .step4__pay {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 17px 0px;
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+}
+

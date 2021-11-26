@@ -5,7 +5,7 @@
       <div class="forgotPassword__body">
         <div class="forgotPassword__input">
           <p class="forgotPassword__input-name">Введите телефон</p>
-          <input class="forgotPassword__phoneInput" type="text" value="" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpInput($event, 'phone')">
+          <input class="forgotPassword__phoneInput" type="text" name="phone" value="" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpInput($event, 'phone')">
           <div class="forgotPassword__error" v-if="errorPhone"><span>{{ errorPhone }}</span></div>
         </div>
       </div>
@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      phoneNumber: '',
+      phoneNumber: '+7 (',
       phoneNumberOriginal: '',
       operatorsPhoneNumber: [
         { number: '700' },
@@ -57,6 +57,8 @@ export default {
     async submitRequestForgotPassword() {
       this.error = '';
       if (this.validateForgotPassword()) return;
+      console.log('true');
+      this.$router.push({path: '/'});
       // await axios.post('https://crediter.kz/api/firstStep', {
       //   'fio': this.fio,
       //   'iin': this.iin,

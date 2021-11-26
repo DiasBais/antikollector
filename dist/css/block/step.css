@@ -1,0 +1,28 @@
+.step__loading {
+    ;
+}
+.step__loading-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    color: #000000;
+    text-align: center;
+}
+.step__loading-show {
+    border: 1px solid #8F2525;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 13px;
+    margin: 15px;
+}
+.step__loading-show-filled {
+    background: #8F2525;
+    border: 1px solid #8F2525;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 25%;
+    height: 11px;
+}
+

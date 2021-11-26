@@ -7,6 +7,7 @@ import login from './components/block/login'
 import step1 from './components/block/step1'
 import step2 from './components/block/step2'
 import step3 from './components/block/step3'
+import step4 from './components/block/step4'
 import confirm from './components/block/confirm'
 import forgotPassword from './components/block/forgotPassword'
 
@@ -32,6 +33,10 @@ export default new VueRouter({
         {
             path: '/step-3',
             component: step3
+        },
+        {
+            path: '/step-4',
+            component: step4
         },
         {
             path: '/confirm',
