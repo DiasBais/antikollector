@@ -55,9 +55,6 @@
 
 /* --- */
 
-.step4__body {
-    margin: 15px 0px 15px 0px;
-}
 .step4__title {
     font-family: Montserrat;
     font-style: normal;
@@ -65,6 +62,9 @@
     font-size: 34px;
     line-height: 37px;
     padding: 15px;
+}
+.step4__body {
+    margin: 15px 0px 15px 0px;
 }
 .step4__body-content {
     display: flex;
@@ -115,10 +115,10 @@
     text-align: center;
     margin: 25px 0px 0px 0px;
 }
-.step4__pay:hover {
+.step4__submit:hover {
     box-shadow: 0px 0px 100px 5px #8F2525;
 }
-.step4__pay:active {
+.step4__submit:active {
     border: 1px solid #D28D8D;
     background: #D28D8D;
     box-shadow: none;

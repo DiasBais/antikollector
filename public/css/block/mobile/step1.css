@@ -50,8 +50,11 @@
         align-items: center;
     }
     .step1__input-password-icon {
+        border-top: 1px solid #9C9C9C;
+        border-right: 1px solid #9C9C9C;
+        border-bottom: 1px solid #9C9C9C;
         width: 10%;
-        padding: 5.25px 0px;
+        padding: 4.95px 0px;
     }
     .step1__input-password-icon img {
         width: 30px;

@@ -8,8 +8,8 @@
         </div>
         <div class="step4__error" v-if="error">Error: <span>{{ error }}</span></div>
       </div>
+      <div class="step4__title">Выберите способ оплаты</div>
       <div class="step4__body">
-        <div class="step4__title">Выберите способ оплаты</div>
         <div class="step4__body-content">
           <div :class="'step4__payment step4__paybox '+((paymentMethod==='paybox')?'step4__payment-active':'')" v-on:click="changePaymentMethod('paybox')">
             <img class="step4__payment-image step4__paybox-image" src="/images/paybox.png">
