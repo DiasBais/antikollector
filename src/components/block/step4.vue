@@ -106,28 +106,9 @@ export default {
           .then(async response => {
             if (response.data) {
               await this.$session.set('step2success', false);
-              this.payment(response.data[0], response.data[1]);
-            }
-            else {
-              this.error = response.data.message;
-            }
-          })
-          .catch(error => {
-            this.error = error;
-          });
-    },
-    async payment(firstPart, secondPart) {
-      this.error = '';
-      const axios = require('axios');
-      await axios.post(firstPart, secondPart, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        }
-      })
-          .then(async response => {
-            if (response.data) {
               console.log(response.data);
-              document.location.href = (response.data.split('"')[7]);
+              console.log(response.data[1]);
+              document.location.href = (response.data[0]+'?'+response.data[1]);
             }
             else {
               this.error = response.data.message;
