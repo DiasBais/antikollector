@@ -293,11 +293,11 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     color: #000000;
     margin: 20px auto auto auto;
 }
-.owl-stage {
+.header__body-sliders .owl-stage {
     display: flex;
     justify-content: center;
 }
-.owl-item {
+.header__body-sliders .owl-item {
     display: flex;
     justify-content: center;
     margin: auto 12.5px;

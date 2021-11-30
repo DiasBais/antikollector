@@ -7,6 +7,22 @@
         </div>
       </div>
       <div class="reviews__title">Отзывы</div>
+
+      <carousel class="reviews__commentaries" :autoplay="true" :autoplayTimeout="10000" :autoplaySpeed="1000" :nav="false" :items="sliderItemsReviews">
+        <div class="reviews__commentary" v-for="(commentary, index) in commentaries" :key="'I'+index">
+          <div class="reviews__commentary-content">
+            <div class="reviews__commentary-author-image">
+              <img :src="commentary.image">
+            </div>
+            <div class="reviews__commentary-author">
+              <div class="reviews__commentary-author-name">{{ commentary.name }}</div>
+              <div class="reviews__commentary-author-city">{{ commentary.city }}</div>
+              <div class="reviews__commentary-author-description">{{ commentary.description }}</div>
+            </div>
+          </div>
+        </div>
+      </carousel>
+      <!--
       <div class="reviews__commentaries"
            :style="'cursor: '+commentariesMouseDown.cursor+'; margin: '+(commentariesSliderMargin.top+' '+commentariesSliderMargin.left+' '+commentariesSliderMargin.bottom+' '+' '+commentariesSliderMargin.right+'px')"
            @mousemove="commentariesSliderMouseMotionMove($event)"
@@ -29,13 +45,18 @@
       <div class="reviews__commentaries-movement">
         <img class="reviews__commentaries-movement-btn" v-for="(commentary, index) in commentaries" :key="'J'+index" src="/images/comment/radio.svg" v-on:click="clickCommentaryBtn(index)">
       </div>
+      -->
     </div>
   </div>
 </template>
 
 <script>
+import carousel from 'vue-owl-carousel'
 
 export default {
+  components: {
+    carousel
+  },
   data () {
     return {
       commentaries: [
@@ -58,13 +79,7 @@ export default {
           image: '/images/comment/author-comment-3.svg',
         },
       ],
-      commentariesMouseDown: { pressed: 0, lastPosRight: 0, cursor: 'grab' },
-      commentariesMouseMotion: 0,
-      commentariesSliderMargin: { top: 'auto', left: 'auto', bottom: 'auto', right: 0 },
-      commentariesOldSliderMargin: { top: 'auto', left: 'auto', bottom: 'auto', right: 0 },
-      commentariesMobileNavBgLeft: '0px',
-      commentariesMobileNavRight: '0px',
-      widthCommentaries: 0,
+      sliderItemsReviews: 3,
       mobileVersion: false,
     }
   },
@@ -74,59 +89,11 @@ export default {
   },
   methods: {
     commentariesMobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.mobileVersion = true;
-        this.commentariesMouseDown = { pressed: 0, lastPosRight: 0, cursor: 'grab' };
-        this.commentariesMouseMotion = 0;
-        this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: 0 };
-        this.commentariesOldSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: 0 };
-        this.commentariesMobileNavBgLeft = '0px';
-        this.commentariesMobileNavRight = '0px';
-        this.widthCommentaries = 0;
-      }
+      if (window.innerWidth < 2100) this.sliderItemsReviews = 1;
+      else if (window.innerWidth < 2600) this.sliderItemsReviews = 2;
+      else this.sliderItemsReviews = 3;
+      if (window.innerWidth < 1160) this.mobileVersion = true;
       else this.mobileVersion = false;
-    },
-    clickCommentaryBtn(index) {
-      if (this.mobileVersion) return;
-      let CSMR = 0;
-      if (index == 0) CSMR = 1700;
-      else if (index == 1) CSMR = 115;
-      else CSMR = -2115;
-      this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: CSMR };
-      this.commentariesOldSliderMargin = this.commentariesSliderMargin;
-    },
-    commentariesSliderMouseDown(event) {
-      if (this.mobileVersion) return;
-      this.commentariesMouseDown.pressed = 1;
-      this.commentariesMouseDown.cursor = 'grabbing';
-      this.commentariesMouseDown.lastPosRight = (event.clientX);
-    },
-    commentariesSliderMouseUp() {
-      if (this.mobileVersion) return;
-      if (this.commentariesMouseDown.pressed === 1) {
-        this.commentariesMouseDown.cursor = 'grab';
-        this.commentariesOldSliderMargin = this.commentariesSliderMargin;
-        this.commentariesMouseDown.pressed = 0;
-      }
-    },
-    commentariesSliderMouseMotionMove(event) {
-      if (this.mobileVersion) return;
-      if (this.commentariesMouseDown.pressed) {
-        let lastPosRight = this.commentariesMouseDown.lastPosRight;
-        let posX = event.clientX;
-        let newValue = (this.commentariesOldSliderMargin.right + posX - lastPosRight);
-        if (newValue > 1700) newValue = 1700;
-        else if (newValue < -2115) newValue = -2115;
-        this.commentariesSliderMargin = { top: 'auto', left: 'auto', bottom: 'auto', right: newValue };
-      }
-    },
-    commentariesSliderMouseMotionLeave() {
-      if (this.mobileVersion) return;
-      if (this.commentariesMouseDown.pressed === 1) {
-        this.commentariesMouseDown.cursor = 'grab';
-        this.commentariesOldSliderMargin = this.commentariesSliderMargin;
-        this.commentariesMouseDown.pressed = 0;
-      }
     },
   },
 }

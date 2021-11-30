@@ -23,6 +23,12 @@
     text-align: center;
     justify-content: center;
 }
+.reviews__commentaries .owl-item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
 .reviews__commentary {
     padding: 39px 23px;
     background: #FFFFFF;
@@ -30,14 +36,20 @@
     box-sizing: border-box;
     border-radius: 5px;
     width: 1027px;
-    display: flex;
     margin: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.reviews__commentary-content {
+    display: flex;
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none;
 }
 .reviews__commentary-author-image {
-;
+    display: flex;
+    align-items: center;
 }
 .reviews__commentary-author-image img {
     width: 250px;
@@ -74,6 +86,7 @@
     line-height: 24px;
     color: #000000;
     width: 694px;
+    height: 250px;
 }
 .reviews__commentaries-movement {
 ;

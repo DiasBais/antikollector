@@ -40,6 +40,9 @@ export default {
     else if (this.router === '/step-3'.toLowerCase()) {
       this.hideFooter = false;
     }
+    else if (this.router === '/step-4'.toLowerCase()) {
+      this.hideFooter = false;
+    }
     else if (this.router === '/forgot-password'.toLowerCase()) {
       this.hideFooter = false;
     }

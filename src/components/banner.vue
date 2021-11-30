@@ -56,7 +56,6 @@ export default {
                 { src: './images/history-credit.svg', description: 'Вам испортили кредитную историю?' },
             ],
             sliderItems: 6,
-            autoplaySpeedSize: 1000,
             mobileVersion: false,
             mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },
             mouseMotion: 0,

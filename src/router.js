@@ -66,7 +66,8 @@ router.beforeEach((to, from, next) => {
     else if (to.path === '/step-1') document.title += ' Шаг 1 | Регистрация';
     else if (to.path === '/confirm') document.title += ' Подтверждение телефона';
     else if (to.path === '/step-2') document.title += ' Шаг 2 | Заказать услугу';
-    else if (to.path === '/step-3') document.title += ' Шаг 3 | Заказать услугу';
+    else if (to.path === '/step-3') document.title += ' Шаг 3 | Подтверждение условий';
+    else if (to.path === '/step-4') document.title += ' Шаг 4 | Оплата';
     else if (to.path === '/my-documents') document.title += ' Мои документы';
     else if (to.path === '/notifications') document.title += ' Уведомление';
     else if (to.path === '/forgot-password') document.title += ' Восстановление аккаунта';
