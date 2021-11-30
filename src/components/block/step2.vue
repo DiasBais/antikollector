@@ -70,7 +70,33 @@
             <p class="step2__descriptionProblems-title">Опишите проблему</p>
             <input type="text" autocomplete="new_descriptionProblem" class="step2__descriptionProblems-input" v-model="mfos[acting].descriptionProblem">
           </div>
-          <div class="step2__addMFO" v-on:click="step2__addMFO">+ Добавить МФО</div>
+          <div class="step2__workMFO">
+            <div class="step2__addMFO" v-on:click="step2__addMFO">+ Добавить МФО</div>
+            <div class="step2__workMFO-content" v-if="(mfos.length>1)">
+              <select class="step2__listMFOS-mobile step2__listMFOS-choose-mobile">
+                <option class="step2__mfo-choose-mobile" value="choose" disabled selected>Выбрать</option>
+                <option class="step2__mfo-choose-mobile"
+                        v-for="(item,index) in (mfos.length-1)"
+                        :key="'WW'+index"
+                        v-on:click="step2__actMFO(item)"
+                        :value="item"
+                >
+                  {{ item }}
+                </option>
+              </select>
+              <select class="step2__listMFOS-mobile step2__listMFOS-delete-mobile">
+                <option class="step2__mfo-delete-mobile" value="delete" disabled selected>Удалить</option>
+                <option class="step2__mfo-delete-mobile"
+                        v-for="(item,index) in (mfos.length-1)"
+                        :key="'WWW'+index"
+                        v-on:click="step2__delMFO(item)"
+                        :value="item"
+                >
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="step2__left">
           <div class="step2__left-content" v-if="(mfos.length>1)">
@@ -234,6 +260,7 @@ export default {
       }
     },
     step2__addMFO() {
+      console.log(this.mfos.length);
       if (this.mfos.length < 10) {
         this.imageMFO.push({ imageAct: this.defaultImageAct, imageDel: this.defaultImageDel });
         this.mfos.push({organization:'',arrears:'',date:'',problem:''});
@@ -247,6 +274,7 @@ export default {
       this.acting = i;
       this.imageMFO[i].imageAct = this.activeImageAct;
       this.imageMFO[i].imageDel = this.activeImageDel;
+      setTimeout(()=>{document.getElementsByClassName('step2__listMFOS-choose-mobile')[0].value = i},10);
       this.enterOrganizationInput();
       this.enterProblemInput();
     },
@@ -256,6 +284,8 @@ export default {
           this.acting -= 1;
           this.imageMFO[this.acting].imageAct = this.activeImageAct;
           this.imageMFO[this.acting].imageDel = this.activeImageDel;
+          document.getElementsByClassName('step2__listMFOS-delete-mobile')[0].value = 'delete';
+          document.getElementsByClassName('step2__listMFOS-choose-mobile')[0].value = this.acting;
         }
         if (this.mfos.length-1 === index) {
           this.imageMFO.splice(this.imageMFO.indexOf(index));

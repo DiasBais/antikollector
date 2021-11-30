@@ -11,7 +11,7 @@ import step4 from './components/block/step4'
 import confirm from './components/block/confirm'
 import forgotPassword from './components/block/forgotPassword'
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
@@ -58,3 +58,19 @@ export default new VueRouter({
     ]
 })
 
+router.beforeEach((to, from, next) => {
+    console.log(to,from);
+    document.title = 'Антиколлектор |';
+    if (to.path === '/') document.title += ' Главная страница';
+    else if (to.path === '/login') document.title += ' Авторизация';
+    else if (to.path === '/step-1') document.title += ' Шаг 1 | Регистрация';
+    else if (to.path === '/confirm') document.title += ' Подтверждение телефона';
+    else if (to.path === '/step-2') document.title += ' Шаг 2 | Заказать услугу';
+    else if (to.path === '/step-3') document.title += ' Шаг 3 | Заказать услугу';
+    else if (to.path === '/my-documents') document.title += ' Мои документы';
+    else if (to.path === '/notifications') document.title += ' Уведомление';
+    else if (to.path === '/forgot-password') document.title += ' Восстановление аккаунта';
+    next();
+})
+
+export default router

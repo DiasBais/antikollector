@@ -29,12 +29,11 @@
     /* --- */
 
     .step2__organizations {
-    ;
+        margin: 15px 0px 15px 0px;
     }
     .step2__organizations-title {
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 22px;
+        font-size: 14px;
+        line-height: 17px;
         color: #000000;
         margin: 0px 0px 2.5px 0px;
     }
@@ -55,11 +54,11 @@
     /* --- */
 
     .step2__input {
-        margin: 20px 0px 0px 0px;
+        margin: 15px 0px 15px 0px;
     }
     .step2__input-title {
-        font-size: 18px;
-        line-height: 22px;
+        font-size: 14px;
+        line-height: 17px;
         color: #000000;
         margin: 0px 0px 2.5px 0px;
     }
@@ -79,12 +78,11 @@
     /* --- */
 
     .step2__problems {
-    ;
+        margin: 15px 0px 15px 0px;
     }
     .step2__problems-title {
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 22px;
+        font-size: 14px;
+        line-height: 17px;
         color: #000000;
         margin: 0px 0px 2.5px 0px;
     }
@@ -100,6 +98,39 @@
         font-size: 14px;
         line-height: 17px;
         width: auto !important;
+    }
+
+    /* --- */
+
+    .step2__descriptionProblems {
+        margin: 15px 0px 15px 0px;
+    }
+    .step2__descriptionProblems-title {
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__descriptionProblems-input {
+        padding: 15px 15px 15px 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    /* --- */
+
+    .step2__right {
+        width: 100%;
+    }
+    .step2__left {
+        display: none;
+    }
+    .step2__workMFO-content {
+        display: flex;
+    }
+    .step2__addMFO {
+        font-size: 14px;
+        line-height: 17px;
     }
 
     /* --- */

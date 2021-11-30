@@ -11,32 +11,19 @@
                         <img class="antiCollector__body-looper-image" src="/images/loopers/looper.svg">
                     </div>
                 </div>
-                <div
-                    class="header__body-sliders"
-                    :style="((!mobileVersion)?('cursor: '+mouseDown.cursor+'; margin: '+(sliderMargin.top+' '+sliderMargin.left+'px '+' '+sliderMargin.bottom+' '+' '+sliderMargin.right)):'')"
-                    @mousemove="sliderMouseMotionMove($event)"
-                    @mouseleave="sliderMouseMotionLeave()"
-                    @mousedown="sliderMouseDown($event)"
-                    @mouseup="sliderMouseUp()"
-                >
-                    <div
-                        class="header__body-slider"
-                        v-for="(slider, index) in sliders"
-                        :key="'C'+index"
-                    >
-                        <div class="header__body-slider-circle">
-                            <img :src="slider.src">
-                        </div>
-                        <div class="header__body-slider-description">
-                            {{ slider.description }}
-                        </div>
+                <carousel class="header__body-sliders" :autoplay="true" :autoplayTimeout="4000" :autoplaySpeed="1000" :nav="false" :items="sliderItems">
+                  <div class="header__body-slider"
+                       v-for="(slider, index) in sliders"
+                       :key="'C'+index"
+                  >
+                    <div class="header__body-slider-circle">
+                      <img :src="slider.src">
                     </div>
-                </div>
-                <div class="header__body-slider-transitions">
-                    <div class="header__body-slider-transition" v-for="(slider, index) in sliders" :key="'D'+index">
-                        <img class="header__body-slider-transition-img" src="/images/ellipse.svg">
+                    <div class="header__body-slider-description">
+                      {{ slider.description }}
                     </div>
-                </div>
+                  </div>
+                </carousel>
                 <div class="header__body-decision">
                     <div class="header__body-decision-content">
                         <router-link to="/step-1" class="header__body-protectMe">
@@ -50,10 +37,14 @@
 </template>
 
 <script>
+import carousel from 'vue-owl-carousel'
 import choiceLanguagesRu from '../lang/ru/lang'
 import choiceLanguagesKz from '../lang/kz/lang'
 
 export default {
+    components: {
+      carousel
+    },
     data () {
         return {
             sliders: [
@@ -64,6 +55,8 @@ export default {
                 { src: './images/accounts-blocked.svg', description: 'Вам выплачивают зп с удержаниями?' },
                 { src: './images/history-credit.svg', description: 'Вам испортили кредитную историю?' },
             ],
+            sliderItems: 6,
+            autoplaySpeedSize: 1000,
             mobileVersion: false,
             mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },
             mouseMotion: 0,
@@ -80,35 +73,20 @@ export default {
     created () {
         this.desktop2MobileVersion();
         window.addEventListener('resize', this.desktop2MobileVersion);
-        this.initialValueMobileNav();
-        window.addEventListener('resize', this.initialValueMobileNav);
     },
     methods: {
         desktop2MobileVersion() {
-          if (window.innerWidth < 1160) {
-            this.mobileVersion = false;
-            this.mouseDown = { pressed: 0, lastPosLeft: 0, cursor: 'grab' };
-            this.mouseMotion = 0;
-            this.sliderMargin = { top: 'auto', left: 0, bottom: 'auto', right: 'auto' };
-            this.oldSliderMargin = { top: 'auto', left: 0, bottom: 'auto', right: 'auto' };
-            this.mobileNavBgLeft = '0px';
-            this.mobileNavLeft = '0px';
-            this.mobileVersion = true;
-          }
+          if (window.innerWidth < 515) this.sliderItems = 1;
+          else if (window.innerWidth < 765) this.sliderItems = 2;
+          else if (window.innerWidth < 1015) this.sliderItems = 3;
+          else if (window.innerWidth < 1160) this.sliderItems = 4;
+          else if (window.innerWidth < 1250) this.sliderItems = 3;
+          else if (window.innerWidth < 1550) this.sliderItems = 4;
+          else if (window.innerWidth < 1825) this.sliderItems = 5;
+          else this.sliderItems = 6;
+          if (window.innerWidth < 1160) this.mobileVersion = true;
           else if (window.innerWidth > 1439) this.mobileVersion = false;
           else this.mobileVersion = false;
-        },
-        initialValueMobileNav() {
-            this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
-            this.mobileNavLeft = (-window.innerWidth)+'px';
-        },
-        openMobileNav() {
-            this.mobileNavBgLeft = '0px';
-            this.mobileNavLeft = '0px';
-        },
-        closeMobileNav() {
-            this.mobileNavBgLeft = -(0.7786*window.innerWidth)+'px';
-            this.mobileNavLeft = (-window.innerWidth)+'px';
         },
         choiceLanguages() {
             if (this.lang.choice === 'ru') {
@@ -119,39 +97,6 @@ export default {
                 this.lang.data = choiceLanguagesRu();
             }
         },
-        sliderMouseDown(event) {
-            if (this.mobileVersion) return;
-            this.mouseDown.pressed = 1;
-            this.mouseDown.cursor = 'grabbing';
-            this.mouseDown.lastPosLeft = (event.clientX);
-        },
-        sliderMouseUp() {
-          if (this.mobileVersion) return;
-            if (this.mouseDown.pressed === 1) {
-                this.mouseDown.cursor = 'grab';
-                this.oldSliderMargin = this.sliderMargin;
-                this.mouseDown.pressed = 0;
-            }
-        },
-        sliderMouseMotionMove(event) {
-          if (this.mobileVersion) return;
-            if (this.mouseDown.pressed) {
-                let lastPosLeft = this.mouseDown.lastPosLeft;
-                let posX = event.clientX;
-                let newValue = (this.oldSliderMargin.left + lastPosLeft - posX);
-                if (newValue < -500) newValue = -500;
-                else if (newValue > 500) newValue = 500;
-                this.sliderMargin = { top: 'auto', left: newValue, bottom: 'auto', right: 'auto' };
-            }
-        },
-        sliderMouseMotionLeave() {
-          if (this.mobileVersion) return;
-            if (this.mouseDown.pressed === 1) {
-                this.mouseDown.cursor = 'grab';
-                this.oldSliderMargin = this.sliderMargin;
-                this.mouseDown.pressed = 0;
-            }
-        }
     }
 }
 </script>

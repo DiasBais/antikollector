@@ -147,19 +147,42 @@
     width: 95.75%;
 }
 
+.step2__workMFO {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .step2__addMFO {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 22px;
+    line-height: 26px;
     color: #000000;
     cursor: pointer;
 }
-
-/* --- */
-
-
+.step2__workMFO-content {
+    display: none;
+}
+.step2__listMFOS-mobile {
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    padding: 5px;
+}
+.step2__listMFOS-choose-mobile {
+    border: 1px solid #9C9C9C;
+    background: #FFFFFF;
+    color: #000000;
+}
+.step2__listMFOS-delete-mobile {
+    border: 1px solid #F66;
+    background: #F66;
+    color: #fff;
+    margin: 0px 0px 0px 2px;
+}
 
 /* --- */
 

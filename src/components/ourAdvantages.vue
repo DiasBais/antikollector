@@ -133,10 +133,10 @@ export default {
         { image: '/images/why-us/browser.svg', description: 'Все услуги онлайн' },
         { image: '/images/why-us/free-services.svg', description: 'Оказываем бесплатные слуги' },
       ],
-      numPeople: '1010',
-      numPeopleOriginal: 1010,
-      numPeopleShadow: '1010',
-      numPeopleOriginalShadow: 1010,
+      numPeople: '0',
+      numPeopleOriginal: 0,
+      numPeopleShadow: '0',
+      numPeopleOriginalShadow: 0,
       transition: 'top 2s, clip 3s',
       mobileVersion: false,
     }
@@ -147,13 +147,69 @@ export default {
   methods: {
     counterStartValue() {
       let now = new Date();
-      let old = new Date('Nov 21, 2021 11:00:00');
-      this.numPeopleOriginal = parseInt((now - old) / 1000 / 30);
-      this.numPeopleOriginalShadow = parseInt((now - old) / 1000 / 30);
+      let definitionHours = this.definitionHourInDay(now.getHours(),now.getMinutes(),now.getSeconds());
+      let nowDate = (parseInt(this.definitionDaysInYears(now.getFullYear(),(now.getMonth()+1),now.getDate())));
+      let oldDate = (parseInt(this.definitionDaysInYears(2021,11,28)));
+      let currentDate = (((((nowDate-oldDate)*8)*60)*60)+(definitionHours[0]));
+      this.numPeopleOriginal = Math.floor(currentDate / 30);
+      this.numPeopleOriginalShadow = Math.floor(currentDate / 30);
       this.addPeople();
       this.addPeopleShadow();
       this.animationChangeCounter();
-      setTimeout(this.timerAddPeople, ((parseInt((now - old) / 1000 % 30)) * 1000));
+      if (definitionHours[1]) setTimeout(this.timerAddPeople, (definitionHours[1] * 1000));
+      else setTimeout(this.timerAddPeople, ((definitionHours[0] % 30) * 1000));
+    },
+    definitionDaysInYears(year, month, day) {
+      day = (this.definitionDaysInMonth(year, month) + (day - 1));
+      year -= 1;
+      let year1 = ((year - Math.floor(year / 4)) * 365);
+      let year2 = ((Math.floor(year / 4) * 366) - (Math.floor(year / 100)));
+      year = year1 + year2;
+      return ((year + day) );
+    },
+    definitionDaysInMonth(year, month) {
+      let listDays = [ 31, ((year % 4 === 0) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+      let sumDays = 0;
+      for (let i = 0; i < month-1; i++) sumDays += listDays[i];
+      return sumDays;
+    },
+    definitionHourInDay(hour, minute, second) {
+      let accumulated = 0;
+      let howLangTakeTurnOn = 0;
+      let howLangTakeTurnOff = 0;
+      let amount = 0;
+      let fullTime = 28800;
+      let halfTime = 14400;
+      if (hour <= 7) {
+        howLangTakeTurnOn = this.hoursToSecondsOn((7 - hour),minute,second);
+        amount = fullTime;
+      }
+      else if (hour >= 8 && hour <= 12) {
+        accumulated = this.hoursToSecondsOn((hour-8),minute,second);
+        howLangTakeTurnOff = this.hoursToSecondsOff((12-hour),minute,second);
+        amount = (fullTime-accumulated);
+      }
+      else if (hour === 13) {
+        accumulated = halfTime;
+        howLangTakeTurnOn = this.hoursToSecondsOn((13-hour),minute,second);
+        amount = accumulated;
+      }
+      else if (hour >= 14 && hour <= 17) {
+        accumulated = halfTime + this.hoursToSecondsOn((hour-14),minute,second);
+        howLangTakeTurnOff = this.hoursToSecondsOff((17-hour),minute,second);
+        amount = (fullTime-accumulated);
+      }
+      else {
+        accumulated = fullTime;
+        howLangTakeTurnOn = this.hoursToSecondsOn((18 - hour),minute,second);
+      }
+      return [accumulated, howLangTakeTurnOn, howLangTakeTurnOff, amount];
+    },
+    hoursToSecondsOn(hour, minute, second) {
+      return ((hour * 3600) + (minute * 60) + second);
+    },
+    hoursToSecondsOff(hour, minute, second) {
+      return ((hour * 3600) + (minute * 60) + second);
     },
     timerAddPeople() {
       this.animationChangeCounter();
@@ -161,11 +217,11 @@ export default {
     },
     addPeople() {
       let emptyLayers = (new Array((this.protectionNumbers.now.length+1)-this.numPeopleOriginal.toString().length).join(' '));
-      this.numPeople = (emptyLayers+(1010+this.numPeopleOriginal).toString());
+      this.numPeople = (emptyLayers+this.numPeopleOriginal.toString());
     },
     addPeopleShadow() {
       let emptyLayers = (new Array((this.protectionNumbers.new.length+1)-this.numPeopleOriginalShadow.toString().length).join(' '));
-      this.numPeopleShadow = (emptyLayers+(1010+this.numPeopleOriginalShadow).toString());
+      this.numPeopleShadow = (emptyLayers+this.numPeopleOriginalShadow.toString());
     },
     thinkNumberChanged(oldNum) {
       let newNum = (oldNum+1).toString();
