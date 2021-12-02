@@ -1,4 +1,4 @@
-@media (max-width: 1160px) {
+@media (max-width: 600px) {
     .aboutCompany__content {
         width: 315px !important;
         padding: 40px 0px 54px 0px !important;
@@ -23,6 +23,27 @@
     }
     .aboutCompany__order-service {
         display: block;
+    }
+}
+@media (max-width: 1160px) and (min-width: 600px) {
+    .aboutCompany__content {
+        width: 100% !important;
+        padding: 40px 100px 54px 100px !important;
+    }
+    .aboutCompany__title {
+        font-size: 25px !important;
+        line-height: 30px !important;
+        margin: 0px 0px 31px 0px !important;
+    }
+    .aboutCompany__hello {
+        width: auto !important;
+        height: 234px;
+    }
+    .aboutCompany__description {
+        width: auto !important;
+        font-size: 15px !important;
+        line-height: 18px !important;
+        margin: 0px 0px 31px 0px !important;
     }
 }
 

@@ -35,13 +35,14 @@
               </div>
             </div>
           </div>
-          <div class="protectionAgainstCollectors__stage-list-progress" :style="'margin: '+(hideBtnContinue ? marginListProgress : 0)+'px 0px'">
+        </div>
+        <div class="protectionAgainstCollectors__stage-list-progress" :style="'margin: '+(hideBtnContinue ? marginListProgress : 0)+'px 0px'">
+          <div class="protectionAgainstCollectors__stage-list-progress-content">
             <div class="protectionAgainstCollectors__stage-progress" v-for="(progress, index) in listProgress" :key="'F'+index">
               <img class="protectionAgainstCollectors__stage-progress-image" src="/images/success.svg">
               <span class="protectionAgainstCollectors__stage-progress-description">{{ progress.description }}</span>
             </div>
           </div>
-
         </div>
         <div class="protectionAgainstCollectors__stages-continue" v-if="!hideBtnContinue">
           <button type="button" @click="disHideStages">Далее</button>
@@ -109,13 +110,22 @@ export default {
   },
   methods: {
     protectionAgainstCollectorsMobileVersion() {
-      if (window.innerWidth < 1160) {
+      if (window.innerWidth < 600) {
         this.onScreenResize({
           progress: 40,
           free: 'Бесплатно',
           pay: 'Платно',
           linesLeft: '/images/stages-mobile-line.svg',
           linesRight: '/images/stages-mobile-line.svg',
+        });
+      }
+      else if (window.innerWidth < 1160) {
+        this.onScreenResize({
+          progress: 0,
+          free: 'БЕСПЛАТНО',
+          pay: 'ПЛАТНО',
+          linesLeft: '/images/stages-line-left.svg',
+          linesRight: '/images/stages-line-right.svg',
         });
       }
       else if (window.innerWidth > 1439) {

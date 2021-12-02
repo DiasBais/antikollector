@@ -1,4 +1,4 @@
-@media (max-width: 1160px) {
+@media (max-width: 600px) {
     .protectionAgainstCollectors {
         font-size: 20px !important;
         line-height: 24px !important;
@@ -23,6 +23,9 @@
         line-height: 24px !important;
         width: 204px !important;
         height: 37px !important;
+    }
+    .protectionAgainstCollectors__stage-views {
+        width: auto !important;
     }
     .protectionAgainstCollectors__stage-view {
         padding: 35px 0px !important;
@@ -56,13 +59,13 @@
         top: 36.5px !important;
         left: 48px !important;
         width: 165px !important;
-        transform: rotate(5deg);
+        transform: rotate(5deg) !important;
     }
     .protectionAgainstCollectors__stage-line-right {
         top: 146px !important;
         left: 41px !important;
         width: 165px !important;
-        transform: rotateY(180deg) rotate(5deg);
+        transform: rotateY(180deg) rotate(5deg) !important;
     }
     .protectionAgainstCollectors__stages-continue {
         margin: 19px auto auto auto !important;
@@ -80,6 +83,214 @@
         font-weight: normal !important;
         font-size: 14px !important;
         line-height: 17px !important;
+    }
+}
+
+@media (max-width: 950px) and (min-width: 600px) {
+    .protectionAgainstCollectors {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .protectionAgainstCollectors__content {
+        width: 100% !important;
+        padding: 77px 0px 0px 0px;
+    }
+    .protectionAgainstCollectors__title {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .protectionAgainstCollectors__body-decision-title {
+        font-size: 24px !important;
+        line-height: 29px !important;
+    }
+    .protectionAgainstCollectors__btn-price button {
+        border-radius: 5px !important;
+        font-weight: 500 !important;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        width: 204px !important;
+        height: 37px !important;
+    }
+    .protectionAgainstCollectors__stages-views {
+        display: flex;
+        justify-content: center;
+    }
+    .protectionAgainstCollectors__stage-view {
+        width: 600px;
+    }
+    .protectionAgainstCollectors__stage-line-left {
+        top: 77.5px;
+        left: 90px;
+        width: 70%;
+    }
+    .protectionAgainstCollectors__stage-line-right {
+        top: 91.5px;
+        left: 96.5px;
+        width: 85%;
+    }
+    .protectionAgainstCollectors__stage-couple {
+        padding: 20px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(3) {
+        padding: 0px 20px 20px 20px !important;
+        margin: -17.5px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(3) .protectionAgainstCollectors__stage-line-left {
+        margin: -17.5px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(3) .protectionAgainstCollectors__stage-line-right {
+        margin: -17.5px 0px 0px 0px !important;
+        top: 90px;
+        left: 81px;
+        width: 88%;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(4) {
+        padding: 0px 20px 20px 20px !important;
+        margin: -27.5px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(4) .protectionAgainstCollectors__stage-line-left {
+        margin: -17.5px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(4) .protectionAgainstCollectors__stage-line-right {
+        margin: -17.5px 0px 0px 0px !important;
+        top: 90px;
+        left: 81px;
+        width: 88%;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(5) {
+        padding: 6px 20px 20px 20px !important;
+        /*margin: -27.5px 0px 0px 0px !important;*/
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(5) .protectionAgainstCollectors__stage-line-left {
+        margin: -11px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(5) .protectionAgainstCollectors__stage-line-right {
+        margin: -11px 0px 0px 0px !important;
+        top: 90px;
+        left: 81px;
+        width: 88%;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(6) {
+        padding: 6px 20px 20px 20px !important;
+        /*margin: -27.5px 0px 0px 0px !important;*/
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(6) .protectionAgainstCollectors__stage-line-left {
+        margin: -11px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-couple:nth-child(6) .protectionAgainstCollectors__stage-line-right {
+        margin: -13px 0px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-icon {
+        width: 75px;
+        height: 75px;
+        margin: 5px;
+        font-size: 30px;
+        line-height: 37px;
+    }
+    .protectionAgainstCollectors__stage-description {
+        font-size: 17px !important;
+        line-height: 20px !important;
+        margin: 0px !important;
+        width: 200px !important;
+        height: auto !important;
+    }
+    .protectionAgainstCollectors__stage-list-progress {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0px 15px;
+    }
+    .protectionAgainstCollectors__stage-progress {
+        padding: 11px 0px !important;
+        margin: 0px !important;
+    }
+    .protectionAgainstCollectors__stage-progress-image {
+        width: 75px !important;
+        height: auto !important;
+        margin: 0px 17px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-progress-description {
+        font-weight: normal !important;
+        font-size: 16px !important;
+        line-height: 19px !important;
+    }
+}
+
+@media (max-width: 1160px) and (min-width: 950px) {
+    .protectionAgainstCollectors {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .protectionAgainstCollectors__content {
+        width: 100% !important;
+        padding: 77px 0px 50px 0px;
+    }
+    .protectionAgainstCollectors__title {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        margin: auto auto 8px auto !important;
+    }
+    .protectionAgainstCollectors__body-decision-title {
+        font-size: 24px !important;
+        line-height: 29px !important;
+    }
+    .protectionAgainstCollectors__btn-price button {
+        border-radius: 5px !important;
+        font-weight: 500 !important;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        width: 204px !important;
+        height: 37px !important;
+    }
+    .protectionAgainstCollectors__stages-views {
+        display: flex;
+        justify-content: center;
+    }
+    .protectionAgainstCollectors__stage-view {
+        width: 900px;
+        /*transform: scale(0.75);*/
+    }
+    /*.protectionAgainstCollectors__stage-line-left {*/
+    /*    width: 80%;*/
+    /*}*/
+    /*.protectionAgainstCollectors__stage-line-right {*/
+    /*    width: 90%;*/
+    /*}*/
+    .protectionAgainstCollectors__stage-line-left {
+        top: 125px;
+        left: 125px;
+        width: 74.25%;
+    }
+    .protectionAgainstCollectors__stage-line-right {
+        top: 135px;
+        left: 140px;
+        width: 87.5%;
+    }
+    .protectionAgainstCollectors__stage-couple {
+        padding: 35px;
+    }
+    .protectionAgainstCollectors__stage-list-progress {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 75px 15px 0px 15px;
+    }
+    .protectionAgainstCollectors__stage-progress {
+        padding: 11px 0px !important;
+        margin: 0px !important;
+    }
+    .protectionAgainstCollectors__stage-progress-image {
+        width: 75px !important;
+        height: auto !important;
+        margin: 0px 17px 0px 0px !important;
+    }
+    .protectionAgainstCollectors__stage-progress-description {
+        font-weight: normal !important;
+        font-size: 19px !important;
+        line-height: 23px !important;
     }
 }
 

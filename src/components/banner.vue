@@ -11,7 +11,7 @@
                         <img class="antiCollector__body-looper-image" src="/images/loopers/looper.svg">
                     </div>
                 </div>
-                <carousel class="header__body-sliders" :autoplay="true" :autoplayTimeout="4000" :autoplaySpeed="1000" :nav="false" :items="sliderItems">
+                <carousel class="header__body-sliders" :autoplay="true" :autoplayTimeout="4000" :autoplaySpeed="1000" :nav="false" :items="sliderItems" :loop="true">
                   <div class="header__body-slider"
                        v-for="(slider, index) in sliders"
                        :key="'C'+index"
@@ -75,9 +75,9 @@ export default {
     },
     methods: {
         desktop2MobileVersion() {
-          if (window.innerWidth < 515) this.sliderItems = 1;
-          else if (window.innerWidth < 765) this.sliderItems = 2;
-          else if (window.innerWidth < 1015) this.sliderItems = 3;
+          if (window.innerWidth < 500) this.sliderItems = 1;
+          else if (window.innerWidth < 725) this.sliderItems = 2;
+          else if (window.innerWidth < 965) this.sliderItems = 3;
           else if (window.innerWidth < 1160) this.sliderItems = 4;
           else if (window.innerWidth < 1250) this.sliderItems = 3;
           else if (window.innerWidth < 1550) this.sliderItems = 4;

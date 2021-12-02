@@ -1,0 +1,61 @@
+.faq2 {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px 0px 0px;
+}
+.faq2__content {
+    width: 1200px;
+}
+.faq2__paragraph {
+    position: relative;
+    margin: 0px 0px 10px 0px;
+    transition: margin 0.5s;
+}
+.faq2__paragraph-header {
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px #000000;
+    padding: 20px 25px 20px 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.faq2__paragraph-header-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8F2525;
+}
+.faq2__paragraph-header-arrow {
+    width: 20px;
+    margin: 0px 0px 0px 15px;
+}
+.faq2__paragraph-body {
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px #000000;
+    display: flex;
+    padding: 0px 25px 0px 25px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 15px 0px 20px 0px;
+    transition: margin 0.5s;
+}
+.faq2__paragraph-body-content {
+    padding: 20px 0px 20px 0px;
+    transition: padding 0.5s;
+}
+.faq2__paragraph-body-content-inside {
+    display: block;
+}
+.faq2__paragraph-body-content-inside ul {
+    margin: 0px 0px 10px 0px;
+}
+.faq2__paragraph-body-content-inside li {
+    list-style: number;
+}
+

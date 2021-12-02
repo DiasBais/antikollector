@@ -6,7 +6,7 @@
                     <div class="header__links">
                         <ul class="header__list-links">
                             <li class="header__link" v-for="(link, index) in links" :key="'A'+index" v-on:click="onClickHeader($event,link)">
-                                <router-link :to="($route.path==='/')?('#'+(link.path.slice(1,link.path.length))):'/'"
+                                <router-link :to="((link.path==='/faq')?link.path:(($route.path==='/')?('#'+(link.path.slice(1,link.path.length))):'/'))"
                                              :style="(($route.path === link.path)?'color: #753636':'')"
                                 >
                                   {{ link.title }}
@@ -26,7 +26,9 @@
                                     <div class="header__mobile-links-nav">
                                         <ul class="header__mobile-list-links">
                                             <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index" v-on:click="onClickHeader($event,link)">
-                                                <router-link :to="($route.path==='/')?'#':'/'" :style="(($route.path === link.path)?'font-weight: bold':'')">
+                                                <router-link :to="((link.path==='/faq')?link.path:(($route.path==='/')?('#'+(link.path.slice(1,link.path.length))):'/'))"
+                                                             :style="(($route.path === link.path)?'font-weight: bold':'')"
+                                                >
                                                     {{ link.title }}
                                                 </router-link>
                                             </li>

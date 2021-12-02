@@ -7,7 +7,6 @@
         </div>
       </div>
       <div class="reviews__title">Отзывы</div>
-
       <carousel class="reviews__commentaries" :autoplay="true" :autoplayTimeout="10000" :autoplaySpeed="1000" :nav="false" :items="sliderItemsReviews">
         <div class="reviews__commentary" v-for="(commentary, index) in commentaries" :key="'I'+index">
           <div class="reviews__commentary-content">
@@ -21,7 +20,22 @@
             </div>
           </div>
         </div>
-      </carousel>
+    </carousel>
+
+<!--      <carousel class="reviews__commentaries" :autoplay="true" :autoplayTimeout="10000" :autoplaySpeed="1000" :nav="false" :items="sliderItemsReviews">-->
+<!--        <div class="reviews__commentary" v-for="(commentary, index) in commentaries" :key="'I'+index">-->
+<!--          <div class="reviews__commentary-content">-->
+<!--            <div class="reviews__commentary-author-image">-->
+<!--              <img :src="commentary.image">-->
+<!--            </div>-->
+<!--            <div class="reviews__commentary-author">-->
+<!--              <div class="reviews__commentary-author-name">{{ commentary.name }}</div>-->
+<!--              <div class="reviews__commentary-author-city">{{ commentary.city }}</div>-->
+<!--              <div class="reviews__commentary-author-description">{{ commentary.description }}</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </carousel>-->
       <!--
       <div class="reviews__commentaries"
            :style="'cursor: '+commentariesMouseDown.cursor+'; margin: '+(commentariesSliderMargin.top+' '+commentariesSliderMargin.left+' '+commentariesSliderMargin.bottom+' '+' '+commentariesSliderMargin.right+'px')"

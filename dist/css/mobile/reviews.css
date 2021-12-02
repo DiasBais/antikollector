@@ -1,6 +1,6 @@
 @media(max-width: 1160px) {
     .reviews__content {
-        width: 375px !important;
+        width: 100% !important;
         padding: 50px 0px 0px 0px !important;
     }
     .reviews__title {
@@ -8,6 +8,59 @@
         line-height: 30px !important;
         margin: 0px 0px 24.5px 0px !important;
     }
+
+    .reviews__commentaries {
+        margin: 30px 0px 0px 0px;
+    }
+    .reviews__commentaries .owl-item {
+        ;
+    }
+    .reviews__commentary {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .reviews__commentary-content {
+        width: 70%;
+        height: 50%;
+        border: none !important;
+        box-sizing: content-box !important;
+        border-radius: 0px !important;
+        display: block !important;
+        align-items: normal !important;
+        padding: 0px !important;
+    }
+    .reviews__commentary-author-image {
+        display: flex;
+        justify-content: center;
+    }
+    .reviews__commentary-author-image img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .reviews__commentary-author {
+        text-align: center !important;
+        margin: 0px !important;
+    }
+    .reviews__commentary-author-name {
+        font-size: 15px !important;
+        line-height: 18px !important;
+        padding: 10px 0px 0px 0px !important;
+    }
+    .reviews__commentary-author-city {
+        font-size: 15px !important;
+        line-height: 18px !important;
+        padding: 0px 0px 10px 0px !important;
+    }
+    .reviews__commentary-author-description {
+        font-size: 14px !important;
+        line-height: 17px !important;
+        padding: 0px !important;
+        text-align: start;
+    }
+
+    /*
+
     .reviews__commentaries {
         height: 525px;
     }
@@ -29,7 +82,7 @@
         margin: 0px !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-end !important;
+        justify-content: center !important;
     }
     .reviews__commentary-content {
         display: block !important;
@@ -67,4 +120,6 @@
     .reviews__commentaries-movement {
         display: none;
     }
+
+    */
 }

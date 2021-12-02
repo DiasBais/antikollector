@@ -1,36 +1,26 @@
 <template>
-  <div class="blockAlert-register" :style="'display: '+registerBlockAlertDisplay">
-    <div class="blockAlert-register__pos">
-      <div class="blockAlert-register__background" v-on:click="registerBlockAlertClose"></div>
-      <div class="blockAlert-register__content" ref="infoRegisterBlockAlert" :style="'margin: '+registerBlockAlertMarginTop+'px 0px 0px 0px'">
-        <div class="blockAlert-register__title"><p>Зарегестрируйся и получи скидку на последующие услуги</p><span>-50%</span></div>
-        <form action="#">
-          <div class="blockAlert-register__body">
-            <div class="blockAlert-register__input">
-              <p>ФИО<span>*</span></p>
-              <input value="" v-model="fio">
-            </div>
-            <div class="blockAlert-register__input">
-              <p>Телефонный номер<span>*</span></p>
-              <input value="" v-model="phoneNumber">
-            </div>
-            <div class="blockAlert-register__input">
-              <p>ИИН<span>*</span></p>
-              <input value="" v-model="iin">
-            </div>
-            <div class="blockAlert-register__input">
-              <p>E-mail<span>*</span></p>
-              <input value="" v-model="email">
-            </div>
-            <div class="blockAlert-register__input">
-              <p>Придуйате пароль<span>*</span></p>
-              <input value="" v-model="password">
-            </div>
-          </div>
-          <div class="blockAlert-register__active">
-            <input v-on:click="submitRequestRegister" type="button" value="Получить скидку">
-          </div>
-        </form>
+  <div class="register">
+    <div class="register__content">
+      <div class="register__title">
+        <p>Зарегестрируйся и получи скидку на последующие услуги</p>
+        <span>-50%</span>
+      </div>
+      <div class="register__body">
+        <div class="register__error" v-if="error">Ошибка: <span v-html="error"></span></div>
+        <div class="register__input">
+          <p class="register__input-name">
+            ИИН
+            <span class="register__input-name-require">*</span>
+          </p>
+          <input class="register__input-value" type="text" name="iin" v-model="iin">
+        </div>
+        <div class="register__input">
+          <p class="register__input-name">
+            Введите пароль
+            <span class="register__input-name-require">*</span>
+          </p>
+          <input class="register__input-value" type="password" name="password" v-model="password">
+        </div>
       </div>
     </div>
   </div>

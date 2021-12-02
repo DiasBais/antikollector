@@ -1,4 +1,4 @@
-@media (max-width: 1160px) {
+@media (max-width: 725px) {
     .ourAdvantages__content {
         width: 375px !important;
         padding: 41px 0px 88px 0px !important;
@@ -35,6 +35,162 @@
         line-height: 21px !important;
         margin: 0px !important;
         text-align: start;
+    }
+    .ourAdvantages__block-of-protection {
+        background: none !important;
+        box-shadow: none !important;
+        padding: 0px !important;
+    }
+    .ourAdvantages__block-of-protection-content {
+        background: #C16C6C;
+        border-radius: 5px 5px 5px 5px;
+        width: 231px;
+        filter: drop-shadow(0px 0px 44px #C16C6C);
+        padding: 12px 25px !important;
+        text-align: center;
+    }
+    .ourAdvantages__block-of-protection-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+        margin: 0px !important;
+    }
+    .ourAdvantages__block-of-protection-block {
+        width: auto !important;
+        height: 23px !important;
+        margin: 13px 0px 5px 0px;
+        display: flex;
+        justify-content: center;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        color: #5E5E5E;
+    }
+    .ourAdvantages__block-of-protection-item {
+        display: none;
+    }
+    .ourAdvantages__block-of-protection-item-mobile {
+        display: flex;
+    }
+    .ourAdvantages__block-of-protection-num {
+        width: 23px;
+        height: 25px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin: 0px 2px;
+    }
+    .ourAdvantages__block-of-protection-title-2 {
+        font-size: 22px;
+        line-height: 27px;
+        margin: 0px !important;
+    }
+}
+@media (max-width: 950px) and (min-width: 725px) {
+    .ourAdvantages__content {
+        width: 375px !important;
+        padding: 41px 0px 88px 0px !important;
+    }
+    .ourAdvantages__title {
+        font-size: 20px !important;
+        line-height: 24px !important;
+    }
+    .ourAdvantages__attainments {
+        margin: 45px 25px 55px 41px !important;
+    }
+    .ourAdvantages__attainment {
+        margin: 30px !important;
+    }
+    .ourAdvantages__attainments-image {
+        width: 70px !important;
+    }
+    .ourAdvantages__attainments-description {
+        width: 202px;
+        font-size: 17px !important;
+        line-height: 21px !important;
+        margin: 0px !important;
+    }
+    .ourAdvantages__block-of-protection {
+        background: none !important;
+        box-shadow: none !important;
+        padding: 0px !important;
+    }
+    .ourAdvantages__block-of-protection-content {
+        background: #C16C6C;
+        border-radius: 5px 5px 5px 5px;
+        width: 231px;
+        filter: drop-shadow(0px 0px 44px #C16C6C);
+        padding: 12px 25px !important;
+        text-align: center;
+    }
+    .ourAdvantages__block-of-protection-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+        margin: 0px !important;
+    }
+    .ourAdvantages__block-of-protection-block {
+        width: auto !important;
+        height: 23px !important;
+        margin: 13px 0px 5px 0px;
+        display: flex;
+        justify-content: center;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px !important;
+        line-height: 24px !important;
+        color: #5E5E5E;
+    }
+    .ourAdvantages__block-of-protection-item {
+        display: none;
+    }
+    .ourAdvantages__block-of-protection-item-mobile {
+        display: flex;
+    }
+    .ourAdvantages__block-of-protection-num {
+        width: 23px;
+        height: 25px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin: 0px 2px;
+    }
+    .ourAdvantages__block-of-protection-title-2 {
+        font-size: 22px;
+        line-height: 27px;
+        margin: 0px !important;
+    }
+}
+@media (max-width: 1160px) and (min-width: 950px) {
+    .ourAdvantages__content {
+        width: 500px !important;
+        padding: 41px 0px 88px 0px !important;
+    }
+    .ourAdvantages__title {
+        font-size: 26px !important;
+        line-height: 30px !important;
+    }
+    .ourAdvantages__attainments {
+        margin: 45px 25px 55px 41px !important;
+    }
+    .ourAdvantages__attainment {
+        margin: 30px !important;
+    }
+    .ourAdvantages__attainments-image {
+        width: 125px !important;
+    }
+    .ourAdvantages__attainments-description {
+        width: 202px;
+        font-size: 17px !important;
+        line-height: 21px !important;
+        margin: 10px 0px 0px 0px !important;
     }
     .ourAdvantages__block-of-protection {
         background: none !important;

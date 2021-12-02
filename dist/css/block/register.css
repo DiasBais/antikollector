@@ -1,101 +1,79 @@
-.blockAlert-register {
-    position: fixed;
-    top: 0px;
-    left: 0px;
+.register {
     width: 100%;
-    height: 100%;
-    display: block;
-}
-.blockAlert-register__background {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-}
-.blockAlert-register__pos {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 50px 0px;
 }
-.blockAlert-register__content {
-    width: 893px;
+.register__content {
+    width: 1000px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 33px 69px 78px 69px;
-    z-index: 1;
+    padding: 25px 50px 25px 50px;
 }
-.blockAlert-register__title {
-    text-align: start;
-    padding: 0px 0px 36px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-.blockAlert-register__title p {
-    font-family: Montserrat;
+.register__title {
     font-style: normal;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 50px 0px;
+}
+.register__title p {
+    font-family: Montserrat;
     font-size: 36px;
     line-height: 44px;
     color: #525252;
 }
-.blockAlert-register__title span {
+.register__title span {
     font-family: Oswald;
-    font-style: normal;
-    font-weight: 600;
     font-size: 96px;
     line-height: 142px;
     color: #8F2525;
 }
-.blockAlert-register__body {
-    ;
+.register__error {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    background: rgba(220, 53, 69, 0.4);
+    /*border-radius: 15px;*/
+    padding: 15px 20px 15px 20px;
+    color: #404040;
+    border-left: 2px solid rgba(220, 53, 69, 1);
 }
-.blockAlert-register__input {
-    padding: 31px 0px 7px 0px;
+.register__error span {
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 23px;
 }
-.blockAlert-register__input p {
+.register__input {
+    margin: 30px 0px 0px 0px;
+}
+.register__input-name {
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
-    margin: 5px 0px;
+    display: flex;
+    margin: 0px 0px 5px 0px;
 }
-.blockAlert-register__input p span {
+.register__input-name-require {
     color: #8F2525;
 }
-.blockAlert-register__input input {
+.register__input-value {
     background: #FFFFFF;
     border: 1px solid #9C9C9C;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 25px;
-    width: 100%;
-    margin: 5px 0px;
-}
-.blockAlert-register__active {
-    padding: 72px 0px 0px 0px;
-    text-align: center;
-}
-.blockAlert-register__active input {
-    background: #8F2525;
-    box-shadow: 0px 0px 44px -12px #8F2525;
-    border-radius: 15px;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 30px;
-    color: #FFFFFF;
-    padding: 23px 58px 23px 58px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    padding: 15px;
+    width: 100%;
 }
-
