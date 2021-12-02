@@ -42,8 +42,8 @@
     padding: 38px 23px;
 }
 .reviews__commentary-author-image img {
-    width: 250px;
-    height: 250px;
+    width: 250px !important;
+    height: 250px !important;
 }
 .reviews__commentary-author {
     font-family: Montserrat;
