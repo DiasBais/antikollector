@@ -30,7 +30,7 @@ export default {
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
-  }
+  },
 }
 </script>
 

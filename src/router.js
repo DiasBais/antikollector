@@ -82,23 +82,59 @@ const router = new VueRouter({
     ]
 })
 
+
 router.beforeEach((to, from, next) => {
-    console.log(to,from);
-    document.title = 'Антиколлектор |';
-    if (to.path === '/') document.title += ' Главная страница';
-    else if (to.path === '/login') document.title += ' Авторизация';
-    else if (to.path === '/register') document.title += ' Регистрация';
-    else if (to.path === '/step-1') document.title += ' Шаг 1 | Регистрация';
-    else if (to.path === '/confirm') document.title += ' Подтверждение телефона';
-    else if (to.path === '/step-2') document.title += ' Шаг 2 | Заказать услугу';
-    else if (to.path === '/step-3') document.title += ' Шаг 3 | Подтверждение условий';
-    else if (to.path === '/step-4') document.title += ' Шаг 4 | Оплата';
-    else if (to.path === '/my-documents') document.title += ' Мои документы';
-    else if (to.path === '/notifications') document.title += ' Уведомление';
-    else if (to.path === '/forgot-password') document.title += ' Восстановление аккаунта';
-    else if (to.path === '/faq') document.title += ' Часто задаваемые вопросы';
-    else document.title += ' not found'
+    document.title = '';
+    if (to.path === '/') {
+        document.title += 'Антиколлекторы. Поиск, сравнение услуг, все цены в Казахстане';
+        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+        return next();
+    }
+    else if (to.path === '/login') {
+        document.title += 'Авторизация';
+    }
+    else if (to.path === '/register') {
+        document.title += 'Регистрация';
+    }
+    else if (to.path === '/step-1') {
+        document.title += 'Шаг 1 | Регистрация';
+    }
+    else if (to.path === '/confirm') {
+        document.title += 'Подтверждение телефона';
+    }
+    else if (to.path === '/step-2') {
+        document.title += 'Шаг 2 | Заказать услугу';
+    }
+    else if (to.path === '/step-3') {
+        document.title += 'Шаг 3 | Подтверждение условий';
+    }
+    else if (to.path === '/step-4') {
+        document.title += 'Шаг 4 | Оплата';
+    }
+    else if (to.path === '/my-documents') {
+        document.title += 'Мои документы';
+    }
+    else if (to.path === '/notifications') {
+        document.title += 'Уведомление';
+    }
+    else if (to.path === '/forgot-password') {
+        document.title += 'Восстановление аккаунта';
+    }
+    else if (to.path === '/faq') {
+        document.title += 'Часто задаваемые вопросы';
+    }
+    else {
+        document.title += 'Not Found';
+    }
+    document.title += ' | Антиколлектор';
     next();
 })
+
+function addMetaTag(name, content) {
+    let headMeta = document.createElement('meta');
+    headMeta.name = name;
+    headMeta.content = content;
+    document.head.appendChild(headMeta);
+}
 
 export default router

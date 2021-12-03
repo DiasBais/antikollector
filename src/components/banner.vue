@@ -27,7 +27,7 @@
                 <div class="header__body-decision">
                     <div class="header__body-decision-content">
                         <router-link to="/step-1" class="header__body-protectMe">
-                            <button type="button">{{ this.lang.data.protect_me }}</button>
+                            <button type="button" :style="'color: '+colorProtectMe">{{ this.lang.data.protect_me }}</button>
                         </router-link>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ export default {
                 data: choiceLanguagesRu()
             },
             mobileNavBgLeft: '0px',
-            mobileNavLeft: '0px'
+            mobileNavLeft: '0px',
         }
     },
     created () {

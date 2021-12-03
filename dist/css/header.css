@@ -380,10 +380,19 @@ body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     line-height: 18px;
     color: #FFFFFF;
     padding: 17px 97px 17px 97px;
+    animation-name: protectMeAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 .header__body-protectMe button:hover {
     box-shadow: 0px 0px 100px 5px #8F2525;
 }
 .header__body-protectMe button:active {
     background: #D28D8D;
+}
+@keyframes protectMeAnimation {
+    0% {background: #8F2525;}
+    50% {background: #8F2525;}
+    75% {background: #D28D8D;}
+    100% {background: #8F2525;}
 }
