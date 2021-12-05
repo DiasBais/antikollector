@@ -9,12 +9,14 @@ import step1 from './components/block/step1'
 import step2 from './components/block/step2'
 import step3 from './components/block/step3'
 import step4 from './components/block/step4'
+import step5 from './components/block/step5'
 import confirm from './components/block/confirm'
 import forgotPassword from './components/block/forgotPassword'
 import faq from './components/faq'
 import faq2 from './components/faq2'
 import reviews from './components/reviews'
 import protectionAgainstCollectors from './components/protectionAgainstCollectors'
+import lang from './components/faq'
 
 const router = new VueRouter({
     mode: 'history',
@@ -48,6 +50,10 @@ const router = new VueRouter({
             component: step4
         },
         {
+            path: '/step-5',
+            component: step5
+        },
+        {
             path: '/confirm',
             component: confirm
         },
@@ -78,6 +84,10 @@ const router = new VueRouter({
         {
             path: '/protectionAgainstCollectors',
             component: protectionAgainstCollectors
+        },
+        {
+            path: '/lang',
+            component: lang
         },
     ]
 })

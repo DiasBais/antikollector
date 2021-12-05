@@ -73,7 +73,23 @@
 }
 .step4__body {
     margin: 15px 0px 15px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
+.step4__visa-image {
+    width: 250px;
+    cursor: pointer;
+}
+.step4__terminal-image {
+    width: 125px;
+    cursor: pointer;
+}
+
+
+
+
+
 .step4__body-content {
     display: flex;
     justify-content: center;

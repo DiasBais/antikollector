@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import header from './modules/header'
+import lang from './modules/lang'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-        header
+        lang
     }
 })

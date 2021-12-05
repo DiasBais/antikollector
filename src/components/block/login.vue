@@ -55,25 +55,13 @@ export default {
   },
   methods: {
     submitRequestLogin() {
-      /*
-      let formData = new FormData();
-      formData.append('iin', this.iin);
-      formData.append('password', this.password);
-      axios().post('signIn', formData, { headers: { 'Content-Type': 'application/json' } })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-      */
       this.error = '';
       if (this.validateLogin()) return;
       const axios = require('axios');
       axios.post('https://crediter.kz/api/signIn', { 'iin': this.iin, 'password': this.password })
           .then(async response => {
             if (response.data.success) {
-              await localStorage.setItem('token', this.token);
+              await localStorage.setItem('token', response.data.token);
               await localStorage.setItem('logged', 'true');
               this.$router.push({path: '/notifications'});
             }
