@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   data () {
     return {
@@ -102,11 +104,29 @@ export default {
         { description: 'Мы наказали нарушающих закон ЧСИ, Коллектора, МФО, Нотариуса' },
       ],
       hideBtnContinue: false,
+      lang: [],
+    }
+  },
+  state () {
+    return {
+      dataLang: [],
     }
   },
   created () {
     this.protectionAgainstCollectorsMobileVersion();
     window.addEventListener('resize', this.protectionAgainstCollectorsMobileVersion);
+  },
+  watch: {
+    dataLang: function () {
+      this.lang = this.dataLang;
+      this.stages = this.dataLang.banner.protectionAgainstCollectors.stages;
+      this.hideStages = this.dataLang.banner.protectionAgainstCollectors.hideStages;
+    },
+  },
+  computed: {
+    ...mapGetters({
+      dataLang: 'getLang',
+    }),
   },
   methods: {
     protectionAgainstCollectorsMobileVersion() {

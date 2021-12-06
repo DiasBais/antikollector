@@ -57,19 +57,23 @@ export default {
     submitRequestLogin() {
       this.error = '';
       if (this.validateLogin()) return;
+      this.$store.commit('SET_LOADING', true);
       const axios = require('axios');
       axios.post('https://crediter.kz/api/signIn', { 'iin': this.iin, 'password': this.password })
           .then(async response => {
             if (response.data.success) {
               await localStorage.setItem('token', response.data.token);
               await localStorage.setItem('logged', 'true');
+              this.$store.commit('SET_LOADING', false);
               this.$router.push({path: '/notifications'});
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
           })
     },

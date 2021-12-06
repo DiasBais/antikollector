@@ -218,6 +218,7 @@ export default {
       this.goesLoading = true;
       this.error = '';
       if (this.validateStep1()) return;
+      this.$store.commit('SET_LOADING', true);
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
@@ -227,6 +228,7 @@ export default {
       })
           .then(async response => {
             if (response.data.success) {
+              this.$store.commit('SET_LOADING', false);
               await this.$session.set('fio', this.fio);
               await this.$session.set('iin', this.iin);
               await this.$session.set('email', this.email);
@@ -236,11 +238,13 @@ export default {
               this.goesLoading = false;
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
               this.goesLoading = false;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
             this.goesLoading = false;
           });

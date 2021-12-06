@@ -185,6 +185,7 @@ export default {
     },
     async lastStep(type) {
       this.error = '';
+      this.$store.commit('SET_LOADING', true);
       this.type = type;
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/lastStep', {
@@ -194,16 +195,19 @@ export default {
       })
           .then(async response => {
             if (response.data.success) {
+              this.$store.commit('SET_LOADING', false);
               await this.$session.set('step2success', false);
               await this.$session.set('step3success', true);
               if (type === 'Платно') this.$router.push({path: '/step-4'});
               else this.$router.push({path: '/notifications'});
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
           });
     },

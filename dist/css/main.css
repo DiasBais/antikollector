@@ -1,0 +1,11 @@
+.loading {
+    background: #8F2525;
+    border-radius: 15px 0px 0px 15px;
+    position: fixed;
+    right: -60px;
+    bottom: 25px;
+    padding: 10px;
+    z-index: 99;
+    transition: right 0.25s;
+}
+

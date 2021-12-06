@@ -4,30 +4,36 @@
             <div class="header__body">
                 <div class="header__body-title">
                     <h1>АНТИ<span>КОЛЛЕКТОР</span></h1>
-                    <p>{{ this.lang.data.we_will_protect_you_from_collectors_npi_and_mfos }}</p>
+                    <p>{{ lang.we_will_protect_you_from_collectors_npi_and_mfos }}</p>
                 </div>
                 <div class="antiCollector__body-looper">
                     <div class="antiCollector__body-looper-content">
                         <img class="antiCollector__body-looper-image" src="/images/loopers/looper.svg">
                     </div>
                 </div>
-                <carousel class="header__body-sliders" :autoplay="true" :autoplayTimeout="4000" :autoplaySpeed="1000" :nav="false" :items="sliderItems" :loop="true">
+                <carousel class="header__body-sliders"
+                          :autoplay="true"
+                          :autoplayTimeout="4000"
+                          :nav="false"
+                          :items="sliderItems"
+                          :loop="true"
+                >
                   <div class="header__body-slider"
-                       v-for="(slider, index) in sliders"
+                       v-for="(slider, index) in sliders.src"
                        :key="'C'+index"
                   >
                     <div class="header__body-slider-circle">
-                      <img :src="slider.src">
+                      <img :src="slider">
                     </div>
                     <div class="header__body-slider-description">
-                      {{ slider.description }}
+                      {{ sliders.description[index] }}
                     </div>
                   </div>
                 </carousel>
                 <div class="header__body-decision">
                     <div class="header__body-decision-content">
                         <router-link to="/step-1" class="header__body-protectMe">
-                            <button type="button" :style="'color: '+colorProtectMe">{{ this.lang.data.protect_me }}</button>
+                            <button type="button">{{ lang.protect_me }}</button>
                         </router-link>
                     </div>
                 </div>
@@ -38,8 +44,7 @@
 
 <script>
 import carousel from 'vue-owl-carousel'
-import choiceLanguagesRu from '../lang/ru/lang'
-import choiceLanguagesKz from '../lang/kz/lang'
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -47,14 +52,24 @@ export default {
     },
     data () {
         return {
-            sliders: [
-                { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },
-                { src: './images/cctv-2.svg', description: 'Вас приследует у работы и дома коллекторы?' },
-                { src: './images/morally-pressured.svg', description: 'На Вас оказывают моральное давление?' },
-                { src: './images/credit-card.svg', description: 'Ваши счета заблокировали?' },
-                { src: './images/accounts-blocked.svg', description: 'Вам выплачивают зп с удержаниями?' },
-                { src: './images/history-credit.svg', description: 'Вам испортили кредитную историю?' },
-            ],
+            sliders: {
+              src: [
+                './images/megaphone-2.svg',
+                './images/cctv-2.svg',
+                './images/morally-pressured.svg',
+                './images/credit-card.svg',
+                './images/accounts-blocked.svg',
+                './images/history-credit.svg',
+              ],
+              description: [
+                'Вас беспокоят звонками и угрозами?',
+                'Вас приследует у работы и дома коллекторы?',
+                'На Вас оказывают моральное давление?',
+                'Ваши счета заблокировали?',
+                'Вам выплачивают зп с удержаниями?',
+                'Вам испортили кредитную историю?',
+              ],
+            },
             sliderItems: 6,
             mobileVersion: false,
             mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },
@@ -62,16 +77,34 @@ export default {
             sliderMargin: { top: 'auto', left: 0, bottom: 'auto', right: 'auto' },
             oldSliderMargin: { top: 'auto', left: 0, bottom: 'auto', right: 'auto' },
             lang: {
-                choice: 'ru',
-                data: choiceLanguagesRu()
+              we_will_protect_you_from_collectors_npi_and_mfos: 'Мы защитим Вас от Коллекторов, ЧСИ И МФО',
+              we_have_a_solution: 'У НАС ЕСТЬ РЕШЕНИЕ!',
+              free: 'БЕСПЛАТНО',
+              protect_me: 'Защитить меня',
             },
             mobileNavBgLeft: '0px',
             mobileNavLeft: '0px',
         }
     },
+    state () {
+        return {
+            dataLang: [],
+        }
+    },
     created () {
         this.desktop2MobileVersion();
         window.addEventListener('resize', this.desktop2MobileVersion);
+    },
+    watch: {
+      dataLang: function () {
+        this.lang = this.dataLang;
+        this.sliders.description = this.dataLang.banner.sliders.description;
+      },
+    },
+    computed: {
+      ...mapGetters({
+        dataLang: 'getLang',
+      }),
     },
     methods: {
         desktop2MobileVersion() {
@@ -86,15 +119,6 @@ export default {
           if (window.innerWidth < 1160) this.mobileVersion = true;
           else if (window.innerWidth > 1439) this.mobileVersion = false;
           else this.mobileVersion = false;
-        },
-        choiceLanguages() {
-            if (this.lang.choice === 'ru') {
-                this.lang.choice = 'kz';
-                this.lang.data = choiceLanguagesKz();
-            } else {
-                this.lang.choice = 'ru';
-                this.lang.data = choiceLanguagesRu();
-            }
         },
     }
 }

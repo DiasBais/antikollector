@@ -93,6 +93,7 @@ export default {
         this.error = 'Выберите способ оплаты';
         return;
       }
+      this.$store.commit('SET_LOADING', true);
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/makePayment', {
         'amount': this.priceMFOS,
@@ -100,15 +101,18 @@ export default {
       })
           .then(async response => {
             if (response.data) {
+              this.$store.commit('SET_LOADING', false);
               await this.$session.set('step3success', false);
               await this.$session.set('step4success', true);
               document.location.href = (response.data[0]+'?'+response.data[1]);
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
           });
     },

@@ -1,0 +1,28 @@
+.notFound {
+    display: flex;
+    justify-content: center;
+    margin: 65px 0px 0px 0px;
+}
+.notFound__content {
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 10px;*/
+    padding: 15px 45px 30px 45px;
+    text-align: center;
+}
+.notFound__content p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 104px;
+    line-height: 107px;
+    color: #8F2525;
+    margin: 5px;
+}
+.notFound__content span {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+}
+

@@ -7,7 +7,12 @@
         </div>
       </div>
       <div class="reviews__title">Отзывы</div>
-      <carousel class="reviews__commentaries" :autoplay="true" :autoplayTimeout="10000" :autoplaySpeed="1000" :nav="false" :items="sliderItemsReviews">
+      <carousel class="reviews__commentaries"
+                :autoplay="true"
+                :autoplayTimeout="10000"
+                :nav="false"
+                :items="sliderItemsReviews"
+      >
         <div class="reviews__commentary" v-for="(commentary, index) in commentaries" :key="'I'+index">
           <div class="reviews__commentary-content">
             <div class="reviews__commentary-author-image">

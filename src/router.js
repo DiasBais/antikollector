@@ -17,6 +17,7 @@ import faq2 from './components/faq2'
 import reviews from './components/reviews'
 import protectionAgainstCollectors from './components/protectionAgainstCollectors'
 import lang from './components/faq'
+import notFound from './components/notFound'
 
 const router = new VueRouter({
     mode: 'history',
@@ -89,6 +90,10 @@ const router = new VueRouter({
             path: '/lang',
             component: lang
         },
+        {
+            path: '*',
+            component: notFound
+        },
     ]
 })
 
@@ -139,7 +144,6 @@ router.beforeEach((to, from, next) => {
     else {
         document.title += 'Not Found';
     }
-    document.title += ' | Антиколлектор';
     next();
 })
 

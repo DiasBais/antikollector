@@ -306,6 +306,7 @@ export default {
     async submitRequestSecondStep() {
       this.error = '';
       if (this.validateStep2()) return;
+      this.$store.commit('SET_LOADING', true);
       let newMFO = [ '' ];
       for (let i = 0; i < this.mfos.length; i++) {
         if (this.mfos.length-1 === i) newMFO[0] += this.mfos[i].organization+'-'+this.mfos[i].arrears+'-'+(this.mfos[i].date.split('-').join('.'))+'-'+this.mfos[i].problem+'-'+this.mfos[i].descriptionProblem;
@@ -318,6 +319,7 @@ export default {
       })
           .then(async response => {
             if (response.data.success) {
+              this.$store.commit('SET_LOADING', false);
               await this.$session.set('step2success', true);
               await localStorage.setItem('token', this.token);
               await localStorage.setItem('mfos', JSON.stringify(this.mfos));
@@ -325,10 +327,12 @@ export default {
               this.$router.push({path: '/step-3'});
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
           });
     },

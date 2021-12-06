@@ -5,11 +5,15 @@
                 <div class="header__main-center">
                     <div class="header__links">
                         <ul class="header__list-links">
-                            <li class="header__link" v-for="(link, index) in links" :key="'A'+index" v-on:click="onClickHeader($event,link)">
-                                <router-link :to="((link.path==='/faq')?link.path:(($route.path==='/')?('#'+(link.path.slice(1,link.path.length))):'/'))"
-                                             :style="(($route.path === link.path)?'color: #753636':'')"
+                            <li class="header__link"
+                                v-for="(link, index) in links.path"
+                                :key="'A'+index"
+                                v-on:click="onClickHeader($event,index)"
+                            >
+                                <router-link :to="((link==='/faq')?link:(($route.path==='/')?('#'+(link.slice(1,link.length))):'/'))"
+                                             :style="(($route.path === link)?'color: #753636':'')"
                                 >
-                                  {{ link.title }}
+                                  {{ links.title[index] }}
                                 </router-link>
                             </li>
                         </ul>
@@ -25,11 +29,15 @@
                                     <div class="header__mobile-lang" @click="choiceLanguages()">KZ | RU</div>
                                     <div class="header__mobile-links-nav">
                                         <ul class="header__mobile-list-links">
-                                            <li class="header__mobile-link" v-for="(link, index) in links" :key="'B'+index" v-on:click="onClickHeader($event,link)">
-                                                <router-link :to="((link.path==='/faq')?link.path:(($route.path==='/')?('#'+(link.path.slice(1,link.path.length))):'/'))"
-                                                             :style="(($route.path === link.path)?'font-weight: bold':'')"
+                                            <li class="header__mobile-link"
+                                                v-for="(link, index) in links.path"
+                                                :key="'B'+index"
+                                                v-on:click="onClickHeader($event,index)"
+                                            >
+                                                <router-link :to="((link==='/faq')?link:(($route.path==='/')?('#'+(link.slice(1,link.length))):'/'))"
+                                                             :style="(($route.path === link)?'font-weight: bold':'')"
                                                 >
-                                                    {{ link.title }}
+                                                    {{ links.title[index] }}
                                                 </router-link>
                                             </li>
                                         </ul>
@@ -59,36 +67,37 @@
 </template>
 
 <script>
-import choiceLanguagesRu from '../lang/ru/lang'
-import choiceLanguagesKz from '../lang/kz/lang'
+import { mapGetters } from 'vuex';
 
 
 export default {
     data () {
         return {
-            links: [
-                { path: '/', title: 'Главная страница', here: { original: 0, mobile: 0 } },
-                { path: '/our-advantages', title: 'Наши преимущества', here: { original: 1834, mobile: 1433 } },
-                { path: '/services', title: 'Услуги', here: { original: 650, mobile: 565 } },
-                { path: '/about-company', title: 'О компании', here: { original: 4491, mobile: 3703 } },
-                { path: '/reviews', title: 'Отзывы', here: { original: 3556, mobile: 2413 } },
-                { path: '/faq', title: 'Часто задаваемые вопросы', here: { original: 0, mobile: 0 } },
-            ],
-            sliders: [
-                { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },
-                { src: './images/cctv-2.svg', description: 'Вас приследует у работы и дома коллекторы?' },
-                { src: './images/morally-pressured.svg', description: 'На Вас оказывают моральное давление?' },
-                { src: './images/credit-card.svg', description: 'Ваши счета заблокировали?' },
-                { src: './images/accounts-blocked.svg', description: 'Вам выплачивают зп с удержаниями?' },
-                { src: './images/accounts-blocked.svg', description: 'Вам испортили кредитную историю?' },
-            ],
-            mouseDown: { pressed: 0, lastPosLeft: 0, cursor: 'grab' },
-            mouseMotion: 0,
-            sliderMargin: { top: 'auto', left: 0, bottom: 'auto', right: 'auto' },
-            oldSliderMargin: { top: 'auto', left: 0, bottom: 'auto', right: 'auto' },
-            lang: {
-                choice: 'ru',
-                data: choiceLanguagesRu()
+            links: {
+              path: [
+                  '/',
+                  '/our-advantages',
+                  '/services',
+                  '/about-company',
+                  '/reviews',
+                  '/faq',
+              ],
+              title: [
+                  'Главная страница',
+                  'Наши преимущества',
+                  'Услуги',
+                  'О компании',
+                  'Отзывы',
+                  'Часто задаваемые вопросы',
+              ],
+              here: [
+                { original: 0, mobile: 0 },
+                { original: 1834, mobile: 1433 },
+                { original: 650, mobile: 565 },
+                { original: 4491, mobile: 3703 },
+                { original: 3556, mobile: 2413 },
+                { original: 0, mobile: 0 },
+              ],
             },
             mobileNavBgWidth: '0px',
             mobileNavWidth: '0px',
@@ -105,15 +114,26 @@ export default {
             linkFacebook: '/',
         }
     },
+    computed: {
+      ...mapGetters({
+        dataLang: 'getLang',
+      }),
+    },
+    watch: {
+      dataLang: function () {
+        this.lang = this.dataLang;
+        this.links.title = this.dataLang.banner.title;
+      },
+    },
     methods: {
       /* MOBILE VERSION */
-        onClickHeader(e,link) {
+        onClickHeader(e,index) {
           e.preventDefault();
           if (this.$route.path === '/') {
-            if (window.innerWidth < 1160) window.scrollBy(0,link.here.mobile);
-            else window.scrollBy(0,link.here.original);
+            if (window.innerWidth < 1160) window.scrollBy(0,this.links.here[index].mobile);
+            else window.scrollBy(0,this.links.here[index].original);
           }
-          else window.scroll(0, 200);
+          else window.scroll(0, 0);
         },
         /* MOBILE NAV */
         openMobileNav() {
@@ -128,13 +148,7 @@ export default {
         },
         /* Translate */
         choiceLanguages() {
-            if (this.lang.choice === 'ru') {
-                this.lang.choice = 'kz';
-                this.lang.data = choiceLanguagesKz();
-            } else {
-                this.lang.choice = 'ru';
-                this.lang.data = choiceLanguagesRu();
-            }
+            this.$store.commit('CHANGE_LANG');
         },
         /* SLIDER */
         sliderMouseDown(event) {

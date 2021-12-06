@@ -51,9 +51,11 @@ export default {
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
+      this.$store.commit('SET_LOADING', true);
       await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
+              this.$store.commit('SET_LOADING', false);
               this.token = response.data.token;
               await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', this.token);
@@ -62,10 +64,12 @@ export default {
               this.$router.push({path: '/step-2'});
             }
             else {
+              this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            this.$store.commit('SET_LOADING', false);
             this.error = error;
           });
     },
