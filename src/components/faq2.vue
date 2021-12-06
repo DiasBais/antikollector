@@ -12,25 +12,6 @@
           </div>
         </div>
       </div>
-
-
-<!--      <div v-for="(question,index) in faq2"-->
-<!--           :class="'faq2__paragraph '+((index===0)?'faq2__paragraph-first':'')+((index===faq2.length-1)?'faq2__paragraph-last':'')"-->
-<!--           :key="'UUU'+index"-->
-<!--      >-->
-<!--        <div :class="'faq2__paragraph-header '+((index===0)?'faq2__paragraph-header-first':'')+((index===faq2.length-1)?'faq2__paragraph-header-last':'')"-->
-<!--             v-on:click="onClickParagraph(index)"-->
-<!--        >-->
-<!--          <span class="faq2__paragraph-title">{{ question.title }}</span>-->
-<!--          <img class="faq2__paragraph-arrow" src="/images/arrow.png" :style="'transform: '+question.hide.transform">-->
-<!--        </div>-->
-<!--        <div class="faq2__paragraph-body">-->
-<!--          <div class="faq2__paragraph-body-content" :style="'padding: '+question.hide.padding">-->
-<!--            <div class="faq2__paragraph-body-content-inside" :style="'display: '+question.hide.display" v-html="question.inside">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </template>

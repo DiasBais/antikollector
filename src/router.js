@@ -121,6 +121,9 @@ router.beforeEach((to, from, next) => {
     else if (to.path === '/step-4') {
         document.title += 'Шаг 4 | Оплата';
     }
+    else if (to.path === '/step-5') {
+        document.title += 'В ожидании';
+    }
     else if (to.path === '/my-documents') {
         document.title += 'Мои документы';
     }

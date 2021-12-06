@@ -72,7 +72,7 @@ export default {
                 { path: '/services', title: 'Услуги', here: { original: 650, mobile: 565 } },
                 { path: '/about-company', title: 'О компании', here: { original: 4491, mobile: 3703 } },
                 { path: '/reviews', title: 'Отзывы', here: { original: 3556, mobile: 2413 } },
-                { path: '/faq', title: 'Часто задаваемые вопросы', here: { original: 5553, mobile: 4795 } },
+                { path: '/faq', title: 'Часто задаваемые вопросы', here: { original: 0, mobile: 0 } },
             ],
             sliders: [
                 { src: './images/megaphone-2.svg', description: 'Вас беспокоят звонками и угрозами?' },

@@ -26,48 +26,21 @@ export default {
     }
   },
   mounted () {
-    this.logged = localStorage.getItem('logged');
-    this.router = this.$route.path.toLowerCase();
-    if (this.router === '/login'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else if (this.router === '/step-1'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else if (this.router === '/step-2'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else if (this.router === '/step-3'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else if (this.router === '/step-4'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else if (this.router === '/forgot-password'.toLowerCase()) {
-      this.hideFooter = false;
-    }
-    else {
-      this.hideFooter = true;
-    }
+    this.onClick();
     this.$el.addEventListener('click', this.onClick);
   },
   methods: {
     onClick() {
       this.logged = localStorage.getItem('logged');
       this.router = this.$route.path.toLowerCase();
-      if (this.router === '/login'.toLowerCase()) {
-        this.hideFooter = false;
-      }
-      else if (this.router === '/step-1'.toLowerCase()) {
-        this.hideFooter = false;
-      }
-      else if (this.router === '/step-2'.toLowerCase()) {
-        this.hideFooter = false;
-      }
-      else if (this.router === '/step-3'.toLowerCase()) {
-        this.hideFooter = false;
-      }
-      else if (this.router === '/forgot-password'.toLowerCase()) {
+      if (this.router === '/login' ||
+          this.router === '/step-1' ||
+          this.router === '/step-2' ||
+          this.router === '/step-3' ||
+          this.router === '/step-4' ||
+          this.router === '/step-5' ||
+          this.router === '/forgot-password'
+      ) {
         this.hideFooter = false;
       }
       else {
