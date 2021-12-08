@@ -121,7 +121,7 @@ export default {
       this.$router.push({path: '/notifications'});
     }
     localStorage.setItem('token', '');
-    localStorage.setItem('logged', '');
+    this.$store.commit('SET_LOGGED','');
   },
   methods: {
     onClickPasswordIcon() {

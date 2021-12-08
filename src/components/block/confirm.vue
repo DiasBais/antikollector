@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 const axios = require('axios');
 
 export default {
@@ -48,6 +50,17 @@ export default {
     this.$session.set('phoneNumber', '');
   },
   methods: {
+    computed: {
+      ...mapGetters({
+        storageLogged: 'getLogged',
+      })
+    },
+    watch: {
+      storageLogged: function () {
+        this.logged = this.storageLogged;
+        this.checkRouter();
+      },
+    },
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
@@ -59,7 +72,7 @@ export default {
               this.token = response.data.token;
               await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', this.token);
-              await localStorage.setItem('logged', 'true');
+              this.$store.commit('SET_LOGGED','true');
               this.$forceUpdate();
               this.$router.push({path: '/step-2'});
             }

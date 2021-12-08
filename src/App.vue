@@ -37,17 +37,23 @@ export default {
     }
   },
   mounted () {
-    this.onClick();
-    this.$el.addEventListener('click', this.onClick);
+    this.$store.commit('START_LOGGED_VALUE',);
+    this.checkRouter();
   },
   computed: {
     ...mapGetters({
       loading: 'getLoading',
+      storageLogged: 'getLogged',
     })
   },
+  watch: {
+    storageLogged: function () {
+      this.logged = this.storageLogged;
+      this.checkRouter();
+    },
+  },
   methods: {
-    onClick() {
-      this.logged = localStorage.getItem('logged');
+    checkRouter() {
       this.router = this.$route.path.toLowerCase();
       if (this.router === '/login' ||
           this.router === '/step-1' ||

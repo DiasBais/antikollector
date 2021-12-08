@@ -37,7 +37,7 @@ export default {
     this.token = localStorage.getItem('token');
     if (!this.token && !localStorage.getItem('logged')) {
       localStorage.setItem('token', '');
-      localStorage.setItem('logged', '');
+      this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
     this.getPush();

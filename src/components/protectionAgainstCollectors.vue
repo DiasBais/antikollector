@@ -119,8 +119,11 @@ export default {
   watch: {
     dataLang: function () {
       this.lang = this.dataLang;
-      this.stages = this.dataLang.banner.protectionAgainstCollectors.stages;
-      this.hideStages = this.dataLang.banner.protectionAgainstCollectors.hideStages;
+      if (!this.hideBtnContinue) {
+        this.stages = this.dataLang.banner.protectionAgainstCollectors.stages;
+        this.hideStages = this.dataLang.banner.protectionAgainstCollectors.hideStages;
+      }
+      else this.stages = [ ...this.dataLang.banner.protectionAgainstCollectors.stages, ...this.dataLang.banner.protectionAgainstCollectors.hideStages ];
     },
   },
   computed: {

@@ -143,7 +143,7 @@ export default {
     this.priceMFOS = localStorage.getItem('priceMFOS');
     if (!this.token && !localStorage.getItem('logged')) {
       localStorage.setItem('token', '');
-      localStorage.setItem('logged', '');
+      this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
     else if (!this.$session.get('step2success')) {

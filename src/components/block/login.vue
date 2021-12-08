@@ -63,7 +63,7 @@ export default {
           .then(async response => {
             if (response.data.success) {
               await localStorage.setItem('token', response.data.token);
-              await localStorage.setItem('logged', 'true');
+              this.$store.commit('SET_LOGGED','true');
               this.$store.commit('SET_LOADING', false);
               this.$router.push({path: '/notifications'});
             }

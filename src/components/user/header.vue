@@ -87,7 +87,7 @@ export default {
   methods: {
     async logout() {
       await localStorage.setItem('token', '');
-      await localStorage.setItem('logged', '');
+      this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     },
     async getPush() {
