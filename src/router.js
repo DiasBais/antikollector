@@ -14,8 +14,6 @@ import confirm from './components/block/confirm'
 import forgotPassword from './components/block/forgotPassword'
 import faq from './components/faq'
 import faq2 from './components/faq2'
-import reviews from './components/reviews'
-import protectionAgainstCollectors from './components/protectionAgainstCollectors'
 import lang from './components/faq'
 // import notFound from './components/notFound'
 
@@ -79,14 +77,6 @@ const router = new VueRouter({
             component: faq
         },
         {
-            path: '/reviews',
-            component: reviews
-        },
-        {
-            path: '/protectionAgainstCollectors',
-            component: protectionAgainstCollectors
-        },
-        {
             path: '/lang',
             component: lang
         },
@@ -101,7 +91,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     document.title = '';
     if (to.path === '/') {
-        document.title += 'Антиколлекторы. Поиск, сравнение услуг, все цены в Казахстане';
+        document.title += 'Антиколлектор - поможем избавится от задолженности, МФО, Банк, ЧСИ, Коллекторы';
         addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
         return next();
     }

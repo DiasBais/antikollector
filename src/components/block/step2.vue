@@ -119,6 +119,14 @@
           </div>
         </div>
       </div>
+      <div class="step2__back-to" v-if="hideBack3">
+        <p v-on:click="closeOnBackTo3">X</p>
+        <button class="step2__back-to-btn" type="button" v-on:click="onBackTo3">Вернуться к третьему этапу</button>
+      </div>
+      <div class="step2__back-to" v-if="hideBack4">
+        <p v-on:click="closeOnBackTo4">X</p>
+        <button class="step2__back-to-btn" type="button" v-on:click="onBackTo4">Вернуться к четвертому этапу</button>
+      </div>
       <div class="step2__footer">
         <input class="step2__back" type="button" value="Назад" v-on:click="comeBackPage">
         <input class="step2__submit" type="button" value="Защитить меня" v-on:click="submitRequestSecondStep">
@@ -236,6 +244,10 @@ export default {
       defaultImageDel: '/images/delete.png',
       imageChangeMoveActMFO: '/images/moveActive.png',
       imageChangeMoveDelMFO: '/images/moveDelete.png',
+      hideBack3: '',
+      hideBack4: '',
+      step2Passed: '',
+      step3Passed: '',
     }
   },
   mounted() {
@@ -245,8 +257,22 @@ export default {
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
+    this.hideBack3 = localStorage.getItem('step2Passed');
+    this.hideBack4 = localStorage.getItem('step3Passed');
   },
   methods: {
+    closeOnBackTo3() {
+      this.hideBack3 = false;
+    },
+    onBackTo3() {
+        this.$router.push({path: '/step-3'});
+    },
+    closeOnBackTo4() {
+      this.hideBack4 = false;
+    },
+    onBackTo4() {
+        this.$router.push({path: '/step-4'});
+    },
     onMouseMoveMFO(index) {
       if (index !== this.acting) {
         this.imageMFO[index].imageAct = this.imageChangeMoveActMFO;
@@ -320,7 +346,9 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.$store.commit('SET_LOADING', false);
-              await this.$session.set('step2success', true);
+              localStorage.setItem('step2Passed', 'true');
+              localStorage.setItem('step3Passed', '');
+              localStorage.setItem('step4Passed', '');
               await localStorage.setItem('token', this.token);
               await localStorage.setItem('mfos', JSON.stringify(this.mfos));
               await localStorage.setItem('priceMFOS', (10000+(this.mfos.length-1)*5000));

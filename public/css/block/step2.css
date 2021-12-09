@@ -333,6 +333,46 @@
 
 /* --- */
 
+.step2__back-to {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    text-align: end;
+}
+.step2__back-to p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 27px;
+    color: #000000;
+    cursor: pointer;
+    margin: 0;
+}
+.step2__back-to-btn {
+    border: 0;
+    background: #8F2525;
+    box-shadow: 0px 0px 44px -12px #8F2525;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    padding: 15px 45px;
+    cursor: pointer;
+}
+.step2__back-to-btn:hover {
+    box-shadow: 0px 0px 100px 5px #8F2525;
+}
+.step2__back-to-btn:active {
+    background: #D28D8D;
+    box-shadow: none;
+}
+
+/* --- */
+
 .step2__footer {
     margin: 65px 0px 0px 0px;
     display: flex;

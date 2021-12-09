@@ -13,9 +13,9 @@
         <div class="step4__visa" v-on:click="changePaymentMethod('paybox')">
           <img class="step4__visa-image" src="/images/visa.png">
         </div>
-        <div class="step4__terminal" v-on:click="changePaymentMethod('terminal')">
-          <img class="step4__terminal-image" src="/images/terminal.png">
-        </div>
+<!--        <div class="step4__terminal" v-on:click="changePaymentMethod('terminal')">-->
+<!--          <img class="step4__terminal-image" src="/images/terminal.png">-->
+<!--        </div>-->
       </div>
       <div class="step4__footer">
         <input class="step4__submit"
@@ -57,7 +57,7 @@ export default {
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
-    else if (!this.$session.get('step3success')) {
+    else if (!localStorage.getItem('step3Passed')) {
       this.$router.push({path: '/step-3'});
     }
   },
@@ -102,8 +102,9 @@ export default {
           .then(async response => {
             if (response.data) {
               this.$store.commit('SET_LOADING', false);
-              await this.$session.set('step3success', false);
-              await this.$session.set('step4success', true);
+              localStorage.setItem('step2Passed', '');
+              localStorage.setItem('step3Passed', '');
+              localStorage.setItem('step4Passed', 'true');
               document.location.href = (response.data[0]+'?'+response.data[1]);
             }
             else {

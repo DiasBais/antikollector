@@ -91,6 +91,10 @@
         >
       </div>
     </div>
+    <div class="step3__back-to" v-if="hideBack4">
+      <p v-on:click="closeOnBackTo4">X</p>
+      <button class="step3__back-to-btn" type="button" v-on:click="onBackTo4">Вернуться к четвертому этапу</button>
+    </div>
   </div>
 </template>
 
@@ -135,6 +139,7 @@ export default {
       mfos: [],
       type: '',
       error: '',
+      hideBack4: '',
     }
   },
   mounted() {
@@ -146,11 +151,18 @@ export default {
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
-    else if (!this.$session.get('step2success')) {
+    else if (!localStorage.getItem('step2Passed')) {
       this.$router.push({path: '/step-2'});
     }
+    this.hideBack4 = localStorage.getItem('step3Passed');
   },
   methods: {
+    closeOnBackTo4() {
+      this.hideBack4 = false;
+    },
+    onBackTo4() {
+      this.$router.push({path: '/step-4'});
+    },
     onClickCheckBoxAgreement(index) {
       if (index === 1) {
         if (this.document1) {
@@ -196,8 +208,9 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.$store.commit('SET_LOADING', false);
-              await this.$session.set('step2success', false);
-              await this.$session.set('step3success', true);
+              localStorage.setItem('step2Passed', '');
+              localStorage.setItem('step3Passed', 'true');
+              localStorage.setItem('step4Passed', '');
               if (type === 'Платно') this.$router.push({path: '/step-4'});
               else this.$router.push({path: '/notifications'});
             }
