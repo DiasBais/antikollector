@@ -102,7 +102,6 @@ export default {
           .then(async response => {
             if (response.data) {
               await localStorage.setItem('step2Passed', '');
-              await localStorage.setItem('step3Passed', '');
               await window.open('https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff','_blank');
               window.open((response.data[0]+'?'+response.data[1]));
               // this.makeTracker(response.data[0],response.data[1]);
