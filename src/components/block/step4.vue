@@ -103,9 +103,8 @@ export default {
             if (response.data) {
               await localStorage.setItem('step2Passed', '');
               await localStorage.setItem('step3Passed', '');
-              await localStorage.setItem('step4Passed', 'true');
               await window.open('https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff','_blank');
-              document.location.href = (response.data[0]+'?'+response.data[1]);
+              window.open((response.data[0]+'?'+response.data[1]));
               // this.makeTracker(response.data[0],response.data[1]);
             }
             else {
@@ -118,34 +117,34 @@ export default {
             this.error = error;
           });
     },
-    async makeTracker(url1,url2) {
-      const axios = require('axios');
-      await axios.get('https://www.antikollector.kz/', {
-        'v': 'e0f51fc098220d9b7aaa0549b2022128',
-        'utm_source': 'click_id',
-        'utm_medium': 'affiliate',
-        'utm_campaign': 'doaff',
-        'web_id': '_hICYFw--',
-        'utm_content': 'doaff',
-      })
-          .then(async response => {
-            if (response.data) {
-              this.$store.commit('SET_LOADING', false);
-              localStorage.setItem('step2Passed', '');
-              localStorage.setItem('step3Passed', '');
-              localStorage.setItem('step4Passed', 'true');
-              document.location.href = (url1+'?'+url2);
-            }
-            else {
-              this.$store.commit('SET_LOADING', false);
-              this.error = response.data.message;
-            }
-          })
-          .catch(error => {
-            this.$store.commit('SET_LOADING', false);
-            this.error = error;
-          });
-    },
+    // async makeTracker(url1,url2) {
+    //   const axios = require('axios');
+    //   await axios.post('https://www.antikollector.kz/', {
+    //     'v': 'e0f51fc098220d9b7aaa0549b2022128',
+    //     'utm_source': 'doaff',
+    //     'utm_medium': 'affiliate',
+    //     'utm_campaign': 'doaff',
+    //     'web_id': '_hICYFw--',
+    //     'utm_content': 'doaff',
+    //   },)
+    //       .then(async response => {
+    //         if (response.data) {
+    //           this.$store.commit('SET_LOADING', false);
+    //           localStorage.setItem('step2Passed', '');
+    //           localStorage.setItem('step3Passed', '');
+    //           localStorage.setItem('step4Passed', 'true');
+    //           document.location.href = (url1+'?'+url2);
+    //         }
+    //         else {
+    //           this.$store.commit('SET_LOADING', false);
+    //           this.error = response.data.message;
+    //         }
+    //       })
+    //       .catch(error => {
+    //         this.$store.commit('SET_LOADING', false);
+    //         this.error = error;
+    //       });
+    // },
   }
 }
 </script>

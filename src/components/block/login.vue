@@ -62,6 +62,7 @@ export default {
       axios.post('https://crediter.kz/api/signIn', { 'iin': this.iin, 'password': this.password })
           .then(async response => {
             if (response.data.success) {
+              await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', response.data.token);
               this.$store.commit('SET_LOGGED','true');
               this.$store.commit('SET_LOADING', false);

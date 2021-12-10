@@ -65,6 +65,9 @@ export default {
       ) {
         this.hideFooter = false;
       }
+      // else if (this.router === '/telegrambot') {
+      //   document.body.innerHTML = '';
+      // }
       else {
         this.hideFooter = true;
       }
