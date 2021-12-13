@@ -110,8 +110,8 @@ export default {
               reviews: 0,
               faq: 0,
             },
-            linkInstagram: '/',
-            linkFacebook: '/',
+            linkInstagram: 'https://instagram.com/antikollector.kz.1',
+            linkFacebook: 'https://www.facebook.com/profile.php?id=100075993963375',
         }
     },
     computed: {

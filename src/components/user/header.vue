@@ -62,7 +62,6 @@ export default {
     return {
       numRequests: 0,
       links: [
-        { path: 'my-documents', title: 'Мои документы' },
         { path: 'notifications', title: 'Уведомления' },
         { path: '/step-2', title: 'Заказать услугу' },
       ],

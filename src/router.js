@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router'
 
 import main from './components/main'
-import myDocuments from './components/user/myDocuments'
 import notifications from './components/user/notifications'
 import login from './components/block/login'
 import register from './components/block/register'
@@ -55,10 +54,6 @@ const router = new VueRouter({
         {
             path: '/confirm',
             component: confirm
-        },
-        {
-            path: '/my-documents',
-            component: myDocuments
         },
         {
             path: '/notifications',
@@ -118,9 +113,6 @@ router.beforeEach((to, from, next) => {
     }
     else if (to.path === '/step-5') {
         document.title += 'В ожидании';
-    }
-    else if (to.path === '/my-documents') {
-        document.title += 'Мои документы';
     }
     else if (to.path === '/notifications') {
         document.title += 'Уведомление';

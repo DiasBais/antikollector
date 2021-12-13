@@ -165,7 +165,7 @@ export default {
       let year1 = ((year - Math.floor(year / 4)) * 365);
       let year2 = ((Math.floor(year / 4) * 366) - (Math.floor(year / 100)));
       year = year1 + year2;
-      return ((year + day) );
+      return ((year + day));
     },
     definitionDaysInMonth(year, month) {
       let listDays = [ 31, ((year % 4 === 0) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];

@@ -77,6 +77,8 @@ export default {
 </script>
 
 <style>
+body { padding: 0px; margin: 0px; }
+#app { padding: 0px; margin: 0px; }
 @import url('/css/looper.css');
 @import url('/css/fonts.css');
 @import url('/css/main.css');

@@ -151,10 +151,6 @@ export default {
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
-    else if (!localStorage.getItem('step2Passed')) {
-      this.$router.push({path: '/step-2'});
-    }
-    this.hideBack4 = localStorage.getItem('step3Passed');
   },
   methods: {
     closeOnBackTo4() {
@@ -208,11 +204,33 @@ export default {
           .then(async response => {
             if (response.data.success) {
               this.$store.commit('SET_LOADING', false);
-              localStorage.setItem('step2Passed', '');
-              localStorage.setItem('step3Passed', 'true');
-              localStorage.setItem('step4Passed', '');
-              if (type === 'Платно') this.$router.push({path: '/step-4'});
+              // if (type === 'Платно') this.$router.push({path: '/step-4'});
+              if (type === 'Платно') this.makePayment();
               else this.$router.push({path: '/notifications'});
+            }
+            else {
+              this.$store.commit('SET_LOADING', false);
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.$store.commit('SET_LOADING', false);
+            this.error = error;
+          });
+    },
+    async makePayment() {
+      this.error = '';
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/makePayment', {
+        'amount': this.priceMFOS,
+        'iin': this.iin,
+      })
+          .then(async response => {
+            if (response.data) {
+              await window.open('https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff','_blank');
+              // window.open((response.data[0]+'?'+response.data[1]));
+              document.location.href = (response.data[0]+'?'+response.data[1]);
+              // this.makeTracker(response.data[0],response.data[1]);
             }
             else {
               this.$store.commit('SET_LOADING', false);

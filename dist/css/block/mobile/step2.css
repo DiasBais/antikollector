@@ -135,6 +135,22 @@
 
     /* --- */
 
+    .step2__back-to {
+        right: 10px;
+        bottom: 5px;
+    }
+    .step2__back-to p {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .step2__back-to-btn {
+        font-size: 12px;
+        line-height: 15px;
+        padding: 12.5px 25px;
+    }
+
+    /* --- */
+
     .step2__footer {
         margin: 40px 0px 0px 0px;
     }

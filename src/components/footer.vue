@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       textDescription: [
-          'TOO «Nash Company»',
+          'Национальное агентство «Антиколлектор»',
           'БИН: 100740009653',
           'Юридический Адрес: Республика Казахстан,',
           'г. Алматы, ул. Зенкова 22 офис 107',
@@ -54,8 +54,8 @@ export default {
         { path: '/reviews', title: 'Оставить отзыв' },
         { path: '/faq', title: 'Контакты' },
       ],
-      linkInstagram: '/',
-      linkFacebook: '/',
+      linkInstagram: 'https://instagram.com/antikollector.kz.1',
+      linkFacebook: 'https://www.facebook.com/profile.php?id=100075993963375',
     }
   },
 }
