@@ -9,7 +9,6 @@
       </div>
       <div class="step2__body">
         <div class="step2__right">
-          <div class="step2__error" v-if="error">Error: <span>{{ error }}</span></div>
           <div class="step2__organizations">
             <p class="step2__organizations-title">Кому должен</p>
             <input type="text"
@@ -120,8 +119,11 @@
         </div>
       </div>
       <div class="step2__footer">
-        <input class="step2__back" type="button" value="Назад" v-on:click="comeBackPage">
-        <input class="step2__submit" type="button" value="Защитить меня" v-on:click="submitRequestSecondStep">
+        <div class="step2__error" v-if="error">Error: <span>{{ error }}</span></div>
+        <div class="step2__transitions">
+          <input class="step2__back" type="button" value="Назад" v-on:click="comeBackPage">
+          <input class="step2__submit" type="button" value="Защитить меня" v-on:click="submitRequestSecondStep">
+        </div>
       </div>
     </div>
   </div>

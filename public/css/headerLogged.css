@@ -89,6 +89,7 @@ body { overflow-x: hidden; margin: 0; padding: 0; }
     height: 100%;
     cursor: pointer;
     transition: left 0.5s;
+    z-index: 999;
 }
 .headerLogged__mobile {
     background: #C16C6C;
@@ -101,6 +102,7 @@ body { overflow-x: hidden; margin: 0; padding: 0; }
     align-content: space-between;
     cursor: auto;
     transition: left 0.5s;
+    z-index: 999;
 }
 .headerLogged__mobile-nav {
     padding: 15px;
@@ -334,6 +336,7 @@ body { overflow-x: hidden; margin: 0; padding: 0; }
 }
 .headerLogged__body-decision {
     margin: 44px auto auto auto;
+    z-index: 99;
 }
 .headerLogged__body-decision-title {
     font-family: Montserrat;

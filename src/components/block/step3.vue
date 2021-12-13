@@ -6,7 +6,6 @@
         <div class="step3__loading-show">
           <div class="step3__loading-show-filled"></div>
         </div>
-        <div class="step3__error" v-if="error">Error: <span>{{ error }}</span></div>
       </div>
       <div class="step3__body">
         <div class="step3__list-free-services">
@@ -77,18 +76,21 @@
         </div>
       </div>
       <div class="step3__footer">
-        <input :class="'step3__free '+(!((document1)&&(document2)&&(document3))?'step3__submit-free-disabled':'')"
-               type="button"
-               value="Бесплатно"
-               v-on:click="lastStep('Бесплатно')"
-               :disabled="!(document1&&document2&&document3)"
-        >
-        <input :class="'step3__pay '+(!((document1)&&(document2)&&(document3))?'step3__submit-pay-disabled':'')"
-               type="button"
-               :value="priceMFOS.toString().split('').splice(0,2).join('')+' 000 тг'"
-               v-on:click="lastStep('Платно')"
-               :disabled="!(document1&&document2&&document3)"
-        >
+        <div class="step3__error" v-if="error">Error: <span>{{ error }}</span></div>
+        <div class="step3__transitions">
+          <input :class="'step3__free '+(!((document1)&&(document2)&&(document3))?'step3__submit-free-disabled':'')"
+                 type="button"
+                 value="Бесплатно"
+                 v-on:click="lastStep('Бесплатно')"
+                 :disabled="!(document1&&document2&&document3)"
+          >
+          <input :class="'step3__pay '+(!((document1)&&(document2)&&(document3))?'step3__submit-pay-disabled':'')"
+                 type="button"
+                 :value="priceMFOS.toString().split('').splice(0,2).join('')+' 000 тг'"
+                 v-on:click="lastStep('Платно')"
+                 :disabled="!(document1&&document2&&document3)"
+          >
+        </div>
       </div>
     </div>
     <div class="step3__back-to" v-if="hideBack4">
