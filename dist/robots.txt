@@ -1,4 +1,10 @@
 User-agent: *
+Allow: /
+Allow: /faq/
+Allow: /login/
+Allow: /step-1/
+Disallow: /feed/
+Disallow: /loginshow/
 Disallow: /step-2/
 Disallow: /step-3/
 Disallow: /step-4/
