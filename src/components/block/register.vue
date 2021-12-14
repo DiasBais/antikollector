@@ -46,6 +46,7 @@ export default {
       this.registerMobileVersion();
     })
     window.addEventListener('resize', this.registerMobileVersion);
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     submitRequestRegister() {

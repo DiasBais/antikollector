@@ -33,6 +33,9 @@ export default {
   created() {
     this.$refs.stepLoading.style.width = '25%';
   },
+  mounted() {
+    this.$store.commit('SET_FOOTER',false);
+  },
   methods: {
     sdgadf() {`
       this.$event;`

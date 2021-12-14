@@ -115,25 +115,25 @@ export default {
       document3: true,
       document3Image: 'images/check-success.png',
       freeServices: [
-        { title: 'Отградим от незаконных действий МФО', advantage: true },
-        { title: 'Отградим от незаконных действий Коллекторов', advantage: true },
-        { title: 'Отградим от незаконных действий ЧСИ', advantage: true },
+        { title: 'Оградим от незаконных действий МФО', advantage: true },
+        { title: 'Оградим от незаконных действий Коллекторов', advantage: true },
+        { title: 'Оградим от незаконных действий ЧСИ', advantage: true },
         { title: 'Отменим исполнительный лист/надпись', advantage: false },
         { title: 'Улучшаем кредитную историю', advantage: false },
         { title: 'Письмо о нарушении Законодательства РК в АФФР', advantage: false },
         { title: 'Подготовим ИСК', advantage: false },
-        { title: 'Письмо в Юстиции', advantage: false },
+        { title: 'Письмо в Юстицию', advantage: false },
         { title: 'Письмо в палату ЧСИ', advantage: false },
       ],
       payServices: [
-        { title: 'Отградим от незаконных действий МФО', advantage: true },
-        { title: 'Отградим от незаконных действий Коллекторов', advantage: true },
-        { title: 'Отградим от незаконных действий ЧСИ', advantage: true },
+        { title: 'Оградим от незаконных действий МФО', advantage: true },
+        { title: 'Оградим от незаконных действий Коллекторов', advantage: true },
+        { title: 'Оградим от незаконных действий ЧСИ', advantage: true },
         { title: 'Отменим исполнительный лист/надпись', advantage: true },
         { title: 'Улучшаем кредитную историю', advantage: true },
         { title: 'Письмо о нарушении Законодательства РК в АФФР', advantage: true },
         { title: 'Подготовим ИСК', advantage: true },
-        { title: 'Письмо в Юстиции', advantage: true },
+        { title: 'Письмо в Юстицию', advantage: true },
         { title: 'Письмо в палату ЧСИ', advantage: true },
       ],
       token: '',
@@ -153,6 +153,7 @@ export default {
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
     }
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     closeOnBackTo4() {
@@ -207,7 +208,7 @@ export default {
             if (response.data.success) {
               this.$store.commit('SET_LOADING', false);
               // if (type === 'Платно') this.$router.push({path: '/step-4'});
-              if (type === 'Платно') this.makePayment();
+              if (this.type === 'Платно') this.makePayment();
               else this.$router.push({path: '/notifications'});
             }
             else {
@@ -229,6 +230,7 @@ export default {
       })
           .then(async response => {
             if (response.data) {
+              this.$store.commit('SET_LOADING', false);
               await window.open('https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff','_blank');
               // window.open((response.data[0]+'?'+response.data[1]));
               document.location.href = (response.data[0]+'?'+response.data[1]);

@@ -1,4 +1,4 @@
-@media(max-width: 1160px) {
+@media(max-width: 1160px) and (min-width: 425px) {
     .step1 {
         margin: 15px 0px 0px 0px;
     }
@@ -41,6 +41,18 @@
         line-height: 19px;
         padding: 12.5px;
     }
+    .step1__input-value-password-password {
+        font-size: 15px;
+        line-height: 19px;
+        padding: 13px 12px;
+    }
+    .step1__passwordInside {
+        padding: 0px;
+    }
+    .step1__passwordIcon {
+        width: 35px;
+        height: 35px;
+    }
     .step1__input-password {
         border-right: 0;
         width: 90%;
@@ -73,3 +85,93 @@
     }
 }
 
+
+@media(max-width: 425px) {
+    .step1 {
+        margin: 15px 0px 0px 0px;
+    }
+    .step1__content {
+        width: 200px;
+        background-image: url('/images/looper-step1.svg');
+        padding: 10px 15px 20px 15px;
+    }
+    .step1__loading-title {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .step1__loading-show {
+        height: 5px;
+    }
+    .step1__loading-show-filled {
+        height: 3px;
+    }
+    .step1__body {
+        margin: 35px 0px 0px 0px;
+    }
+    .step1__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .step1__error span {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .step1__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .step1__input-name {
+        font-size: 15px;
+        line-height: 18px;
+        color: #525252;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step1__input-value {
+        border: 1px solid #9C9C9C;
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px;
+    }
+    .step1__input-value-password-password {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 11px 10px;
+    }
+    .step1__passwordInside {
+        padding: 0px;
+    }
+    .step1__passwordIcon {
+        width: 30px;
+        height: 30px;
+    }
+    .step1__input-password {
+        border-right: 0;
+        width: 90%;
+    }
+    .step1__input-passwords {
+        display: flex;
+        align-items: center;
+    }
+    .step1__input-password-icon {
+        border-top: 1px solid #9C9C9C;
+        border-right: 1px solid #9C9C9C;
+        border-bottom: 1px solid #9C9C9C;
+        width: 10%;
+        padding: 4.95px 0px;
+    }
+    .step1__input-password-icon img {
+        width: 30px;
+        height: 30px;
+    }
+    .step1__footer {
+        margin: 30px 0px 0px 0px;
+    }
+    .step1__submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 13px;
+        line-height: 15px;
+        color: #FFFFFF;
+        padding: 13px 0px;
+        width: 100%;
+    }
+}

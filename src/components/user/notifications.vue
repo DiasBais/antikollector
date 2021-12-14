@@ -41,6 +41,7 @@ export default {
       this.$router.push({path: '/'});
     }
     this.getPush();
+    this.$store.commit('SET_FOOTER',true);
   },
   methods: {
     async getPush() {

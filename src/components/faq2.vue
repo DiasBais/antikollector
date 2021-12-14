@@ -127,6 +127,9 @@ export default {
       ]
     }
   },
+  mounted () {
+    this.$store.commit('SET_FOOTER',true);
+  },
   methods: {
     onClickParagraph(index) {
       if (this.faq2[index].hide.display === 'block') {

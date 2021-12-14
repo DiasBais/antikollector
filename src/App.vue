@@ -6,7 +6,7 @@
     <div class="loading" :style="'right: '+(loading?'0px':'-60px')">
       <LoadingImage></LoadingImage>
     </div>
-    <VFooter v-if="hideFooter"></VFooter>
+    <VFooter v-if="footer"></VFooter>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
   data () {
     return {
       logged: false,
+      footer: false,
       router: '',
       hideFooter: true,
     }
@@ -43,12 +44,17 @@ export default {
   computed: {
     ...mapGetters({
       loading: 'getLoading',
+      storageFooter: 'getFooter',
       storageLogged: 'getLogged',
     })
   },
   watch: {
     storageLogged: function () {
       this.logged = this.storageLogged;
+      this.checkRouter();
+    },
+    storageFooter: function () {
+      this.footer = this.storageFooter;
       this.checkRouter();
     },
   },

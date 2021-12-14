@@ -8,7 +8,6 @@
         </div>
       </div>
       <div class="step1__body">
-        <div class="step1__error" v-if="error"><span>{{ error }}</span></div>
         <div class="step1__input">
           <p class="step1__input-name">
             ФИО
@@ -47,22 +46,31 @@
             <span class="step1__input-name-require">*</span>
           </p>
           <div class="step1__input-passwords">
-            <input :class="'step1__input-password step1__input-value '+(this.errorPassword?'step1__error-input-password':'')"
-                   :type="passwordType"
-                   name="password"
-                   autocomplete="new_password"
-                   v-model="password"
-                   v-on:keyup="onKeyUpInput($event, 'password')"
+            <label :class="'step1__passwordInside '+(this.errorPassword?'step1__error-input-password-password':'')"
+                   for="password"
             >
-            <div :class="'step1__input-password-icon '+(errorPassword?'step1__error-input-password-icon':'')">
-              <img :src="passwordIcon" v-on:click="onClickPasswordIcon">
-            </div>
+              <input :class="'step1__input-password step1__input-value-password-password'"
+                     :type="passwordType"
+                     id="password"
+                     name="password"
+                     autocomplete="new_password"
+                     v-model="password"
+                     v-on:keyup="onKeyUpInput($event, 'password')"
+              >
+              <img class="step1__passwordIcon" :src="passwordIcon" v-on:click="onClickPasswordIcon">
+            </label>
+<!--            <div :class="'step1__input-password-icon '+(errorPassword?'step1__error-input-password-icon':'')">-->
+<!--              <img :src="passwordIcon" v-on:click="onClickPasswordIcon">-->
+<!--            </div>-->
           </div>
           <div class="step1__error" v-if="errorPassword"><span>{{ errorPassword }}</span></div>
         </div>
       </div>
       <div class="step1__footer">
-        <input class="step1__submit" type="button" value="Следующий шаг >" v-on:click="submitRequestFirstStep()">
+        <div class="step1__error" v-if="error"><span>{{ error }}</span></div>
+        <div class="step1__continue">
+          <input class="step1__submit" type="button" value="Следующий шаг >" v-on:click="submitRequestFirstStep()">
+        </div>
       </div>
     </div>
   </div>
@@ -122,6 +130,7 @@ export default {
     }
     localStorage.setItem('token', '');
     this.$store.commit('SET_LOGGED','');
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     onClickPasswordIcon() {

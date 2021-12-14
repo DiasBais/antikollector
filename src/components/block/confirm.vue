@@ -43,11 +43,7 @@ export default {
     this.email = this.$session.get('email');
     this.password = this.$session.get('password');
     this.phoneNumber = this.$session.get('phoneNumber');
-    this.$session.set('fio', '');
-    this.$session.set('iin', '');
-    this.$session.set('email', '');
-    this.$session.set('password', '');
-    this.$session.set('phoneNumber', '');
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     computed: {
@@ -68,11 +64,16 @@ export default {
       await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=+7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
-              this.$store.commit('SET_LOADING', false);
+              this.$session.set('fio', '');
+              this.$session.set('iin', '');
+              this.$session.set('email', '');
+              this.$session.set('password', '');
+              this.$session.set('phoneNumber', '');
               this.token = response.data.token;
               await localStorage.setItem('iin', this.iin);
               await localStorage.setItem('token', this.token);
               this.$store.commit('SET_LOGGED','true');
+              this.$store.commit('SET_LOADING', false);
               this.$forceUpdate();
               this.$router.push({path: '/step-2'});
             }

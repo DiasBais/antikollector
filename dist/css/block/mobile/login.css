@@ -1,4 +1,4 @@
-@media(max-width: 1160px) {
+@media(max-width: 1160px) and (min-width: 425px) {
     .login {
         margin: 30px 0px 0px 0px;
     }
@@ -12,7 +12,7 @@
         font-size: 20px;
         line-height: 24px;
         color: #000000;
-        margin: 0px 0px 50px 0px;
+        margin: 0px 0px 35px 0px;
     }
     .login__error {
         font-size: 13px;
@@ -45,14 +45,85 @@
         color: #7D7B7B;
     }
     .login__footer {
-        display: flex;
-        justify-content: center;
-        margin: 40px 0px 0px 0px;
+        margin: 23px 0px 0px 0px;
+    }
+    .login__continue {
+        display: block;
+        justify-content: normal;
+        margin: 12px 0px 0px 0px;
     }
     .login__input-submit {
         box-shadow: 0px 0px 44px -12px #CC7272;
         font-size: 15px;
         line-height: 18px;
-        padding: 14px 66px;
+        padding: 12px 0px;
+        width: 100%;
+    }
+}
+
+
+@media(max-width: 425px) {
+    .login {
+        margin: 30px 0px 0px 0px;
+    }
+    .login__content {
+        width: 200px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 15px 25px 15px 25px;
+    }
+    .login__title {
+        font-size: 15px;
+        line-height: 18px;
+        color: #000000;
+        margin: 0px 0px 30px 0px;
+    }
+    .login__error {
+        font-size: 12px;
+        line-height: 15px;
+        padding: 10px 15px 10px 15px;
+    }
+    .login__error span {
+        font-size: 11px;
+        line-height: 14px;
+    }
+    .login__input {
+        margin: 20px 0px 0px 0px;
+    }
+    .login__input-name {
+        font-size: 14px;
+        line-height: 17px;
+        color: #525252;
+        margin: 0px 0px 2.5px 0px;
+
+    }
+    .login__input-value {
+        padding: 10px;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 16px;
+    }
+    .login__links {
+        display: block;
+    }
+    .login__links p {
+        font-size: 10px;
+        line-height: 13px;
+        color: #7D7B7B;
+    }
+    .login__footer {
+        margin: 20px 0px 0px 0px;
+    }
+    .login__continue {
+        display: block;
+        justify-content: normal;
+        margin: 10px 0px 0px 0px;
+    }
+    .login__input-submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 10px 0px;
+        width: 100%;
     }
 }

@@ -84,47 +84,49 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-    document.title = '';
     if (to.path === '/') {
-        document.title += 'Антиколлектор - поможем избавится от задолженности, МФО, Банк, ЧСИ, Коллекторы';
+        document.title = 'Антиколлектор - поможем избавится от задолженности, МФО, Банк, ЧСИ, Коллекторы';
         addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
         return next();
     }
     else if (to.path === '/login') {
-        document.title += 'Авторизация';
+        document.title = 'Авторизация';
+        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
     }
     else if (to.path === '/register') {
-        document.title += 'Регистрация';
+        document.title = 'Регистрация';
     }
     else if (to.path === '/step-1') {
-        document.title += 'Шаг 1 | Регистрация';
+        document.title = 'Шаг 1 | Регистрация';
+        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
     }
     else if (to.path === '/confirm') {
-        document.title += 'Подтверждение телефона';
+        document.title = 'Подтверждение телефона';
     }
     else if (to.path === '/step-2') {
-        document.title += 'Шаг 2 | Заказать услугу';
+        document.title = 'Шаг 2 | Заказать услугу';
     }
     else if (to.path === '/step-3') {
-        document.title += 'Шаг 3 | Подтверждение условий';
+        document.title = 'Шаг 3 | Подтверждение условий';
     }
     else if (to.path === '/step-4') {
-        document.title += 'Шаг 4 | Оплата';
+        document.title = 'Шаг 4 | Оплата';
     }
     else if (to.path === '/step-5') {
-        document.title += 'В ожидании';
+        document.title = 'В ожидании';
     }
     else if (to.path === '/notifications') {
-        document.title += 'Уведомление';
+        document.title = 'Уведомление';
     }
     else if (to.path === '/forgot-password') {
-        document.title += 'Восстановление аккаунта';
+        document.title = 'Восстановление аккаунта';
     }
     else if (to.path === '/faq') {
-        document.title += 'Часто задаваемые вопросы';
+        document.title = 'Часто задаваемые вопросы';
+        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
     }
     else {
-        document.title += 'Not Found';
+        document.title = 'Not Found';
     }
     next();
 })

@@ -60,6 +60,7 @@ export default {
     else if (!localStorage.getItem('step3Passed')) {
       this.$router.push({path: '/step-3'});
     }
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     changePaymentMethod(method) {

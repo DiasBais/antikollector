@@ -3,7 +3,6 @@
     <div class="login__content">
       <div class="login__title">Войти в личный кабинет</div>
       <div class="login__body">
-        <div class="login__error" v-if="error">Ошибка: <span v-html="error"></span></div>
         <div class="login__input">
           <p class="login__input-name">
             ИИН
@@ -30,7 +29,10 @@
         </div>
       </div>
       <div class="login__footer">
-        <input class="login__input-submit" type="button" value="Войти" v-on:click="submitRequestLogin">
+        <div class="login__error" v-if="error">Ошибка: <span v-html="error"></span></div>
+        <div class="login__continue">
+          <input class="login__input-submit" type="button" value="Войти" v-on:click="submitRequestLogin">
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +54,7 @@ export default {
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     submitRequestLogin() {

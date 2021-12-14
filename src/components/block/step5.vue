@@ -56,6 +56,7 @@ export default {
     else if (!this.$session.get('step4success')) {
       this.$router.push({path: '/step-4'});
     }
+    this.$store.commit('SET_FOOTER',false);
   },
   methods: {
     changePaymentMethod(method) {

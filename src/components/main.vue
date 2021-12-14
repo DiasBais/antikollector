@@ -30,6 +30,7 @@ export default {
     if (localStorage.getItem('logged')) {
       this.$router.push({path: '/notifications'});
     }
+    this.$store.commit('SET_FOOTER',true);
   },
 }
 </script>

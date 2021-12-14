@@ -82,6 +82,7 @@ export default {
   mounted() {
     this.token = localStorage.getItem('token');
     this.getPush();
+    this.$store.commit('SET_FOOTER',true);
   },
   methods: {
     async logout() {
