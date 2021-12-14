@@ -280,9 +280,11 @@
     /* --- */
 
     .step3__footer {
+        margin: 0px;
+    }
+    .step3__transitions {
         display: block;
         justify-content: normal;
-        margin: 0px;
     }
     .step3__free {
         box-shadow: 0px 0px 44px -12px #CC7272;

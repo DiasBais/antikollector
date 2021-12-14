@@ -1,4 +1,4 @@
-@media(max-width: 1160px) {
+@media(max-width: 1160px) and (min-width: 425px) {
     .step2 {
         margin: 30px 0px 0px 0px;
     }
@@ -166,3 +166,181 @@
     }
 }
 
+
+@media(max-width: 425px) {
+    .step2 {
+        margin: 30px 0px 0px 0px;
+    }
+    .step2__content {
+        width: 200px;
+        padding: 10px 15px 20px 15px;
+    }
+    .step2__loading-title {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .step2__loading-show {
+        height: 5px;
+    }
+    .step2__loading-show-filled {
+        height: 3px;
+    }
+    .step2__body {
+        margin: 40px 0px 0px 0px;
+    }
+    .step2__error {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 10px 15px 10px 15px;
+    }
+    .step2__error span {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    /* --- */
+
+    .step2__organizations {
+        margin: 15px 0px 15px 0px;
+    }
+    .step2__organizations-title {
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__organizations-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 9px 9px 9px 9px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .step2__organizationsList-option {
+        margin: 0 !important;
+        padding: 9px 9px 9px 9px;
+        font-size: 12px;
+        line-height: 15px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .step2__input {
+        margin: 15px 0px 15px 0px;
+    }
+    .step2__input-title {
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__input-value {
+        border: 1px solid #9C9C9C;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 9px;
+        width: 100%;
+    }
+    .step2__input-price {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+    }
+
+    /* --- */
+
+    .step2__problems {
+        margin: 15px 0px 15px 0px;
+    }
+    .step2__problems-title {
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__problems-input {
+        border-radius: 10px 10px 0px 0px;
+        padding: 9px 9px 9px 9px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .step2__problemsList-option {
+        margin: 0 !important;
+        padding: 9px 9px 9px 9px;
+        font-size: 12px;
+        line-height: 15px;
+        width: auto !important;
+    }
+
+    /* --- */
+
+    .step2__descriptionProblems {
+        margin: 15px 0px 15px 0px;
+    }
+    .step2__descriptionProblems-title {
+        font-size: 12px;
+        line-height: 15px;
+        color: #000000;
+        margin: 0px 0px 2.5px 0px;
+    }
+    .step2__descriptionProblems-input {
+        padding: 9px 9px 9px 9px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    /* --- */
+
+    .step2__right {
+        width: 100%;
+    }
+    .step2__left {
+        display: none;
+    }
+    .step2__workMFO {
+        display: block;
+        align-items: normal;
+        justify-content: normal;
+    }
+    .step2__workMFO-content {
+        display: block;
+        margin: 5px 0px 0px 0px;
+    }
+    .step2__addMFO {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    /* --- */
+
+    .step2__back-to {
+        right: 10px;
+        bottom: 5px;
+    }
+    .step2__back-to p {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .step2__back-to-btn {
+        font-size: 12px;
+        line-height: 15px;
+        padding: 12.5px 25px;
+    }
+
+    /* --- */
+
+    .step2__footer {
+        margin: 20px 0px 0px 0px;
+    }
+    .step2__back {
+        display: none;
+    }
+    .step2__submit {
+        box-shadow: 0px 0px 44px -12px #CC7272;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 12px 0px;
+        width: 100%;
+    }
+}

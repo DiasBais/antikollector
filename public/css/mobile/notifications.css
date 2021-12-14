@@ -1,4 +1,4 @@
-@media(max-width: 1160px) {
+@media(max-width: 1160px) and (min-width: 425px) {
     .Notifications__content {
         width: 315px;
         padding: 50px 30px 50px 30px;
@@ -39,5 +39,49 @@
     .Notifications__direction {
         font-size: 12px;
         line-height: 15px;
+    }
+}
+
+@media(max-width: 425px) {
+    .Notifications__content {
+        width: 250px;
+        padding: 50px 15px 25px 15px;
+    }
+    .Notifications__title {
+        font-size: 15px;
+        line-height: 18px;
+    }
+    .Notifications__body {
+        margin: 25px 0px 0px 0px;
+    }
+    .Notifications__item {
+        border: 1px solid #8F2525;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 10px 6px;
+        display: flex;
+        margin: 6px 0px;
+    }
+    .Notifications__item-default {
+        background: #FFFFFF;
+    }
+    .Notifications__item-current {
+        background: #F0CBCB;
+    }
+    .Notifications__condition {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+    .Notifications__condition-agree {
+        background: #4FC706;
+    }
+    .Notifications__condition-onProgress {
+        background: #FFC739;
+    }
+    .Notifications__direction {
+        font-size: 11px;
+        line-height: 14px;
     }
 }
