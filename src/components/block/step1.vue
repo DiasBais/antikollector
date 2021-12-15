@@ -197,7 +197,7 @@ export default {
         } else {
           this.errorIIN = '';
         }
-      } else if (name === 'phone') {
+      } else if (name === 'phone' && !this.mobileVersion) {
         if (!this.phoneNumberOriginal) {
           this.errorPhone = 'Поле номер телефон обязательно для заполнения';
         } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
