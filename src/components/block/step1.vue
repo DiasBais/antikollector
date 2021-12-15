@@ -457,9 +457,7 @@ export default {
         this.errorPhone = 'Неверный номер телефона';
       } else {
         this.errorPhone = '';
-        return true;
       }
-      return false;
     },
     checkCyrillic(text) {
       for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я' || text[i] === 'Ё') return false;
