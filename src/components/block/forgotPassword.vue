@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      phoneNumber: '+7 (',
+      phoneNumber: '',
       phoneNumberOriginal: '',
       operatorsPhoneNumber: [
         { number: '700' },
@@ -61,8 +61,13 @@ export default {
   methods: {
     /* MOBILE VERSION */
     step1MobileVersion() {
-      if (window.innerWidth < 1160) this.mobileVersion = true;
-      else this.mobileVersion = false;
+      if (window.innerWidth < 1160) {
+        this.phoneNumber = '';
+        this.mobileVersion = true;
+      } else {
+        this.phoneNumber = '+7 (';
+        this.mobileVersion = false;
+      }
     },
     /*  */
     async submitRequestForgotPassword() {
@@ -202,45 +207,6 @@ export default {
         }
         return;
       }
-      if (this.phoneNumberOriginal.length > 9 && e.key !== 'Backspace') {
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
-        } else {
-          this.errorPhone = '';
-        }
-        this.phoneNumber = this.phoneNumber.slice(0,-1);
-        return;
-      }
-      if (e.key >= '0' && e.key <= '9') {
-        this.phoneNumberOriginal += e.key;
-      }
-      else if (e.key === 'Backspace') {
-        this.phoneNumberOriginal = this.phoneNumberOriginal.slice(0,-1);
-      }
-      this.phoneNumber = this.phoneNumber.slice(0,-1);
-      let n = this.phoneNumberOriginal.toString();
-      let pn = '+7 (';
-      for (let i = 0; i < n.length; i++) {
-        if (i < 3) pn += n[i];
-        else if (i > 2 && i < 6) {
-          if (i === 3) pn += ') ';
-          pn += n[i];
-        }
-        else if (i > 5 && i < 8) {
-          if (i === 6) pn += ' ';
-          pn += n[i];
-        }
-        else if (i > 7) {
-          if (i === 8) pn += '-';
-          pn += n[i];
-        }
-        else break;
-      }
-      this.phoneNumber = pn;
       if (!this.phoneNumberOriginal) {
         this.errorPhone = 'Поле номер телефон обязательно для заполнения';
       } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
@@ -249,7 +215,9 @@ export default {
         this.errorPhone = 'Неверный номер телефона';
       } else {
         this.errorPhone = '';
+        return true;
       }
+      return false;
     },
     onKeyUpInput(e, name) {
       if (name === 'phone') {

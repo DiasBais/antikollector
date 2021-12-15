@@ -84,7 +84,7 @@ export default {
     return {
       fio: '',
       iin: '',
-      phoneNumber: '+7 (',
+      phoneNumber: '',
       phoneNumberOriginal: '',
       operatorsPhoneNumber: [
         { number: '700' },
@@ -138,8 +138,13 @@ export default {
   methods: {
     /* MOBILE VERSION */
     step1MobileVersion() {
-      if (window.innerWidth < 1160) this.mobileVersion = true;
-      else this.mobileVersion = false;
+      if (window.innerWidth < 1160) {
+        this.phoneNumber = '';
+        this.mobileVersion = true;
+      } else {
+        this.phoneNumber = '+7 (';
+        this.mobileVersion = false;
+      }
     },
     /*  */
     onClickPasswordIcon() {
@@ -237,10 +242,13 @@ export default {
       this.error = '';
       if (this.validateStep1()) return;
       this.$store.commit('SET_LOADING', true);
+      let phoneNumberRequest = '';
+      if (this.mobileVersion) phoneNumberRequest = this.phoneNumberOriginal;
+      else phoneNumberRequest = '7'+this.phoneNumberOriginal;
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
-        'phone': ('7'+this.phoneNumberOriginal),
+        'phone': phoneNumberRequest,
         'email': this.email,
         'password': this.password,
       })
@@ -441,45 +449,6 @@ export default {
         }
         return;
       }
-      if (this.phoneNumberOriginal.length > 9 && e.key !== 'Backspace') {
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
-        } else {
-          this.errorPhone = '';
-        }
-        this.phoneNumber = this.phoneNumber.slice(0,-1);
-        return;
-      }
-      if (e.key >= '0' && e.key <= '9') {
-        this.phoneNumberOriginal += e.key;
-      }
-      else if (e.key === 'Backspace') {
-        this.phoneNumberOriginal = this.phoneNumberOriginal.slice(0,-1);
-      }
-      this.phoneNumber = this.phoneNumber.slice(0,-1);
-      let n = this.phoneNumberOriginal.toString();
-      let pn = '+7 (';
-      for (let i = 0; i < n.length; i++) {
-        if (i < 3) pn += n[i];
-        else if (i > 2 && i < 6) {
-          if (i === 3) pn += ') ';
-          pn += n[i];
-        }
-        else if (i > 5 && i < 8) {
-          if (i === 6) pn += ' ';
-          pn += n[i];
-        }
-        else if (i > 7) {
-          if (i === 8) pn += '-';
-          pn += n[i];
-        }
-        else break;
-      }
-      this.phoneNumber = pn;
       if (!this.phoneNumberOriginal) {
         this.errorPhone = 'Поле номер телефон обязательно для заполнения';
       } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
@@ -488,7 +457,9 @@ export default {
         this.errorPhone = 'Неверный номер телефона';
       } else {
         this.errorPhone = '';
+        return true;
       }
+      return false;
     },
     checkCyrillic(text) {
       for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я' || text[i] === 'Ё') return false;
