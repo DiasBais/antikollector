@@ -189,7 +189,10 @@ export default {
       }
     },
     onKeyUpPhoneNumber() {
-      if (this.mobileVersion) return true;
+      if (this.mobileVersion) {
+        this.phoneNumberOriginal = this.phoneNumber;
+        return true;
+      }
     },
     onKeyUpInput(e, name) {
       if (name === 'phone') {

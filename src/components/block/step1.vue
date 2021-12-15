@@ -242,7 +242,10 @@ export default {
       if (this.validateStep1()) return;
       this.$store.commit('SET_LOADING', true);
       let phoneNumberRequest = '';
-      if (this.mobileVersion) phoneNumberRequest = this.phoneNumberOriginal;
+      if (this.mobileVersion) {
+        this.phoneNumberOriginal = this.phoneNumber;
+        phoneNumberRequest = this.phoneNumberOriginal;
+      }
       else phoneNumberRequest = '7'+this.phoneNumberOriginal;
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
@@ -431,7 +434,10 @@ export default {
       }
     },
     onKeyUpPhoneNumber() {
-      if (this.mobileVersion) return true;
+      if (this.mobileVersion) {
+        this.phoneNumberOriginal = this.phoneNumber;
+        return true;
+      }
     },
     checkCyrillic(text) {
       for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я' || text[i] === 'Ё') return false;
