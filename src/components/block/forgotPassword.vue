@@ -5,7 +5,7 @@
       <div class="forgotPassword__body">
         <div class="forgotPassword__input">
           <p class="forgotPassword__input-name">Введите телефон</p>
-          <input class="forgotPassword__phoneInput" type="text" name="phone" value="" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber($event)">
+          <input class="forgotPassword__phoneInput" type="text" name="phone" value="" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber()">
           <div class="forgotPassword__error" v-if="errorPhone">Error: <span>{{ errorPhone }}</span></div>
         </div>
       </div>
@@ -56,7 +56,6 @@ export default {
   mounted() {
     this.$store.commit('SET_FOOTER',false);
     this.step1MobileVersion();
-    window.addEventListener('resize', this.step1MobileVersion);
   },
   methods: {
     /* MOBILE VERSION */
@@ -189,31 +188,8 @@ export default {
         }
       }
     },
-    onKeyUpPhoneNumber(e) {
-      if (this.mobileVersion) {
-        if (e.key === 'Enter') {
-          document.getElementsByClassName('step1__input-email')[0].focus();
-          if (!this.phoneNumberOriginal) {
-            this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-          } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-            this.errorPhone = 'Нет соответствующего оператора номер телефона';
-          } else if (!(this.phoneNumberOriginal.length === 10)) {
-            this.errorPhone = 'Неверный номер телефона';
-          } else {
-            this.errorPhone = '';
-          }
-          return;
-        }
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
-        } else {
-          this.errorPhone = '';
-        }
-      }
+    onKeyUpPhoneNumber() {
+      if (this.mobileVersion) return true;
     },
     onKeyUpInput(e, name) {
       if (name === 'phone') {

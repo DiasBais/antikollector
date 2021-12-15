@@ -29,7 +29,7 @@
             Номер телефона
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber($event)">
+          <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber()">
           <div class="step1__error" v-if="errorPhone"><span>{{ errorPhone }}</span></div>
         </div>
         <div class="step1__input">
@@ -133,7 +133,6 @@ export default {
     this.$store.commit('SET_LOGGED','');
     this.$store.commit('SET_FOOTER',false);
     this.step1MobileVersion();
-    window.addEventListener('resize', this.step1MobileVersion);
   },
   methods: {
     /* MOBILE VERSION */
@@ -431,31 +430,8 @@ export default {
         }
       }
     },
-    onKeyUpPhoneNumber(e) {
-      if (this.mobileVersion) {
-        if (e.key === 'Enter') {
-          document.getElementsByClassName('step1__input-email')[0].focus();
-          if (!this.phoneNumberOriginal) {
-            this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-          } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-            this.errorPhone = 'Нет соответствующего оператора номер телефона';
-          } else if (!(this.phoneNumberOriginal.length === 10)) {
-            this.errorPhone = 'Неверный номер телефона';
-          } else {
-            this.errorPhone = '';
-          }
-          return;
-        }
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
-        } else {
-          this.errorPhone = '';
-        }
-      }
+    onKeyUpPhoneNumber() {
+      if (this.mobileVersion) return true;
     },
     checkCyrillic(text) {
       for (let i = 0; i < text.length; i++) if (text[i] >= 'А' && text[i] <= 'Я' || text[i] === 'Ё') return false;
