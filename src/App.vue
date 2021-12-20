@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.commit('START_LOGGED_VALUE',);
+    this.$store.commit('START_LOGGED_VALUE');
     this.checkRouter();
   },
   computed: {
@@ -75,6 +75,7 @@ export default {
       //   document.body.innerHTML = '';
       // }
       else {
+        this.$store.commit('SET_FOOTER', true);
         this.hideFooter = true;
       }
     }

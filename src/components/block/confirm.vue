@@ -22,7 +22,7 @@ const axios = require('axios');
 export default {
   data() {
     return {
-      smsCode: '_ _ _ _',
+      smsCode: '',
       smsCodeOriginal: '',
       fio: '',
       iin: '',
@@ -44,24 +44,37 @@ export default {
     this.password = this.$session.get('password');
     this.phoneNumber = this.$session.get('phoneNumber');
     this.$store.commit('SET_FOOTER',false);
+    this.confirmMobileVersion();
+  },
+  computed: {
+    ...mapGetters({
+      storageLogged: 'getLogged',
+    })
+  },
+  watch: {
+    storageLogged: function () {
+      this.logged = this.storageLogged;
+      this.checkRouter();
+    },
   },
   methods: {
-    computed: {
-      ...mapGetters({
-        storageLogged: 'getLogged',
-      })
+    /* MOBILE VERSION */
+    confirmMobileVersion() {
+      if (window.innerWidth < 1160) {
+        this.smsCode = '';
+        this.mobileVersion = true;
+      } else {
+        this.smsCode = '_ _ _ _';
+        this.mobileVersion = false;
+      }
     },
-    watch: {
-      storageLogged: function () {
-        this.logged = this.storageLogged;
-        this.checkRouter();
-      },
-    },
+    /*  */
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
+      if (this.mobileVersion) this.smsCodeOriginal = this.smsCode;
       this.$store.commit('SET_LOADING', true);
-      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=+7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
+      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
               this.$session.set('fio', '');
@@ -88,16 +101,21 @@ export default {
           });
     },
     validateSMSCode() {
-      if (!this.smsCodeOriginal) {
-        this.error = 'Поле обязательно для заполнения';
+      if (!this.mobileVersion) {
+        if (!this.smsCodeOriginal) {
+          this.error = 'Поле обязательно для заполнения';
+        }
+        else if (this.smsCodeOriginal.length < 4) {
+          this.error = 'СМС код минимум 4 символа';
+        }
+        else return false;
+        return true;
       }
-      else if (this.smsCodeOriginal.length < 4) {
-        this.error = 'СМС код минимум 4 символа';
-      }
-      else return false;
-      return true;
+      else return true;
     },
     onKeyDownSMSCode(e) {
+      if (this.mobileVersion) return true;
+      if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';e.preventDefault();return;}
       if (this.smsCodeOriginal.length > 3 && e.key !== 'Backspace') {e.preventDefault();return;}
       if (e.key >= '0' && e.key <= '9') {
         this.smsCodeOriginal += e.key;
@@ -117,6 +135,7 @@ export default {
         }
       }
       this.smsCode = txtSMSCode;
+      if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';return;}
     }
   }
 }
