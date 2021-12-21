@@ -111,7 +111,7 @@ export default {
         else return false;
         return true;
       }
-      else return true;
+      else return false;
     },
     onKeyDownSMSCode(e) {
       if (this.mobileVersion) return true;
