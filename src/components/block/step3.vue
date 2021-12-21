@@ -136,6 +136,7 @@ export default {
         { title: 'Письмо в Юстицию', advantage: true },
         { title: 'Письмо в палату ЧСИ', advantage: true },
       ],
+      iin: '',
       token: '',
       priceMFOS: 0,
       mfos: [],
@@ -145,6 +146,7 @@ export default {
     }
   },
   mounted() {
+    this.iin = localStorage.getItem('iin');
     this.token = localStorage.getItem('token');
     this.mfos = JSON.parse(localStorage.getItem('mfos'));
     this.priceMFOS = localStorage.getItem('priceMFOS');
@@ -233,6 +235,7 @@ export default {
               this.$store.commit('SET_LOADING', false);
               await window.open('https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff','_blank');
               // window.open((response.data[0]+'?'+response.data[1]));
+              // console.log(response.data[0]+'?'+response.data[1]);
               document.location.href = (response.data[0]+'?'+response.data[1]);
               // this.makeTracker(response.data[0],response.data[1]);
             }
