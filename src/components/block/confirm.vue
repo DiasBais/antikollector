@@ -54,7 +54,6 @@ export default {
   watch: {
     storageLogged: function () {
       this.logged = this.storageLogged;
-      this.checkRouter();
     },
   },
   methods: {
@@ -72,11 +71,14 @@ export default {
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
+      console.log(this.fio);
       if (this.mobileVersion) this.smsCodeOriginal = this.smsCode;
+      console.log(this.smsCodeOriginal, this.smsCode);
       this.$store.commit('SET_LOADING', true);
-      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone=7'+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
+      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone='+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
+              console.log(response.data);
               this.$session.set('fio', '');
               this.$session.set('iin', '');
               this.$session.set('email', '');
@@ -91,11 +93,13 @@ export default {
               this.$router.push({path: '/step-2'});
             }
             else {
+              console.log(response.data);
               this.$store.commit('SET_LOADING', false);
               this.error = response.data.message;
             }
           })
           .catch(error => {
+            console.log(error);
             this.$store.commit('SET_LOADING', false);
             this.error = error;
           });
@@ -114,28 +118,29 @@ export default {
       else return false;
     },
     onKeyDownSMSCode(e) {
-      if (this.mobileVersion) return true;
-      if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';e.preventDefault();return;}
-      if (this.smsCodeOriginal.length > 3 && e.key !== 'Backspace') {e.preventDefault();return;}
-      if (e.key >= '0' && e.key <= '9') {
-        this.smsCodeOriginal += e.key;
-      }
-      else if (e.key === 'Backspace') {
-        this.smsCodeOriginal = this.smsCodeOriginal.slice(0,-1);
-      }
-      e.preventDefault();
-      let txtSMSCode = '';
-      for (let i = 0; i < 4; i++) {
-        if (this.smsCodeOriginal[i] !== undefined) {
-          txtSMSCode += this.smsCodeOriginal[i];
+      if (!this.mobileVersion) {
+        if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';e.preventDefault();return;}
+        if (this.smsCodeOriginal.length > 3 && e.key !== 'Backspace') {e.preventDefault();return;}
+        if (e.key >= '0' && e.key <= '9') {
+          this.smsCodeOriginal += e.key;
         }
-        else {
-          if (i===0) txtSMSCode = '';
-          else txtSMSCode += ' _';
+        else if (e.key === 'Backspace') {
+          this.smsCodeOriginal = this.smsCodeOriginal.slice(0,-1);
         }
+        e.preventDefault();
+        let txtSMSCode = '';
+        for (let i = 0; i < 4; i++) {
+          if (this.smsCodeOriginal[i] !== undefined) {
+            txtSMSCode += this.smsCodeOriginal[i];
+          }
+          else {
+            if (i===0) txtSMSCode = '';
+            else txtSMSCode += ' _';
+          }
+        }
+        this.smsCode = txtSMSCode;
+        if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';return;}
       }
-      this.smsCode = txtSMSCode;
-      if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';return;}
     }
   }
 }

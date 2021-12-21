@@ -235,6 +235,43 @@ export default {
       }
       return false;
     },
+    checkPhoneNumber(phoneNumber2) {
+      if (phoneNumber2[0] === '7') return true;
+      else {
+        this.error = 'Неправильный номер телефона. Введите заново';
+        return false;
+      }
+    },
+    validatePhoneNumber2Error(text) {
+      this.error = text;
+      return false;
+    },
+    validatePhoneNumber2(phoneNumber2) {
+      if (!phoneNumber2) this.validatePhoneNumber2Error('Вы ничего не ввели. Введите номер телефона заново');
+      else if (phoneNumber2.length === 11) {
+        if (phoneNumber2[0] === '8') {
+          if (this.checkPhoneNumber(phoneNumber2.substr(1))) return ('7'+phoneNumber2.substr(1));
+          else return false;
+        }
+        else if (phoneNumber2[0] === '7') {
+          if (this.checkPhoneNumber(phoneNumber2.substr(1))) return ('7'+phoneNumber2.substr(1));
+          else return false;
+        }
+        else this.validatePhoneNumber2Error('Неправильный номер телефона. Введите заново');
+      }
+      else if (phoneNumber2.length === 12) {
+        if (phoneNumber2[0] === '+' && phoneNumber2[1] === '7') {
+          if (this.checkPhoneNumber(phoneNumber2.substr(2))) return phoneNumber2.substr(1);
+          else return false;
+        }
+        else return this.validatePhoneNumber2Error('Неправильный номер телефона. Введите заново');
+      }
+      else if (phoneNumber2.length === 10) {
+        this.checkPhoneNumber(phoneNumber2);
+        return false;
+      }
+      else return this.validatePhoneNumber2Error('Неправильный номер телефона. Введите заново');
+    },
     async submitRequestFirstStep() {
       if (this.goesLoading) return;
       this.goesLoading = true;
@@ -243,8 +280,9 @@ export default {
       this.$store.commit('SET_LOADING', true);
       let phoneNumberRequest = '';
       if (this.mobileVersion) {
-        this.phoneNumberOriginal = this.phoneNumber;
-        phoneNumberRequest = this.phoneNumberOriginal;
+        this.phoneNumberOriginal = this.validatePhoneNumber2(this.phoneNumber);
+        if (this.phoneNumberOriginal) phoneNumberRequest = this.phoneNumberOriginal;
+        else return;
       }
       else phoneNumberRequest = '7'+this.phoneNumberOriginal;
       await axios.post('https://crediter.kz/api/firstStep', {
