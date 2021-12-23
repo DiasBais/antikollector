@@ -1,0 +1,170 @@
+@media(max-width: 1160px) and (min-width: 425px) {
+    .Cabinet__content {
+        width: 315px;
+        padding: 50px 30px 50px 30px;
+    }
+    .Cabinet__title {
+        font-size: 20px;
+        line-height: 24px;
+        padding: 0px 25px 0px 0px;
+    }
+    .Cabinet__body {
+        margin: 30px 0px 0px 0px;
+    }
+    .Cabinet__list-organization {
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*text-align: center;*/
+        width: 250px;
+    }
+    .Cabinet__organization {
+        padding: 10px 0px 10px 0px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 11px;
+        line-height: 14px;
+    }
+    .Cabinet__organization-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000;
+        padding: 0px 0px 15px 30px;
+    }
+    .Cabinet__organization-list-information {
+        padding: 0px 0px 0px 30px;
+    }
+    .Cabinet__organization-list-information p {
+        color: #000000;
+    }
+    .Cabinet__organization-files-letters {
+        display: flex;
+    }
+    .Cabinet__organization-files-client {
+        padding: 0px 25px 0px 25px;
+        text-align: center;
+    }
+    .Cabinet__organization-letters {
+        padding: 0px 25px 0px 25px;
+        text-align: center;
+    }
+    .Cabinet__add-organization {
+        display: flex;
+        justify-content: center;
+        padding: 5px 100px 0px 50px;
+    }
+    .Cabinet__add-organization-inside {
+        display: flex;
+        cursor: pointer;
+    }
+    .Cabinet__circle-plus {
+        background: #8F2525;
+        border-radius: 50%;
+        width: 23px;
+        height: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 27px;
+        color: #ffffff;
+        margin: 0px 5px 0px 0px;
+    }
+    .Cabinet__add-organization span {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 20px;
+        color: #000000;
+    }
+}
+
+@media(max-width: 425px) {
+    .Cabinet__content {
+        width: 250px;
+        padding: 50px 0px 25px 0px;
+    }
+    .Cabinet__title {
+        font-size: 15px;
+        line-height: 18px;
+        padding: 0px 25px 0px 0px;
+    }
+    .Cabinet__body {
+        margin: 25px 0px 0px 0px;
+    }
+    .Cabinet__list-organization {
+        width: 250px;
+    }
+    .Cabinet__organization {
+        padding: 10px 0px 10px 0px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 8px;
+        line-height: 11px;
+    }
+    .Cabinet__organization-title {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+        color: #000000;
+        padding: 0px 0px 15px 30px;
+    }
+    .Cabinet__organization-list-information {
+        padding: 0px 0px 0px 30px;
+    }
+    .Cabinet__organization-list-information p {
+        color: #000000;
+    }
+    .Cabinet__organization-files-letters {
+        display: flex;
+    }
+    .Cabinet__organization-files-client {
+        padding: 0px 25px 0px 25px;
+        text-align: center;
+    }
+    .Cabinet__organization-letters {
+        padding: 0px 25px 0px 25px;
+        text-align: center;
+    }
+    .Cabinet__add-organization {
+        display: flex;
+        justify-content: center;
+        padding: 5px 100px 0px 50px;
+    }
+    .Cabinet__add-organization-inside {
+        display: flex;
+        cursor: pointer;
+    }
+    .Cabinet__circle-plus {
+        background: #8F2525;
+        border-radius: 50%;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: #ffffff;
+        margin: 0px 5px 0px 0px;
+    }
+    .Cabinet__add-organization span {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+}

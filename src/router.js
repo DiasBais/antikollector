@@ -14,6 +14,7 @@ import forgotPassword from './components/block/forgotPassword'
 import faq from './components/faq'
 import faq2 from './components/faq2'
 import lang from './components/faq'
+import cabinet from './components/user/cabinet'
 // import notFound from './components/notFound'
 
 const router = new VueRouter({
@@ -75,6 +76,10 @@ const router = new VueRouter({
             path: '/lang',
             component: lang
         },
+        {
+            path: '/cabinet',
+            component: cabinet
+        },
         // {
         //     path: '*',
         //     component: notFound
@@ -86,19 +91,19 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.path === '/') {
         document.title = 'Антиколлектор - поможем избавится от задолженности, МФО, Банк, ЧСИ, Коллекторы';
-        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+        // addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
         return next();
     }
     else if (to.path === '/login') {
         document.title = 'Авторизация';
-        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+        // addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
     }
     else if (to.path === '/register') {
         document.title = 'Регистрация';
     }
     else if (to.path === '/step-1') {
         document.title = 'Шаг 1 | Регистрация';
-        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+        // addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
     }
     else if (to.path === '/confirm') {
         document.title = 'Подтверждение телефона';
@@ -123,7 +128,10 @@ router.beforeEach((to, from, next) => {
     }
     else if (to.path === '/faq') {
         document.title = 'Часто задаваемые вопросы';
-        addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+        // addMetaTag('description', 'Улучшить кредитную историю, чтобы Вам не отказывали в получении новых кредитов. Возврат комиссии, по договорам банковского займа (кредита). Обезопасить себя от Коллекторов, МФО, Банков, ЧСИ');
+    }
+    else if (to.path === '/cabinet') {
+        document.title = 'Личный кабинет';
     }
     else {
         document.title = 'Not Found';
@@ -131,11 +139,11 @@ router.beforeEach((to, from, next) => {
     next();
 })
 
-function addMetaTag(name, content) {
-    let headMeta = document.createElement('meta');
-    headMeta.name = name;
-    headMeta.content = content;
-    document.head.appendChild(headMeta);
-}
+// function addMetaTag(name, content) {
+//     let headMeta = document.createElement('meta');
+//     headMeta.name = name;
+//     headMeta.content = content;
+//     document.head.appendChild(headMeta);
+// }
 
 export default router

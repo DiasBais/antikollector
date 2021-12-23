@@ -29,9 +29,26 @@
             Номер телефон
             <span class="step1__input-name-require">*</span>
           </p>
-          <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber()">
-          <div class="step1__error" v-if="errorPhone"><span>{{ errorPhone }}</span></div>
+          <input :class="'step1__input-phone step1__input-value '+(phoneNumber.error[0]?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber.view[0]" v-on:keydown="onKeyDownPhoneNumber($event, 0)" v-on:keyup="onKeyUpPhoneNumber(0)">
+          <div class="step1__error" v-if="phoneNumber.error[0]"><span>{{ phoneNumber.error[0] }}</span></div>
         </div>
+        <div class="step1__additionalPhoneNumber">
+          <div class="step1__input">
+            <p class="step1__input-name">
+              2 номер телефон
+            </p>
+            <input :class="'step1__input-phone step1__input-value '+(phoneNumber.error[1]?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber.view[1]" v-on:keydown="onKeyDownPhoneNumber($event, 1)" v-on:keyup="onKeyUpPhoneNumber(1)">
+            <div class="step1__error" v-if="phoneNumber.error[1]"><span>{{ phoneNumber.error[1] }}</span></div>
+          </div>
+          <div class="step1__input">
+            <p class="step1__input-name">
+              3 номер телефон
+            </p>
+            <input :class="'step1__input-phone step1__input-value '+(phoneNumber.error[2]?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber.view[2]" v-on:keydown="onKeyDownPhoneNumber($event, 2)" v-on:keyup="onKeyUpPhoneNumber(2)">
+            <div class="step1__error" v-if="phoneNumber.error[2]"><span>{{ phoneNumber.error[2] }}</span></div>
+          </div>
+        </div>
+        <div class="step1__addPhoneNumber">+ Добавить номер телефона</div>
         <div class="step1__input">
           <p class="step1__input-name">
             Электронная почта
@@ -59,9 +76,9 @@
               >
               <img class="step1__passwordIcon" :src="passwordIcon" v-on:click="onClickPasswordIcon">
             </label>
-<!--            <div :class="'step1__input-password-icon '+(errorPassword?'step1__error-input-password-icon':'')">-->
-<!--              <img :src="passwordIcon" v-on:click="onClickPasswordIcon">-->
-<!--            </div>-->
+            <!--            <div :class="'step1__input-password-icon '+(errorPassword?'step1__error-input-password-icon':'')">-->
+            <!--              <img :src="passwordIcon" v-on:click="onClickPasswordIcon">-->
+            <!--            </div>-->
           </div>
           <div class="step1__error" v-if="errorPassword"><span>{{ errorPassword }}</span></div>
         </div>
@@ -84,8 +101,17 @@ export default {
     return {
       fio: '',
       iin: '',
-      phoneNumber: '',
-      phoneNumberOriginal: '',
+      phoneNumber: {
+        view: [
+          '', '', '',
+        ],
+        original: [
+          '', '', '',
+        ],
+        error: [
+          '', '', '',
+        ],
+      },
       operatorsPhoneNumber: [
         { number: '700' },
         { number: '701' },
@@ -116,7 +142,6 @@ export default {
       error: '',
       errorFIO: '',
       errorIIN: '',
-      errorPhone: '',
       errorEmail: '',
       errorPassword: '',
       passwordType: 'password',
@@ -138,10 +163,14 @@ export default {
     /* MOBILE VERSION */
     step1MobileVersion() {
       if (window.innerWidth < 1160) {
-        this.phoneNumber = '7';
+        this.phoneNumber.view[0] = '7';
+        this.phoneNumber.view[1] = '7';
+        this.phoneNumber.view[2] = '7';
         this.mobileVersion = true;
       } else {
-        this.phoneNumber = '+7 (';
+        this.phoneNumber.view[0] = '+7 (';
+        this.phoneNumber.view[1] = '+7 (';
+        this.phoneNumber.view[2] = '+7 (';
         this.mobileVersion = false;
       }
     },
@@ -198,14 +227,32 @@ export default {
           this.errorIIN = '';
         }
       } else if (name === 'phone' && !this.mobileVersion) {
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефона обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
+        if (!this.phoneNumber.original[0]) {
+          this.phoneNumber.error[0] = 'Поле номер телефона обязательно для заполнения';
+        } else if (!this.validatePhoneNumber(this.phoneNumber.original[0])) {
+          this.phoneNumber.error[0] = 'Нет соответствующего оператора номер телефона';
+        } else if (!(this.phoneNumber.original[0].length === 10)) {
+          this.phoneNumber.error[0] = 'Неверный номер телефона';
         } else {
-          this.errorPhone = '';
+          this.phoneNumber.error[0] = '';
+        }
+        if (!this.phoneNumber.original[1]) {
+          this.phoneNumber.error[1] = 'Поле номер телефона обязательно для заполнения';
+        } else if (!this.validatePhoneNumber(this.phoneNumber.original[1])) {
+          this.phoneNumber.error[1] = 'Нет соответствующего оператора номер телефона';
+        } else if (!(this.phoneNumber.original[1].length === 10)) {
+          this.phoneNumber.error[1] = 'Неверный номер телефона';
+        } else {
+          this.phoneNumber.error[1] = '';
+        }
+        if (!this.phoneNumber.original[2]) {
+          this.phoneNumber.error[2] = 'Поле номер телефона обязательно для заполнения';
+        } else if (!this.validatePhoneNumber(this.phoneNumber.original[2])) {
+          this.phoneNumber.error[2] = 'Нет соответствующего оператора номер телефона';
+        } else if (!(this.phoneNumber.original[2].length === 10)) {
+          this.phoneNumber.error[2] = 'Неверный номер телефона';
+        } else {
+          this.phoneNumber.error[2] = '';
         }
       } else if (name === 'email') {
         if (!this.email) {
@@ -280,11 +327,11 @@ export default {
       this.$store.commit('SET_LOADING', true);
       let phoneNumberRequest = '';
       if (this.mobileVersion) {
-        this.phoneNumberOriginal = this.validatePhoneNumber2(this.phoneNumber);
-        if (this.phoneNumberOriginal) phoneNumberRequest = this.phoneNumberOriginal;
+        this.phoneNumber.original[0] = this.validatePhoneNumber2(this.phoneNumber.view[0]);
+        if (this.phoneNumber.original[0]) phoneNumberRequest = this.phoneNumber.original[0];
         else return;
       }
-      else phoneNumberRequest = '7'+this.phoneNumberOriginal;
+      else phoneNumberRequest = '7'+this.phoneNumber.original[0];
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
@@ -321,7 +368,7 @@ export default {
       this.onKeyUpInput({key:'Enter'},'email');
       this.onKeyUpInput({key:'Enter'},'phone');
       this.onKeyUpInput({key:'Enter'},'password');
-      if (!this.error && !this.errorFIO && !this.errorIIN && !this.errorEmail && !this.errorPhone && !this.errorPassword) {
+      if (!this.error && !this.errorFIO && !this.errorIIN && !this.errorEmail && !this.phoneNumber.error[0] && !this.phoneNumber.error[1] && !this.phoneNumber.error[2] && !this.errorPassword) {
         return false;
       }
       else return true;
@@ -406,42 +453,42 @@ export default {
       if (corresponds) return true;
       else return false;
     },
-    onKeyDownPhoneNumber(e) {
+    onKeyDownPhoneNumber(e, index) {
       if (!this.mobileVersion) {
         if (e.key === 'Enter') {
           document.getElementsByClassName('step1__input-email')[0].focus();
-          if (!this.phoneNumberOriginal) {
-            this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-          } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-            this.errorPhone = 'Нет соответствующего оператора номер телефона';
-          } else if (!(this.phoneNumberOriginal.length === 10)) {
-            this.errorPhone = 'Неверный номер телефона';
+          if (!this.phoneNumber.original[index]) {
+            this.phoneNumber.error[index] = 'Поле номер телефон обязательно для заполнения';
+          } else if (!this.validatePhoneNumber(this.phoneNumber.original[index])) {
+            this.phoneNumber.error[index] = 'Нет соответствующего оператора номер телефона';
+          } else if (!(this.phoneNumber.original[index].length === 10)) {
+            this.phoneNumber.error[index] = 'Неверный номер телефона';
           } else {
-            this.errorPhone = '';
+            this.phoneNumber.error[index] = '';
           }
           return;
         }
-        if (this.phoneNumberOriginal.length > 9 && e.key !== 'Backspace') {
-          if (!this.phoneNumberOriginal) {
-            this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-          } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-            this.errorPhone = 'Нет соответствующего оператора номер телефона';
-          } else if (!(this.phoneNumberOriginal.length === 10)) {
-            this.errorPhone = 'Неверный номер телефона';
+        if (this.phoneNumber.original[index].length > 9 && e.key !== 'Backspace') {
+          if (!this.phoneNumber.original[index]) {
+            this.phoneNumber.error[index] = 'Поле номер телефон обязательно для заполнения';
+          } else if (!this.validatePhoneNumber(this.phoneNumber.original[index])) {
+            this.phoneNumber.error[index] = 'Нет соответствующего оператора номер телефона';
+          } else if (!(this.phoneNumber.original[index].length === 10)) {
+            this.phoneNumber.error[index] = 'Неверный номер телефона';
           } else {
-            this.errorPhone = '';
+            this.phoneNumber.error[index] = '';
           }
           e.preventDefault();
           return;
         }
         if (e.key >= '0' && e.key <= '9') {
-          this.phoneNumberOriginal += e.key;
+          this.phoneNumber.original[index] += e.key;
         }
         else if (e.key === 'Backspace') {
-          this.phoneNumberOriginal = this.phoneNumberOriginal.slice(0,-1);
+          this.phoneNumber.original[index] = this.phoneNumber.original[index].slice(0,-1);
         }
         e.preventDefault();
-        let n = this.phoneNumberOriginal.toString();
+        let n = this.phoneNumber.original[index].toString();
         let pn = '+7 (';
         for (let i = 0; i < n.length; i++) {
           if (i < 3) pn += n[i];
@@ -459,21 +506,21 @@ export default {
           }
           else break;
         }
-        this.phoneNumber = pn;
-        if (!this.phoneNumberOriginal) {
-          this.errorPhone = 'Поле номер телефон обязательно для заполнения';
-        } else if (!this.validatePhoneNumber(this.phoneNumberOriginal)) {
-          this.errorPhone = 'Нет соответствующего оператора номер телефона';
-        } else if (!(this.phoneNumberOriginal.length === 10)) {
-          this.errorPhone = 'Неверный номер телефона';
+        this.phoneNumber.view[index] = pn;
+        if (!this.phoneNumber.original[index]) {
+          this.phoneNumber.error[index] = 'Поле номер телефон обязательно для заполнения';
+        } else if (!this.validatePhoneNumber(this.phoneNumber.original[index])) {
+          this.phoneNumber.error[index] = 'Нет соответствующего оператора номер телефона';
+        } else if (!(this.phoneNumber.original[index].length === 10)) {
+          this.phoneNumber.error[index] = 'Неверный номер телефона';
         } else {
-          this.errorPhone = '';
+          this.phoneNumber.error[index] = '';
         }
       }
     },
-    onKeyUpPhoneNumber() {
+    onKeyUpPhoneNumber(index) {
       if (this.mobileVersion) {
-        this.phoneNumberOriginal = this.phoneNumber;
+        this.phoneNumber.original[index] = this.phoneNumber.view[index];
         return true;
       }
     },

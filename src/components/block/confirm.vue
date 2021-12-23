@@ -5,7 +5,7 @@
       <div class="confirm__body">
         <div class="confirm__error" v-if="error">Error: <span>{{ error }}</span></div>
         <p class="confirm__description">Введите код из СМС</p>
-        <input class="confirm__code" type="text" v-model="smsCode" v-on:keydown="onKeyDownSMSCode($event)">
+        <input class="confirm__code" type="text" v-model="smsCode">
       </div>
       <div class="confirm__footer">
         <input class="confirm__submit" type="button" value="Защитить меня" v-on:click="checkCode">
@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       smsCode: '',
-      smsCodeOriginal: '',
       fio: '',
       iin: '',
       email: '',
@@ -57,25 +56,11 @@ export default {
     },
   },
   methods: {
-    /* MOBILE VERSION */
-    confirmMobileVersion() {
-      if (window.innerWidth < 1160) {
-        this.smsCode = '';
-        this.mobileVersion = true;
-      } else {
-        this.smsCode = '_ _ _ _';
-        this.mobileVersion = false;
-      }
-    },
-    /*  */
     async checkCode() {
       this.error = '';
       if (this.validateSMSCode()) return;
-      console.log(this.fio);
-      if (this.mobileVersion) this.smsCodeOriginal = this.smsCode;
-      console.log(this.smsCodeOriginal, this.smsCode);
       this.$store.commit('SET_LOADING', true);
-      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone='+this.phoneNumber+'&code='+this.smsCodeOriginal+'&email='+this.email+'&password='+this.password)
+      await axios.get('https://crediter.kz/api/checkCode?fio='+this.fio+'&iin='+this.iin+'&phone='+(this.phoneNumber.slice(1,this.phoneNumber.length))+'&code='+this.smsCode+'&email='+this.email+'&password='+this.password)
           .then(async response => {
             if (response.data.success) {
               console.log(response.data);
@@ -106,42 +91,17 @@ export default {
     },
     validateSMSCode() {
       if (!this.mobileVersion) {
-        if (!this.smsCodeOriginal) {
+        if (!this.smsCode) {
           this.error = 'Поле обязательно для заполнения';
         }
-        else if (this.smsCodeOriginal.length < 4) {
+        else if (this.smsCode.length !== 4) {
           this.error = 'СМС код минимум 4 символа';
         }
         else return false;
         return true;
       }
-      else return false;
+      else if (this.mobileVersion) return false;
     },
-    onKeyDownSMSCode(e) {
-      if (!this.mobileVersion) {
-        if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';e.preventDefault();return;}
-        if (this.smsCodeOriginal.length > 3 && e.key !== 'Backspace') {e.preventDefault();return;}
-        if (e.key >= '0' && e.key <= '9') {
-          this.smsCodeOriginal += e.key;
-        }
-        else if (e.key === 'Backspace') {
-          this.smsCodeOriginal = this.smsCodeOriginal.slice(0,-1);
-        }
-        e.preventDefault();
-        let txtSMSCode = '';
-        for (let i = 0; i < 4; i++) {
-          if (this.smsCodeOriginal[i] !== undefined) {
-            txtSMSCode += this.smsCodeOriginal[i];
-          }
-          else {
-            if (i===0) txtSMSCode = '';
-            else txtSMSCode += ' _';
-          }
-        }
-        this.smsCode = txtSMSCode;
-        if (this.smsCodeOriginal === '' && e.key === 'Backspace') {this.smsCode='_ _ _ _';return;}
-      }
-    }
   }
 }
 </script>

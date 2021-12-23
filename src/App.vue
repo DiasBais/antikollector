@@ -6,6 +6,21 @@
     <div class="loading" :style="'right: '+(loading?'0px':'-60px')">
       <LoadingImage></LoadingImage>
     </div>
+    <div class="questions">
+      <a class="facebook-icon" :href="linkFacebook">
+        <img src="/images/icons/facebook.png">
+      </a>
+      <a :href="linkInstagram">
+        <img class="instagram-icon" src="/images/icons/instagram.webp">
+      </a>
+      <a :href="linkVK">
+        <img class="vk-icon" src="/images/icons/vk.png">
+      </a>
+      <a class="whatsapp-icon" :href="linkWhatsapp">
+        <img src="/images/icons/whatsapp.png">
+      </a>
+      <router-link class="questions-icon" :to="'faq'">?</router-link>
+    </div>
     <VFooter v-if="footer"></VFooter>
   </div>
 </template>
@@ -30,6 +45,10 @@ export default {
       footer: false,
       router: '',
       hideFooter: true,
+      linkInstagram: 'https://instagram.com/antikollector.kz.1',
+      linkFacebook: 'https://www.facebook.com/profile.php?id=100075993963375',
+      linkWhatsapp: 'https://wa.me/+77003505000',
+      linkVK: 'https://vk.com/id694737943',
     }
   },
   state () {
@@ -38,6 +57,22 @@ export default {
     }
   },
   mounted () {
+    let checkPathPayMent = '/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff';
+    if (checkPathPayMent === this.$route.fullPath) {
+
+      let paymentLink = localStorage.getItem('paymentLink');
+      if (!localStorage.getItem('token') && !localStorage.getItem('logged')) {
+        localStorage.setItem('token', '');
+        this.$store.commit('SET_LOGGED','');
+      }
+      else if (paymentLink) {
+        document.location.href = paymentLink;
+      }
+      else {
+        this.$router.push({path: '/step-3'});
+      }
+
+    }
     this.$store.commit('START_LOGGED_VALUE');
     this.checkRouter();
   },

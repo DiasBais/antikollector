@@ -164,6 +164,30 @@
         padding: 17px 0px;
         width: 100%;
     }
+
+
+
+
+
+    .step2__add-file-drop-area {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .step2__file-drop-area .file-drop-area {
+        max-width: 88%;
+        padding: 20px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    .step2__file-drop-area .fake-btn {
+        padding: 8px 15px;
+        margin-right: 10px;
+        font-size: 10px;
+    }
+
+    .step2__file-drop-area .file-msg {
+        font-size: 11px;
+    }
 }
 
 
@@ -342,5 +366,29 @@
         line-height: 15px;
         padding: 12px 0px;
         width: 100%;
+    }
+
+
+
+
+
+    .step2__add-file-drop-area {
+        font-size: 11px;
+        line-height: 14px;
+    }
+    .step2__file-drop-area .file-drop-area {
+        max-width: 84%;
+        padding: 15px;
+        margin: 10px 0px 10px 0px;
+    }
+
+    .step2__file-drop-area .fake-btn {
+        padding: 8px 15px;
+        margin-right: 10px;
+        font-size: 9px;
+    }
+
+    .step2__file-drop-area .file-msg {
+        font-size: 10px;
     }
 }

@@ -119,6 +119,28 @@
           </div>
         </div>
       </div>
+      <div class="step2__file-drop-area">
+        <div class="step2__add-file-drop-area" v-on:click="step2__addFDA">+ Добавить файлы</div>
+        <div class="file-drop-area"
+             v-for="(fileDropArea, index) in fileDropAreaCount"
+             :key="'WW'+index"
+        >
+          <span class="fake-btn">Выбрать файлы</span>
+          <span class="file-msg">или перетащите сюда файлы</span>
+          <input class="file-input"
+                 type="file"
+                 :id="'file-'+index"
+                 :name="'file-'+index"
+                 v-on:click="onDFCFileInput(index)"
+                 @dragenter="onDFCFileInput(index)"
+                 @focus="onDFCFileInput(index)"
+                 @dragleave="onDBRFileInput(index)"
+                 @blur="onDBRFileInput(index)"
+                 @drop="onDBRFileInput(index)"
+                 v-on:change="onChangeFileInput($event, index)"
+          >
+        </div>
+      </div>
       <div class="step2__footer">
         <div class="step2__error" v-if="error">Error: <span>{{ error }}</span></div>
         <div class="step2__transitions">
@@ -139,6 +161,7 @@ export default {
   data() {
     return {
       acting: 0,
+      fileDropAreaCount: 0,
       mfos: [
           {
             organization: '',
@@ -155,17 +178,17 @@ export default {
         { title: 'ТОО "МФО Робокэш.кз"', hide: 'block' },
         { title: 'ТОО "МФО Онлайн КазФинанс"', hide: 'block' },
         { title: 'ТОО "МФО Akshabar"', hide: 'block' },
-        { title: '"ТОО ""МФО Kredit Seven Kazakhstan"', hide: 'block' },
+        { title: 'ТОО "МФО Kredit Seven Kazakhstan"', hide: 'block' },
         { title: 'ТОО МФО "Credit365 Kazakhstan"', hide: 'block' },
         { title: 'ТОО МФО аФинанс', hide: 'block' },
         { title: 'ТОО «МФО «Quick Money»', hide: 'block' },
         { title: 'ТОО МФО Kaz Credit Line', hide: 'block' },
-        { title: '"ТОО МФО я ""Lending and Financy technologies"', hide: 'block' },
-        { title: 'ТОО  «Unionpart» ', hide: 'block' },
+        { title: 'ТОО МФО я "Lending and Financy technologies"', hide: 'block' },
+        { title: 'ТОО «Unionpart»', hide: 'block' },
         { title: 'ТОО МФО «Creditum»', hide: 'block' },
         { title: 'ТОО МФО  «SOFI FINANCE»', hide: 'block' },
         { title: 'ТОО МФО «Квику»', hide: 'block' },
-        { title: 'ТОО МФО', hide: 'block' },
+        { title: 'ТОО МФО "Zanachka"', hide: 'block' },
         { title: 'ТОО «GOFINGO»', hide: 'block' },
         { title: 'ТОО «КРЕДИТ 24»', hide: 'block' },
         { title: 'ТОО «МФО «ЮНИКРЕДО»', hide: 'block' },
@@ -175,7 +198,7 @@ export default {
         { title: 'ТОО МФО «Смарт Финанс»', hide: 'block' },
         { title: 'ТОО МФО «365 ТЕНГЕ»', hide: 'block' },
         { title: 'ТОО «МФО «Friendly Finance Kazakhstan»', hide: 'block' },
-        { title: 'ТОО  МФО «TAS FINANCE GROUP»', hide: 'block' },
+        { title: 'ТОО МФО «TAS FINANCE GROUP»', hide: 'block' },
         { title: 'i-credit.kz', hide: 'block' },
         { title: 'moneyman.kz', hide: 'block' },
         { title: 'ccloan.kz', hide: 'block' },
@@ -219,6 +242,13 @@ export default {
         { title: 'До получки', hide: 'block' },
         { title: 'kviku', hide: 'block' },
         { title: 'zana4ka.kz', hide: 'block' },
+        { title: 'qanat.kz', hide: 'block' },
+        { title: 'forenzi.kz', hide: 'block' },
+        { title: 'crezu.kz', hide: 'block' },
+        { title: 'givemoney.kz', hide: 'block' },
+        { title: 'CC Loan', hide: 'block' },
+        { title: 'Hot Zaim', hide: 'block' },
+        { title: 'Salem', hide: 'block' },
       ],
       hideOrganization: 'none',
       problems: [
@@ -251,6 +281,29 @@ export default {
     }
   },
   methods: {
+    step2__addFDA() {
+      if (this.fileDropAreaCount < 5) this.fileDropAreaCount += 1;
+    },
+    onDFCFileInput(index) {
+      document.getElementById('file-'+index).classList.add('is-active');
+    },
+    onDBRFileInput(index) {
+      document.getElementById('file-'+index).classList.remove('is-active');
+    },
+    onChangeFileInput(e, index) {
+      let filesCount = document.getElementById('file-'+index).files.length;
+      let textContainer = document.getElementById('file-'+index).previousElementSibling;
+
+      if (filesCount === 1) {
+        // if single file is selected, show file name
+        let fileName = document.getElementById('file-'+index).value.split('\\').pop();
+        textContainer.textContent = fileName;
+      } else {
+        // otherwise show number of files
+        textContainer.textContent = (filesCount + ' выбранные файлы');
+      }
+    },
+    /*  */
     onMouseMoveMFO(index) {
       if (index !== this.acting) {
         this.imageMFO[index].imageAct = this.imageChangeMoveActMFO;
@@ -279,7 +332,6 @@ export default {
       this.imageMFO[i].imageDel = this.activeImageDel;
       setTimeout(()=>{document.getElementsByClassName('step2__listMFOS-choose-mobile')[0].value = (i+1)},10);
       this.enterOrganizationInput();
-
       this.enterProblemInput();
     },
     step2__delMFO(index) {
@@ -295,6 +347,8 @@ export default {
         if (this.mfos.length-1 === index) {
           this.imageMFO.splice(this.imageMFO.indexOf(index));
           this.mfos.splice(this.mfos.indexOf(index));
+          this.enterOrganizationInput();
+          this.enterProblemInput();
         }
         else {
           for (let i = 0; i < this.mfos.length-1; i++) {
@@ -305,6 +359,8 @@ export default {
           }
           this.imageMFO.splice(this.imageMFO.length-1, 1);
           this.mfos.splice(this.mfos.length-1, 1);
+          this.enterOrganizationInput();
+          this.enterProblemInput();
         }
       }
     },
@@ -378,6 +434,7 @@ export default {
       ) {
         this.hideProblem = 'none';
         this.hideOrganization = 'block';
+        this.enterOrganizationInput();
       }
       else if (e.target.getAttribute('class') === 'step2__problems-input' ||
           e.target.getAttribute('class') === 'step2__problemsList' ||
@@ -392,14 +449,30 @@ export default {
       }
     },
     enterOrganizationInput() {
+      let organizationNames = [];
+      // let organizationNamesHide = [];
+      // console.log(this.organizations.toString());
+      for (let i = 0; i < this.mfos.length; i++) organizationNames.push(this.mfos[i].organization.toLowerCase());
+      // for (let i = 0; i < this.mfos.length; i++) {
+      //   let organNameIndex = organizationNames.indexOf(mfosNames[i]);
+      //   if (organNameIndex !== -1) this.organizations[organNameIndex].hide = false;
+      // }
+      console.log(organizationNames.join(', '));
       if (this.mfos[this.acting].organization === '') {
-        for (let i = 0; i < this.organizations.length; i++) this.organizations[i].hide = 'block';
+        for (let i = 0; i < this.organizations.length; i++) {
+          if (organizationNames.indexOf(this.organizations[i].title.toLowerCase()) === -1) {
+            this.organizations[i].hide = 'block';
+          }
+        }
         return;
       }
       for (let i = 0; i < this.organizations.length; i++) {
         if (this.organizations[i].title.toLowerCase().indexOf(this.mfos[this.acting].organization.toLowerCase()) !== -1 &&
-            this.organizations[i].title.toLowerCase() !== this.mfos[this.acting].organization.toLowerCase()) {
-          this.organizations[i].hide = 'block';
+            this.organizations[i].title.toLowerCase() !== this.mfos[this.acting].organization.toLowerCase()
+        ) {
+          if (organizationNames.indexOf(this.organizations[i].title.toLowerCase()) === -1) {
+            this.organizations[i].hide = 'block';
+          }
         }
         else this.organizations[i].hide = 'none';
       }

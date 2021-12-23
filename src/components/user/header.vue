@@ -62,6 +62,7 @@ export default {
     return {
       numRequests: 0,
       links: [
+        // { path: 'cabinet', title: 'Личный кабинет' },
         { path: 'notifications', title: 'Уведомления' },
         { path: '/step-2', title: 'Заказать услугу' },
       ],
@@ -81,6 +82,7 @@ export default {
   },
   mounted() {
     this.token = localStorage.getItem('token');
+    this.getLeadData();
     this.getPush();
     this.$store.commit('SET_FOOTER',true);
   },
@@ -89,6 +91,25 @@ export default {
       await localStorage.setItem('token', '');
       this.$store.commit('SET_LOGGED','');
       this.$router.push({path: '/'});
+    },
+    async getLeadData() {
+      await axios.post('https://crediter.kz/api/getLeadData', {
+        'token': this.token,
+      })
+          .then(response => {
+            if (response.data.success) {
+              if (response.data.step === 2) this.links[1].path = ('step-2');
+              else if (response.data.step === 3 || response.data.step === 4) this.links[1].path = ('step-3');
+              else if (response.data.step === 0) this.links[1].path = ('step-4');
+              else this.links[1].path = ('step-2');
+            }
+            else {
+              this.error = response.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = error;
+          });
     },
     async getPush() {
       await axios.post('https://crediter.kz/api/getPush', {

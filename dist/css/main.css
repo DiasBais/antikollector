@@ -3,9 +3,124 @@
     border-radius: 15px 0px 0px 15px;
     position: fixed;
     right: -60px;
-    bottom: 25px;
+    top: 85px;
     padding: 10px;
     z-index: 99;
     transition: right 0.25s;
+}
+.questions {
+    position: fixed;
+    right: 25px;
+    bottom: 85px;
+    z-index: 999;
+}
+.questions a {
+    text-decoration: none;
+}
+.questions-icon {
+    background: #525252;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0px 0px 10px #525252;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+}
+.whatsapp-icon {
+    background: #00a858;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0px 0px 10px #00a858;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+}
+.whatsapp-icon img {
+    width: 30px;
+    height: 30px;
+}
+.instagram-icon {
+    /*background: #000000;*/
+    border-radius: 12px;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0px 0px 10px #8b25c4;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+}
+.instagram-icon img {
+    width: 30px;
+    height: 30px;
+}
+.facebook-icon {
+    background: #1877f2;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0px 0px 10px #1877f2;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+}
+.facebook-icon img {
+    width: 44px;
+    height: 44px;
+}
+.vk-icon {
+    /*background: #000000;*/
+    border-radius: 12px;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0px 0px 10px #2787f5;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 34px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+}
+.vk-icon img {
+    width: 30px;
+    height: 30px;
 }
 
