@@ -138,7 +138,7 @@ export default {
     /* MOBILE VERSION */
     step1MobileVersion() {
       if (window.innerWidth < 1160) {
-        this.phoneNumber = '7';
+        this.phoneNumber = '+7';
         this.mobileVersion = true;
       } else {
         this.phoneNumber = '+7 (';
