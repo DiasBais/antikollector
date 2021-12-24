@@ -6,20 +6,32 @@
     <div class="loading" :style="'right: '+(loading?'0px':'-60px')">
       <LoadingImage></LoadingImage>
     </div>
-    <div class="questions">
-      <a class="facebook-icon" :href="linkFacebook">
-        <img src="/images/icons/facebook.png">
-      </a>
-      <a :href="linkInstagram">
-        <img class="instagram-icon" src="/images/icons/instagram.webp">
-      </a>
-      <a :href="linkVK">
-        <img class="vk-icon" src="/images/icons/vk.png">
-      </a>
-      <a class="whatsapp-icon" :href="linkWhatsapp">
-        <img src="/images/icons/whatsapp.png">
-      </a>
-      <router-link class="questions-icon" :to="'faq'">?</router-link>
+    <div :class="'questions '+(openedLinks?'':'questions__closed')">
+      <div class="questions__OpenClose" v-on:click="closeLinks">
+        <div class="questions__OpenCloseContent">
+          <div class="questions__OpenCloseItem"></div>
+          <div class="questions__OpenCloseItem"></div>
+          <div class="questions__OpenCloseItem"></div>
+        </div>
+      </div>
+      <div class="questions__content">
+        <a class="questions__youtube-icon" :href="linkYoutube" target="_blank">
+          <img src="/images/icons/youtube.png">
+        </a>
+        <a class="questions__facebook-icon" :href="linkFacebook" target="_blank">
+          <img src="/images/icons/facebook.png">
+        </a>
+        <a :href="linkInstagram" target="_blank">
+          <img class="questions__instagram-icon" src="/images/icons/instagram.webp">
+        </a>
+        <a :href="linkVK" target="_blank">
+          <img class="questions__vk-icon" src="/images/icons/vk.png">
+        </a>
+        <a class="questions__whatsapp-icon" :href="linkWhatsapp" target="_blank">
+          <img src="/images/icons/whatsapp.png">
+        </a>
+        <router-link class="questions__questions-icon" :to="'faq'" target="_blank">?</router-link>
+      </div>
     </div>
     <VFooter v-if="footer"></VFooter>
   </div>
@@ -43,12 +55,14 @@ export default {
     return {
       logged: false,
       footer: false,
+      openedLinks: true,
       router: '',
       hideFooter: true,
       linkInstagram: 'https://instagram.com/antikollector.kz.1',
       linkFacebook: 'https://www.facebook.com/profile.php?id=100075993963375',
       linkWhatsapp: 'https://wa.me/+77003505000',
       linkVK: 'https://vk.com/id694737943',
+      linkYoutube: 'https://www.youtube.com/channel/UCzDhXZXUWDx1k_pbmX4WNHA',
     }
   },
   state () {
@@ -94,6 +108,10 @@ export default {
     },
   },
   methods: {
+    closeLinks() {
+      if (this.openedLinks) this.openedLinks = false;
+      else this.openedLinks = true;
+    },
     checkRouter() {
       this.router = this.$route.path.toLowerCase();
       if (this.router === '/login' ||
@@ -102,6 +120,7 @@ export default {
           this.router === '/step-3' ||
           this.router === '/step-4' ||
           this.router === '/step-5' ||
+          this.router === '/confirm' ||
           this.router === '/forgot-password'
       ) {
         this.hideFooter = false;
@@ -112,6 +131,8 @@ export default {
       else {
         this.$store.commit('SET_FOOTER', true);
         this.hideFooter = true;
+        this.footer = this.storageFooter;
+        this.checkRouter();
       }
     }
   },

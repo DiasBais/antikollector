@@ -91,7 +91,7 @@
         margin: 15px 0px 0px 0px;
     }
     .step1__content {
-        width: 200px;
+        width: 100%;
         background-image: url('/images/looper-step1.svg');
         padding: 10px 15px 20px 15px;
     }
@@ -175,3 +175,4 @@
         width: 100%;
     }
 }
+

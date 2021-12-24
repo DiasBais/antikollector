@@ -10,8 +10,8 @@
       </div>
       <div class="step4__title">Выберите способ оплаты</div>
       <div class="step4__body">
-        <div class="step4__visa" v-on:click="changePaymentMethod('paybox')">
-          <img class="step4__visa-image" src="/images/visa.png">
+        <div class="step4__payment step4__payment-active" v-on:click="changePaymentMethod('paybox')">
+          <img class="step4__payment-image" src="/images/paybox.png">
         </div>
 <!--        <div class="step4__terminal" v-on:click="changePaymentMethod('terminal')">-->
 <!--          <img class="step4__terminal-image" src="/images/terminal.png">-->
@@ -60,21 +60,64 @@ export default {
     else if (!localStorage.getItem('step3Passed')) {
       this.$router.push({path: '/step-3'});
     }
-    this.$store.commit('SET_FOOTER',false);
+    this.getLeadData();
   },
   methods: {
+    async getLeadData() {
+      this.$store.commit('SET_LOADING', true);
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/getLeadData', {
+        'token': this.token,
+      })
+          .then(async response => {
+            if (response.data.success) {
+              if (response.data.step === 0) {
+                this.getDataPayment();
+              }
+            }
+            else {
+              this.$store.commit('SET_LOADING', false);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            this.$store.commit('SET_LOADING', false);
+          });
+    },
+    async getDataPayment() {
+      const axios = require('axios');
+      await axios.post('https://crediter.kz/api/getDataPayment', {
+        'token': this.token,
+      })
+          .then(async response => {
+            if (response.data.success) {
+              this.makePayment(response.data.amount);
+            }
+            else {
+              this.$store.commit('SET_LOADING', false);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            this.$store.commit('SET_LOADING', false);
+          });
+    },
     changePaymentMethod(method) {
       this.error = '';
       this.paymentMethod = method;
-      if (this.paymentMethod === 'paybox') this.namePrice = 'Оплата с помощью карты';
+      if (this.paymentMethod === 'paybox') {
+        document.getElementsByClassName('step4__payment')[0].classList.add('step4__payment-active');
+        this.namePrice = 'Оплата с помощью карты';
+      }
       else if (this.paymentMethod === 'terminal') {
+        document.getElementsByClassName('step4__payment')[0].classList.remove('step4__payment-active');
         this.namePrice = 'Оплата через терминал';
       }
       else this.namePrice = '';
     },
     onClickPaymentMethod() {
       this.error = '';
-      if (this.paymentMethod === 'paybox') this.makePayment();
+      if (this.paymentMethod === 'paybox') this.makePayment(this.priceMFOS);
       else if (this.paymentMethod === 'terminal') {
         this.$router.push({path: '/step-5'});
       }
@@ -88,7 +131,7 @@ export default {
       this.kassa24 = true;
       this.qiwi = false;
     },
-    async makePayment() {
+    async makePayment(amount) {
       this.error = '';
       if (!this.paymentMethod) {
         this.error = 'Выберите способ оплаты';
@@ -97,11 +140,12 @@ export default {
       this.$store.commit('SET_LOADING', true);
       const axios = require('axios');
       await axios.post('https://crediter.kz/api/makePayment', {
-        'amount': this.priceMFOS,
+        'amount': amount,
         'iin': this.iin,
       })
           .then(async response => {
             if (response.data) {
+              this.$store.commit('SET_LOADING', false);
               // await localStorage.setItem('step2Passed', '');
               // await localStorage.setItem('paymentLink', (response.data[0]+'?'+response.data[1]));
               // document.location.href = 'https://www.antikollector.kz/?v=e0f51fc098220d9b7aaa0549b2022128&utm_source=doaff&utm_medium=affiliate&utm_campaign=doaff&web_id=_hICYFw--&utm_content=doaff';

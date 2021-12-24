@@ -149,7 +149,7 @@ export default {
       let now = new Date();
       let definitionHours = this.definitionHourInDay(now.getHours(),now.getMinutes(),now.getSeconds());
       let nowDate = (parseInt(this.definitionDaysInYears(now.getFullYear(),(now.getMonth()+1),now.getDate())));
-      let oldDate = (parseInt(this.definitionDaysInYears(2021,11,28)));
+      let oldDate = (parseInt(this.definitionDaysInYears(2021,12,24)));
       let currentDate = (((((nowDate-oldDate)*8)*60)*60)+(definitionHours[0]));
       this.numPeopleOriginal = Math.floor(currentDate / 30);
       this.numPeopleOriginalShadow = Math.floor(currentDate / 30);

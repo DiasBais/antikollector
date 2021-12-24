@@ -100,9 +100,11 @@
     /* --- */
 
     .step3__footer {
+        margin: 10px 0px 0px 0px;
+    }
+    .step3__transitions {
         display: block;
         justify-content: normal;
-        margin: 40px 0px 0px 0px;
     }
     .step3__free {
         box-shadow: 0px 0px 44px -12px #CC7272;
@@ -127,7 +129,7 @@
         margin: 15px 0px 0px 0px;
     }
     .step3__content {
-        width: 200px;
+        width: 100%;
         background-image: url('/images/looper-step3.svg');
         padding: 10px 15px 20px 15px;
     }

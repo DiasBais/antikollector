@@ -26,7 +26,7 @@
         </div>
         <div class="step1__input">
           <p class="step1__input-name">
-            Номер телефон
+            Номер телефон(whatsapp)
             <span class="step1__input-name-require">*</span>
           </p>
           <input :class="'step1__input-phone step1__input-value '+(this.errorPhone?'step1__error-input':'')" type="text" autocomplete="new_phone" name="phone" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber()">
@@ -55,7 +55,7 @@
                      name="password"
                      autocomplete="new_password"
                      v-model="password"
-                     v-on:keyup="onKeyUpInput($event, 'password')"
+                     v-on:keyup="onKeyUpInput($event, 'password', 1)"
               >
               <img class="step1__passwordIcon" :src="passwordIcon" v-on:click="onClickPasswordIcon">
             </label>
@@ -156,7 +156,7 @@ export default {
         this.passwordIcon = '/images/show-password.png';
       }
     },
-    onKeyUpInput(e, name) {
+    onKeyUpInput(e, name, phoneTo = 0) {
       if (e.key === 'Enter') {
         if (name === 'fio') {
           document.getElementsByClassName('step1__input-iin')[0].focus();
@@ -170,7 +170,7 @@ export default {
         else if (name === 'email') {
           document.getElementsByClassName('step1__input-password')[0].focus();
         }
-        else if (name === 'password') {
+        else if (name === 'password' && phoneTo) {
           this.submitRequestFirstStep();
         }
       }
@@ -207,7 +207,7 @@ export default {
         } else {
           this.errorPhone = '';
         }
-      } else if (name === 'email') {
+      } else if (name === 'email' && !this.mobileVersion) {
         if (!this.email) {
           this.errorEmail = 'Поле электронная почта обязательно для заполнения';
         } else if (!this.validateEmail(this.email)) {
@@ -215,6 +215,8 @@ export default {
         } else {
           this.errorEmail = '';
         }
+      } else if (name === 'email' && this.mobileVersion) {
+        this.errorEmail = '';
       } else if (name === 'password') {
         if (!this.password) {
           this.errorPassword = 'Поле пароль обязательно для заполнения';
@@ -272,19 +274,31 @@ export default {
       }
       else return this.validatePhoneNumber2Error('Неправильный номер телефона. Введите заново');
     },
+    removeSymbols(str) {
+      let new_str = '';
+      for (let i = 0; i < str.length; i++) {
+        if (str[i] >= '0' && str[i] <= '9' || str[i] === '+') {
+          new_str += str[i];
+        }
+      }
+      return new_str;
+    },
     async submitRequestFirstStep() {
       if (this.goesLoading) return;
-      this.goesLoading = true;
       this.error = '';
+      this.errorEmail = '';
       if (this.validateStep1()) return;
-      this.$store.commit('SET_LOADING', true);
+      if (this.validateEmailEnter()) return;
       let phoneNumberRequest = '';
       if (this.mobileVersion) {
-        this.phoneNumberOriginal = this.validatePhoneNumber2(this.phoneNumber);
+        let phoneNumbers = this.removeSymbols(this.phoneNumber);
+        this.phoneNumberOriginal = this.validatePhoneNumber2(phoneNumbers);
         if (this.phoneNumberOriginal) phoneNumberRequest = this.phoneNumberOriginal;
         else return;
       }
       else phoneNumberRequest = '7'+this.phoneNumberOriginal;
+      this.goesLoading = true;
+      this.$store.commit('SET_LOADING', true);
       await axios.post('https://crediter.kz/api/firstStep', {
         'fio': this.fio,
         'iin': this.iin,
@@ -367,6 +381,21 @@ export default {
         convolution += iin[i] * weights[i];
       }
       return convolution % 11;
+    },
+    validateEmailEnter() {
+      if (!this.mobileVersion) return false;
+      if (!this.email) {
+        this.errorEmail = 'Поле электронная почта обязательно для заполнения';
+        return true;
+      }
+      else if (!this.validateEmail(this.email)) {
+        this.errorEmail = 'Неправильный email';
+        return true;
+      }
+      else {
+        this.errorEmail = '';
+        return false;
+      }
     },
     validateEmail(email) {
       let emailValid = email.split('').map((elm) => {

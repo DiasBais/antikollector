@@ -196,7 +196,7 @@
         margin: 30px 0px 0px 0px;
     }
     .step2__content {
-        width: 200px;
+        width: 100%;
         padding: 10px 15px 20px 15px;
     }
     .step2__loading-title {
@@ -211,6 +211,7 @@
     }
     .step2__body {
         margin: 40px 0px 0px 0px;
+        padding: 0px 15px 0px 15px;
     }
     .step2__error {
         font-size: 13px;
@@ -355,7 +356,7 @@
     /* --- */
 
     .step2__footer {
-        margin: 20px 0px 0px 0px;
+        margin: 20px 15px 0px 15px;
     }
     .step2__back {
         display: none;
@@ -372,14 +373,18 @@
 
 
 
+    .step2__file-drop-area {
+        position: relative;
+        padding: 0px 15px 0px 15px;
+    }
     .step2__add-file-drop-area {
         font-size: 11px;
         line-height: 14px;
     }
     .step2__file-drop-area .file-drop-area {
-        max-width: 84%;
-        padding: 15px;
+        max-width: 73%;
         margin: 10px 0px 10px 0px;
+        padding: 15px 30px 15px 30px;
     }
 
     .step2__file-drop-area .fake-btn {
