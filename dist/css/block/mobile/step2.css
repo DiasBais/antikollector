@@ -211,12 +211,12 @@
     }
     .step2__body {
         margin: 40px 0px 0px 0px;
-        padding: 0px 15px 0px 15px;
+        padding: 0px 15px;
     }
     .step2__error {
         font-size: 13px;
         line-height: 16px;
-        padding: 10px 15px 10px 15px;
+        padding: 10px 15px;
     }
     .step2__error span {
         font-size: 12px;
@@ -226,7 +226,7 @@
     /* --- */
 
     .step2__organizations {
-        margin: 15px 0px 15px 0px;
+        margin: 15px 0px;
     }
     .step2__organizations-title {
         font-size: 12px;
