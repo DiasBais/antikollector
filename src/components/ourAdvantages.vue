@@ -128,7 +128,7 @@ export default {
       },
       attainments: [
         { image: '/images/why-us/12-years.svg', description: '12 лет защищаем людей от коллекторов' },
-        { image: '/images/why-us/95-percent.svg', description: '95% успешно выйгранных дел' },
+        { image: '/images/why-us/95-percent.svg', description: '95% успешно выигранных дел' },
         { image: '/images/why-us/kazakhstan.svg', description: 'Работаем по всему Казахстану' },
         { image: '/images/why-us/browser.svg', description: 'Все услуги онлайн' },
         { image: '/images/why-us/free-services.svg', description: 'Оказываем бесплатные слуги' },
