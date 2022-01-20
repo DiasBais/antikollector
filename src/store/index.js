@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import organizations from './modules/organizations'
 import loading from './modules/loading'
 import lang from './modules/lang'
 import logged from './modules/logged'
@@ -11,5 +12,6 @@ export default new Vuex.Store({
         loading,
         lang,
         logged,
+        organizations,
     }
 })

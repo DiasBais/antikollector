@@ -29,7 +29,7 @@
     /* --- */
 
     .step2__organizations {
-        margin: 15px 0px 15px 0px;
+        /*margin: 15px 0px;*/
     }
     .step2__organizations-title {
         font-size: 14px;
@@ -42,6 +42,9 @@
         padding: 15px 15px 15px 15px;
         font-size: 14px;
         line-height: 17px;
+    }
+    .step2__organizationsLists {
+        margin: 15px 0px;
     }
     .step2__organizationsList-option {
         margin: 0 !important;
@@ -226,7 +229,7 @@
     /* --- */
 
     .step2__organizations {
-        margin: 15px 0px;
+        /*margin: 15px 0px;*/
     }
     .step2__organizations-title {
         font-size: 12px;
@@ -239,6 +242,9 @@
         padding: 9px 9px 9px 9px;
         font-size: 12px;
         line-height: 15px;
+    }
+    .step2__organizationsLists {
+        margin: 15px 0px;
     }
     .step2__organizationsList-option {
         margin: 0 !important;

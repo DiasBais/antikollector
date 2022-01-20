@@ -5,7 +5,15 @@
       <div class="forgotPassword__body">
         <div class="forgotPassword__input">
           <p class="forgotPassword__input-name">Введите телефон</p>
-          <input class="forgotPassword__phoneInput" type="text" name="phone" value="" v-model="phoneNumber" v-on:keydown="onKeyDownPhoneNumber($event)" v-on:keyup="onKeyUpPhoneNumber()">
+          <input class="forgotPassword__phoneInput"
+                 type="text"
+                 name="phone"
+                 value=""
+                 autocomplete="off"
+                 v-model="phoneNumber"
+                 v-on:keydown="onKeyDownPhoneNumber($event)"
+                 v-on:keyup="onKeyUpPhoneNumber()"
+          >
           <div class="forgotPassword__error" v-if="errorPhone">Error: <span>{{ errorPhone }}</span></div>
         </div>
       </div>
